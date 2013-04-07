@@ -30,8 +30,6 @@ WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
         Allow from all
         </Directory>
 
-        # WSGIDaemonProcess skill python-path="c:/Python27/Lib/site-packages/warehouse"
-
         WSGIScriptAlias / "c:/Python27/Lib/site-packages/warehouse/wsgi.py"
         <Directory "c:/Python27/Lib/site-packages/warehouse">
         <Files wsgi.py>
