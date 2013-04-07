@@ -14,4 +14,4 @@ TODO: Enter usage information
 Installation
 ------------
 
-TODO: Enter installation information
+pip install -e git+https://github.com/hva/warehouse.git#egg=Warehouse
