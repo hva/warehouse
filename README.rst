@@ -17,4 +17,4 @@ LoadModule wsgi_module modules/mod_wsgi.so
 
 https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20
 
-pip install -e git+https://github.com/hva/warehouse.git#egg=Warehouse
+pip install -U git+https://github.com/hva/warehouse.git
