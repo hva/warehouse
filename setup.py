@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
+from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
@@ -12,7 +13,8 @@ setup(
     author='Yauheni Khvaliuk',
     author_email='hvaluk@gmail.com',
     url='https://github.com/hva/warehouse',
-    packages=['warehouse'],
+    packages=find_packages(),
+    include_package_data=True,
     classifiers=[
         # 'https://pypi.python.org/pypi?%3Aaction=list_classifiers'
         'Framework :: Django',
