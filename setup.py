@@ -1,16 +1,25 @@
 #!/usr/bin/env python
 
+import os
 from distutils.core import setup
-import distutils.command.install
+from distutils.command.install import install
+from distutils import sysconfig
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-class my_install(distutils.command.install):
+print sysconfig.get_config_var("prefix")
+print os.getcwd()
+raise SystemExit
+
+class post_install(install):
     def run(self):
-        distutils.command.install.run(self)
-        print 'asdasdasd...'
+        install.run(self)
+        # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
+        # from django.core.management import call_command
+        # call_command('collectstatic', '--noinput')
+        
 
 setup(
     name='Warehouse',
@@ -34,5 +43,5 @@ setup(
         "Django == 1.4.5",
     ],
     zip_safe=False,
-    cmdclass=dict(install=my_install)
+    cmdclass={"install": post_install},
 )
