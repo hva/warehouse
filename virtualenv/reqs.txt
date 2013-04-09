@@ -1,2 +1,2 @@
-libs/Django-1.4.5.tar.gz
+Django==1.4.5
 #MySQL-python==1.2.3
