@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
+import distutils.command.install
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
+
+
+class my_install(distutils.command.install):
+    def run(self):
+        distutils.command.install.run(self)
+        print 'asdasdasd...'
 
 setup(
     name='Warehouse',
@@ -27,4 +34,5 @@ setup(
         "Django == 1.4.5",
     ],
     zip_safe=False,
+    cmdclass=dict(install=my_install)
 )
