@@ -49,5 +49,5 @@ setup(
         "Django == 1.4.5",
     ],
     zip_safe=False,
-    cmdclass={"install": post_install},
+    # cmdclass={"install": post_install},
 )
