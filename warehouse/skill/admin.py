@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
 
-from apps.skill.models import Product
+from skill.models import Product
 
 admin.site.register(Product)
 
