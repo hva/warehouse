@@ -12,7 +12,7 @@ execfile('warehouse/version.py')
 class post_install(install):
     def run(self):
         self._collectstatic()
-        self._mklogs()
+        # self._mklogs()
         install.run(self)
 
     def _collectstatic(self):
