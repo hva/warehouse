@@ -3,17 +3,16 @@
 import os
 import sys
 from distutils.core import setup
-from distutils.command.install import install
+import distutils.command.install
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-class post_install(install):
+class my_install(distutils.command.install):
     def run(self):
-        # self._collectstatic()
-        # self._mklogs()
-        install.run(self)
+        distutils.command.install.run(self)
+        print '------------------------------------------'
 
     def _collectstatic(self):
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
@@ -49,5 +48,5 @@ setup(
         "Django == 1.4.5",
     ],
     zip_safe=False,
-    # cmdclass={"install": post_install},
+    cmdclass={"install": my_install},
 )
