@@ -3,15 +3,15 @@
 import os
 import sys
 from distutils.core import setup
-from distutils.command.register import register
+from distutils.command.install import install as _install
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-class my_build_py(register):
+class install(_install):
     def run(self):
-        register.run(self)
+        _install.run(self)
         self._collectstatic()
 
     def _collectstatic(self):
@@ -19,11 +19,6 @@ class my_build_py(register):
         sys.path.insert(0, os.path.join(os.getcwd(), 'warehouse'))
         from django.core.management import call_command
         call_command('collectstatic', interactive=False)
-
-    def _mklogs(self):
-        path = os.path.join(os.getcwd(), 'warehouse', 'logs')
-        if not os.path.exists(path):
-            os.makedirs(path, 0755)
 
 
 setup(
@@ -48,5 +43,5 @@ setup(
         "Django == 1.4.5",
     ],
     zip_safe=False,
-    cmdclass={'register': my_build_py},
+    cmdclass={'install': install},
 )
