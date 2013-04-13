@@ -3,15 +3,15 @@
 import os
 import sys
 from distutils.core import setup
-import distutils.command.install
+from distutils.command.install import install
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-class my_install(distutils.command.install):
+class my_install(install):
     def run(self):
-        distutils.command.install.run(self)
+        install.run(self)
         print '------------------------------------------'
 
     def _collectstatic(self):
