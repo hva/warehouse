@@ -10,8 +10,8 @@ execfile('warehouse/version.py')
 
 class install(_install):
     def run(self):
-        _install.run(self)
         self._collectstatic()
+        _install.run(self)
 
     def _collectstatic(self):
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
