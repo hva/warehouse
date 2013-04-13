@@ -44,7 +44,7 @@ setup(
         'Natural Language :: Russian',
         'Programming Language :: Python :: 2',
     ],
-    build_requires=[
+    install_requires=[
         "Django == 1.4.5",
     ],
     zip_safe=False,
