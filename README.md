@@ -19,7 +19,7 @@ https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.
 
 pip install -U https://github.com/hva/warehouse/tarball/master
 
-`WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
+WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         ServerName skill
@@ -41,4 +41,4 @@ pip install -U https://github.com/hva/warehouse/tarball/master
         LogLevel info
         ErrorLog  "c:/Python27/Lib/site-packages/warehouse/logs/error.log"
         CustomLog "c:/Python27/Lib/site-packages/warehouse/logs/access.log" combined
-</VirtualHost>`
+</VirtualHost>
