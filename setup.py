@@ -3,16 +3,16 @@
 import os
 import sys
 from distutils.core import setup
-from distutils.command.install import install
+from distutils.command.register import register
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-class my_install(install):
+class my_build_py(register):
     def run(self):
-        install.run(self)
-        print '------------------------------------------'
+        register.run(self)
+        self._collectstatic()
 
     def _collectstatic(self):
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
@@ -44,9 +44,9 @@ setup(
         'Natural Language :: Russian',
         'Programming Language :: Python :: 2',
     ],
-    install_requires=[
+    build_requires=[
         "Django == 1.4.5",
     ],
     zip_safe=False,
-    cmdclass={"install": my_install},
+    cmdclass={'register': my_build_py},
 )
