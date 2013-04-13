@@ -1,25 +1,31 @@
 #!/usr/bin/env python
 
 import os
+import sys
 from distutils.core import setup
 from distutils.command.install import install
-from distutils import sysconfig
 from setuptools import find_packages
 
 execfile('warehouse/version.py')
 
 
-print sysconfig.get_config_var("prefix")
-print os.getcwd()
-raise SystemExit
-
 class post_install(install):
     def run(self):
+        self._collectstatic()
+        self._mklogs()
         install.run(self)
-        # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
-        # from django.core.management import call_command
-        # call_command('collectstatic', '--noinput')
-        
+
+    def _collectstatic(self):
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
+        sys.path.insert(0, os.path.join(os.getcwd(), 'warehouse'))
+        from django.core.management import call_command
+        call_command('collectstatic', interactive=False)
+
+    def _mklogs(self):
+        path = os.path.join(os.getcwd(), 'warehouse', 'logs')
+        if not os.path.exists(path):
+            os.makedirs(path, 0755)
+
 
 setup(
     name='Warehouse',
