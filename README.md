@@ -33,6 +33,8 @@ Requirements
         Allow from all
         </Directory>
 
+        # WSGIDaemonProcess test.betafisha.ru python-path=/home/hva/bm/www
+
         WSGIScriptAlias / "c:/Python27/Lib/site-packages/warehouse/wsgi.py"
         <Directory "c:/Python27/Lib/site-packages/warehouse">
         <Files wsgi.py>
@@ -42,6 +44,6 @@ Requirements
         </Directory>
 
         LogLevel info
-        ErrorLog  "c:/Python27/Lib/site-packages/warehouse/logs/error.log"
-        CustomLog "c:/Python27/Lib/site-packages/warehouse/logs/access.log" combined
+        ErrorLog  "c:/Program Files (x86)/Apache Software Foundation/Apache2.2/logs/warehouse_error.log"
+        CustomLog "c:/Program Files (x86)/Apache Software Foundation/Apache2.2/logs/warehouse_access.log" combined
     </VirtualHost>
