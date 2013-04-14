@@ -24,7 +24,7 @@ setup(
     name='Warehouse',
     version=__version__,
     description='Django project to manage warehouse',
-    long_description=open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
+    long_description=open('README.md').read() + '\n\n' + open('HISTORY.rst').read(),
     author='Yauheni Khvaliuk',
     author_email='hvaluk@gmail.com',
     url='https://github.com/hva/warehouse',

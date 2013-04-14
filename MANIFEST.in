@@ -1,2 +1,2 @@
-include README.rst HISTORY.rst LICENSE warehouse/db
+include README.md HISTORY.rst LICENSE warehouse/db
 recursive-include warehouse *.py *.html *.js *.css
