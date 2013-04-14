@@ -1,26 +1,29 @@
 Warehouse
-==================
+=========
 
 About
 -----
 
-TODO: Enter a description
+Django web site to manage warehouse.
 
 Installation
 ------------
 
-http://ftp.byfly.by/pub/apache.org//httpd/binaries/win32/httpd-2.2.22-win32-x86-no_ssl.msi
+    pip install -U https://github.com/hva/warehouse/tarball/master
 
-https://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so
+Requirements
+------------
 
-LoadModule wsgi_module modules/mod_wsgi.so
+    http://ftp.byfly.by/pub/apache.org//httpd/binaries/win32/httpd-2.2.22-win32-x86-no_ssl.msi
 
-https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe#md5=57e1e64f6b7c7f1d2eddfc9746bbaf20
+    https://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so
 
-pip install -U https://github.com/hva/warehouse/tarball/master
+    LoadModule wsgi_module modules/mod_wsgi.so
 
-WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
-<VirtualHost *:80>
+    https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe
+
+    WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
+    <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         ServerName skill
 
@@ -41,4 +44,4 @@ WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
         LogLevel info
         ErrorLog  "c:/Python27/Lib/site-packages/warehouse/logs/error.log"
         CustomLog "c:/Python27/Lib/site-packages/warehouse/logs/access.log" combined
-</VirtualHost>
+    </VirtualHost>
