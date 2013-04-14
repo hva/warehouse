@@ -17,7 +17,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-    route = models.ForeignKey(ProductType, verbose_name="Позиция")
+    route = models.ForeignKey(ProductType, verbose_name="Наименование")
 
     def __unicode__(self):
         return self.name
