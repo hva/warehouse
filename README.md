@@ -22,6 +22,10 @@ Requirements
 
     https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe
 
+    http://cdn.mysql.com/Downloads/MySQL-5.5/mysql-5.5.30-win32.msi
+
+    CREATE DATABASE skill DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
     WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
     <VirtualHost *:80>
         ServerAdmin webmaster@localhost
