@@ -37,8 +37,6 @@ Requirements
         Allow from all
         </Directory>
 
-        # WSGIDaemonProcess test.betafisha.ru python-path=/home/hva/bm/www
-
         WSGIScriptAlias / "c:/Python27/Lib/site-packages/warehouse/wsgi.py"
         <Directory "c:/Python27/Lib/site-packages/warehouse">
         <Files wsgi.py>
