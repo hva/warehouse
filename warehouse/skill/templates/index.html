@@ -22,41 +22,50 @@
         </div>
     </div>
 
+{% load l10n %}
+{% localize on %}
+
     <div class="row">
-        <div class="large-12 columns">
+        <div class="small-12 columns">
             <h4>Остатки</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Наименование</th>
-                        <th>Приходная цена за 1 тн без НДС</th>
+                        <th>Цена (без&nbsp;НДС)</th>
                         <th>Тоннаж</th>
-                        <th>Длина</th>
+                        <th>Длина штанги (м)</th>
+                        <th>Метраж (м)</th>
+                        <th>Коэфф.</th>
+                        <th>Наценка (%)</th>
+                        <th>Цена реализ. (без НДС)</th>
+                        <th>Ставка НДС (%)</th>
+                        <th>Цена реализ. за т (с НДС)</th>
+                        <th>Цена реализ. за м (с НДС)</th>
                     </tr>
                 </thead>
                 <tbody>
+                {% for product in products %}
                     <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
+                        <td>{{ product.type }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.weight }}</td>
+                        <td>{{ product.item_length }}</td>
+                        <td>{{ product.full_length }}</td>
+                        <td>{{ product.coefficient }}</td>
+                        <td>{{ product.margin }}</td>
+                        <td>{{ product.margin_price }}</td>
+                        <td>{{ product.vat }}</td>
+                        <td>{{ product.margin_vat_price }}</td>
+                        <td>{{ product.margin_vat_price_meter|floatformat:"0" }}</td>
                     </tr>
-                    <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
-                    </tr>
-                    <tr>
-                        <td>Content Goes Here</td>
-                        <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                        <td>Content Goes Here</td>
-                        <td>Content Goes Here</td>
-                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
+{% endlocalize %}
 
 <script>
 document.write('<script src=/static/home/' +

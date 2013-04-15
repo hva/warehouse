@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from django.db import models
+from decimal import Decimal
 
 
 class ProductType(models.Model):
@@ -26,6 +27,19 @@ class Product(models.Model):
     coefficient = models.FloatField(verbose_name='Коэффициент')
     margin = models.IntegerField(verbose_name='Наценка (%)')
     vat = models.IntegerField(verbose_name='Ставка НДС (%)')
+
+    _margin_price = None
+    _margin_vat_price = None
+    _margin_vat_price_meter = None
+
+    def margin_price(self):
+        return self.price * (100 + self.margin) / 100
+
+    def margin_vat_price(self):
+        return self.margin_price() * (100 + self.vat) / 100
+
+    def margin_vat_price_meter(self):
+        return self.margin_vat_price() * Decimal(self.coefficient) / 1000
 
     # def __unicode__(self):
     #     return self.name
