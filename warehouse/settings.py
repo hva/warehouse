@@ -154,3 +154,10 @@ LOGGING = {
         },
     }
 }
+
+# Local Settings
+try:
+    from settings_local import *
+except ImportError:
+    pass
+# /Local Settings
