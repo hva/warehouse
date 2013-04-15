@@ -1,10 +1,10 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | Скилл{% endblock %}
+{% block title %}{{ title }} | {{ globals.company }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name">Администрирование Скилл</h1>
+<h1 id="site-name">Администрирование {{ globals.company }} <span style="font-size: 0.5em">v. {{ globals.version }}</span></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
