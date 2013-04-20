@@ -5,8 +5,6 @@ import sys
 from setuptools import setup, find_packages
 from setuptools.command.install import install as _install
 
-execfile('warehouse/version.py')
-
 
 class install(_install):
     def run(self):
@@ -20,9 +18,11 @@ class install(_install):
         call_command('collectstatic', interactive=False)
 
 
+version = __import__('warehouse').__version__
+
 setup(
     name='Warehouse',
-    version=__version__,
+    version=version,
     description='Django project to manage warehouse',
     long_description=open('README.md').read() + '\n\n' + open('HISTORY.rst').read(),
     author='Yauheni Khvaliuk',
@@ -39,7 +39,8 @@ setup(
         'Programming Language :: Python :: 2',
     ],
     install_requires=[
-        "Django == 1.4.5",
+        'Django == 1.4.5',
+        'South==0.7.6',
     ],
     zip_safe=False,
     cmdclass={'install': install},

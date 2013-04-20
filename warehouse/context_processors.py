@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from version import __version__
+from warehouse import __version__
 
 
 def globals(request):
