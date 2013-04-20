@@ -37,22 +37,134 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="150" y="71" name="taxonomy">
+</datatypes><table x="89" y="147" name="taxonomy">
 <row name="taxonomy_id" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
-<row name="parent_id" null="1" autoincrement="0">
+<row name="parent_id" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <default>NULL</default><relation table="taxonomy" row="taxonomy_id" />
 </row>
-<row name="title" null="1" autoincrement="0">
+<row name="title" null="0" autoincrement="0">
 <datatype>VARCHAR(32)</datatype>
-<default>NULL</default></row>
+<default>'NULL'</default></row>
 <row name="sortorder" null="1" autoincrement="0">
 <datatype>VARCHAR(10)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>taxonomy_id</part>
+</key>
+</table>
+<table x="348" y="136" name="product">
+<row name="product_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="taxonomy_id" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="taxonomy" row="taxonomy_id" />
+</row>
+<row name="title" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>product_id</part>
+</key>
+</table>
+<table x="587" y="127" name="income">
+<row name="income_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="product_id" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="product" row="product_id" />
+</row>
+<row name="shipper_id" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="shipper" row="shipper_id" />
+</row>
+<row name="price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+</row>
+<row name="weigth" null="1" autoincrement="0">
+<datatype>FLOAT</datatype>
+<default>NULL</default></row>
+<row name="margin" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="vat" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="create_date" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>income_id</part>
+</key>
+</table>
+<table x="812" y="411" name="shipper">
+<row name="shipper_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="title" null="1" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>shipper_id</part>
+</key>
+</table>
+<table x="1102" y="302" name="attachment">
+<row name="attachment_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="item_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="income" row="income_id" />
+<relation table="shipper" row="shipper_id" />
+</row>
+<row name="item_type" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR(256)</datatype>
+<default>NULL</default></row>
+<row name="create_date" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>attachment_id</part>
+</key>
+</table>
+<table x="1249" y="84" name="buyer">
+<row name="buyer_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="title" null="1" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>buyer_id</part>
+</key>
+</table>
+<table x="985" y="81" name="outcome">
+<row name="outcome_id" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="income_id" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="income" row="income_id" />
+</row>
+<row name="buyer_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="buyer" row="buyer_id" />
+</row>
+<row name="weight" null="1" autoincrement="0">
+<datatype>FLOAT</datatype>
+<default>NULL</default></row>
+<row name="create_date" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>outcome_id</part>
 </key>
 </table>
 </sql>
