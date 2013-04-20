@@ -1,1 +1,0 @@
-INSERT INTO `skill_product` VALUES (2,1,6500000,0.111,6,84,1.32,15,20);
