@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'skill',
+    'accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -164,6 +165,8 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_REDIRECT_URL = '/'
 
 # Local Settings
 try:

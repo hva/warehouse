@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block title %}<h3 class="subheader">Авторизация</h3>{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="row">
+    <div class="large-12 columns">
+        <p><span class="secondary label">Не верные имя пользователя и (или) пароль.</span></p>
+    </div>
+</div>
+{% endif %}
+
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+{% csrf_token %}
+<div class="row">
+    <div class="large-4 columns">
+        <input type="text" id="id_username" name="username" value="{{ form.username.value|default:'' }}" maxlength="30" placeholder="Имя пользователя">
+    </div>
+</div>
+<div class="row">
+    <div class="large-4 columns">
+        <input type="password" name="password" placeholder="Пароль" />
+    </div>
+</div>
+<div class="row">
+    <div class="large-4 columns">
+        <input type="submit" value="Войти" class="button small" />
+    </div>
+</div>
+
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+document.getElementById('id_username').focus()
+</script>
+{% endblock %}
