@@ -1,10 +1,16 @@
-angular.module('taxonomy', ['taxonomy.service']);
+var taxonomyServices = angular.module('taxonomy.services', ['ngResource']);
+var taxonomyControllers = angular.module('taxonomy.controllers', []);
 
-var TaxonomyController = function($scope, Taxonomy) {
+var taxonomy = angular.module(
+    'taxonomy',
+    ['taxonomy.services','taxonomy.controllers'],
+    function($routeProvider) {
+    }
+);
 
-    $scope.add = function() {
-        var t = new Taxonomy();
-        t.$save();
-    };
-
-};
+// taxonomy.config(function($routeProvider, TaxonomyListController) {
+//     $routeProvider.when('/list', {
+//         templateUrl: 'asdasd.html',
+//         controller: TaxonomyListController
+//     });
+// });
