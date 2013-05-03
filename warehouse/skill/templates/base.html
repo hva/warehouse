@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="/static/css/normalize.css" />
   <link rel="stylesheet" href="/static/css/foundation.css" />
+  <link rel="stylesheet" href="/static/css/skill.css" />
 
 </head>
 <body>
@@ -18,17 +19,16 @@
       <ul class="title-area">
         <!-- Title Area -->
         <li class="name">
-          <h1><a href="#">{{ globals.company }} <small>v. {{ globals.version }}</small></a></h1>
+          <h1><a href="/"><div class="logo"></div><small>v. {{ globals.version }}</small></a></h1>
         </li>
-        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       </ul>
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
         {% if user.is_authenticated %}
-          <li class="divider hide-for-small"></li>
+          <li class="divider"></li>
           <li><a href="{% url 'django.contrib.auth.views.logout' %}">Выйти</a></li>
+          <li class="divider"></li>
         {% endif %}
         </ul>
       </section>
