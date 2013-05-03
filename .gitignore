@@ -4,3 +4,4 @@
 /warehouse/settings_local.py
 /virtualenv/env/*
 /.idea/*
+*.scssc
