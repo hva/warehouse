@@ -16,19 +16,15 @@
 
   <nav class="top-bar">
     <ul class="title-area">
-      <!-- Title Area -->
       <li class="name">
         <h1><a href="{% url 'skill.views.home' %}"><div class="logo"></div><small>v. {{ globals.version }}</small></a></h1>
       </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
     <section class="top-bar-section">
     {% if user.is_authenticated %}
-      <ul class="left">
-      </ul>
       <ul class="right">
         <li class="divider"></li>
-        <li ><a href="{% url 'skill.views.home' %}">Товары</a></li>
+        <li><a href="{% url 'skill.views.taxonomy' %}">Номенклатура</a></li>
         <li class="divider"></li>
         <li class="has-form"><a href="{% url 'django.contrib.auth.views.logout' %}" class="button">Выйти</a></li>
       </ul>

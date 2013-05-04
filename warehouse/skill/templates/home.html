@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+
+{% block content %}
+<div class="row">
+  <div class="large-6 columns">
+    <a href="{% url 'skill.views.taxonomy' %}" title="Перейти к номенклатуре продукции">
+      <div class="panel callout">
+        <h4>Номенклатура продукции</h4>
+        <p>Редактор товарных позиций, сгруппированных по категриям.</p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}
