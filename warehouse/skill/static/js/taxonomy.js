@@ -8,5 +8,5 @@ taxonomy.config(function($routeProvider) {
         templateUrl: '/static/partials/taxonomy/list.html',
         controller: 'TaxonomyListController'
     });
-    $routeProvider.otherwise('/list');
+    $routeProvider.otherwise({redirectTo: '/list'});
 });
