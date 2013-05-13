@@ -5,6 +5,12 @@ taxonomyDirectives.directive('breadcrumbs', function() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/static/partials/breadcrumbs.html'
+        templateUrl: '/static/partials/breadcrumbs.html',
+        scope: {
+            items: '&'
+        },
+        link: function(scope, element, attrs) {
+            scope.items = attrs.items
+        }
     };
 });
