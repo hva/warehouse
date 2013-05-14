@@ -2,5 +2,8 @@
 
 
 taxonomyControllers.controller('TaxonomyListController', function($scope, Taxonomy) {
-    $scope.breadcrumbs = [1,2,3];
+    $scope.breadcrumbs = {
+        'главная': '/',
+        'номенклатура': '/taxonomy'
+    }
 });

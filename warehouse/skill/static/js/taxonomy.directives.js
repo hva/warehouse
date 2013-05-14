@@ -7,10 +7,7 @@ taxonomyDirectives.directive('breadcrumbs', function() {
         replace: true,
         templateUrl: '/static/partials/breadcrumbs.html',
         scope: {
-            items: '&'
-        },
-        link: function(scope, element, attrs) {
-            scope.items = attrs.items
+            items: '='
         }
     };
 });
