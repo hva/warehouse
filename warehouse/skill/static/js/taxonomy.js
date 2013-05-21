@@ -9,5 +9,9 @@ taxonomy.config(function($routeProvider) {
         templateUrl: '/static/partials/taxonomy/list.html',
         controller: 'TaxonomyListController'
     });
+    $routeProvider.when('/edit/', {
+        templateUrl: '/static/partials/taxonomy/edit.html',
+        controller: 'TaxonomyEditController'
+    });
     $routeProvider.otherwise({redirectTo: '/list'});
 });
