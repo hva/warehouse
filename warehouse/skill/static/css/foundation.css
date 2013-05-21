@@ -1726,7 +1726,7 @@ table {
     display: table-cell;
     line-height: 1.125em; }
 
-/* skill */
+/* skill.logo */
 .logo {
   background: url(/static/img/logo.png) no-repeat 0 10px;
   border-bottom: 5px solid #89BA00;
@@ -1734,3 +1734,13 @@ table {
   height: 38px;
   float: left;
   margin-right: 10px; }
+
+/* skill.selectable */
+table.selectable tr {
+  cursor: pointer; }
+
+table.selectable tr.selected {
+  background: #2ba6cb; }
+
+table.selectable tr.selected td {
+  color: #fff; }

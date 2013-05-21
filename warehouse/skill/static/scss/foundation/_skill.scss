@@ -1,4 +1,4 @@
-/* skill */
+/* skill.logo */
 
 .logo {
     background: url(/static/img/logo.png) no-repeat 0 10px;
@@ -7,4 +7,18 @@
     height: 38px;
     float: left;
     margin-right: 10px;
+}
+
+/* skill.selectable */
+
+table.selectable tr {
+    cursor: pointer;
+}
+
+table.selectable tr.selected {
+    background: $primary-color;
+}
+
+table.selectable tr.selected td {
+    color: #fff;
 }

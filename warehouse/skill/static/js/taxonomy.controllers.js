@@ -4,8 +4,12 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, Taxono
         'номенклатура': '/taxonomy'
     };
 
-    $scope.selectRow = function(x) {
-        console.log(x);
+    $scope.select = function(x) {
+        $scope.selected = x;
+    };
+
+    $scope.isSelected = function(x) {
+        return $scope.selected === x;
     };
 
     Taxonomy.query(function(d) {

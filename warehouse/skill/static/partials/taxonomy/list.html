@@ -6,12 +6,12 @@
 
 <div class="row">
     <div class="columns">
-        <table>
+        <table class="selectable">
             <thead>
-                <th>Название</th>
+                <th>Наименование</th>
             </thead>
             <tbody>
-                <tr ng-repeat="x in taxonomy" ng-click="selectRow(x)">
+                <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-class="{'selected': isSelected(x)}">
                     <td>{{ x.title }}</td>
                 </tr>
             </tbody>
