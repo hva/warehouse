@@ -4,11 +4,11 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, Taxono
         'номенклатура': '/taxonomy'
     };
 
-    // Taxonomy.query(function(d) {
-    //     $scope.taxonomy = d.objects;
-    // });
-    $scope.taxonomy = [
-        {title: 'title1'},
-        {title: 'title2'}
-    ];
+    $scope.selectRow = function(x) {
+        console.log(x);
+    };
+
+    Taxonomy.query(function(d) {
+        $scope.taxonomy = d.objects;
+    });
 });

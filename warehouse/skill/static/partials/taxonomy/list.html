@@ -7,8 +7,11 @@
 <div class="row">
     <div class="columns">
         <table>
+            <thead>
+                <th>Название</th>
+            </thead>
             <tbody>
-                <tr ng-repeat="x in taxonomy">
+                <tr ng-repeat="x in taxonomy" ng-click="selectRow(x)">
                     <td>{{ x.title }}</td>
                 </tr>
             </tbody>

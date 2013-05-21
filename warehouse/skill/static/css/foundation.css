@@ -1725,3 +1725,12 @@ table {
   table tfoot tr td {
     display: table-cell;
     line-height: 1.125em; }
+
+/* skill */
+.logo {
+  background: url(/static/img/logo.png) no-repeat 0 10px;
+  border-bottom: 5px solid #89BA00;
+  width: 77px;
+  height: 38px;
+  float: left;
+  margin-right: 10px; }
