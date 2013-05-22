@@ -1,5 +1,29 @@
 <div class="row">
     <div class="columns">
-        edit {{ id }}
+        <breadcrumbs items="breadcrumbs"></breadcrumbs>
     </div>
 </div>
+
+<form name="form" novalidate ng-submit="submit()">
+  <div class="row">
+    <div class="small-6">
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="title-label" class="right inline">Наименование</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" id="title-label" name="title" ng-model="item.title" required>
+          <small class="error" ng-show="form.title.$error.required" style="display:none">Обязательное поле</small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-9 columns small-offset-3">
+            <input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>

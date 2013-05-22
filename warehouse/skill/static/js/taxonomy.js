@@ -9,9 +9,13 @@ taxonomy.config(function($routeProvider) {
         templateUrl: '/static/partials/taxonomy/list.html',
         controller: 'TaxonomyListController'
     });
-    $routeProvider.when('/edit/', {
+    $routeProvider.when('/edit/:id', {
         templateUrl: '/static/partials/taxonomy/edit.html',
         controller: 'TaxonomyEditController'
     });
     $routeProvider.otherwise({redirectTo: '/list'});
+});
+
+taxonomy.config(function($httpProvider) {
+    $httpProvider.defaults.headers.put['X-CSRFToken'] = document.querySelector('input[name=csrfmiddlewaretoken]').value;
 });

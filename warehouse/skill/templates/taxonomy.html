@@ -2,6 +2,7 @@
 
 {% block content %}
 <div ng-app="taxonomy">
+    {% csrf_token %}
     <div ng-view></div>
 </div>
 {% endblock %}

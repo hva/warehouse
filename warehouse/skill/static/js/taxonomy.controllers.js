@@ -4,10 +4,10 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
         $scope.taxonomy = d.objects;
     });
 
-    $scope.breadcrumbs = {
-        'главная': '/',
-        'номенклатура': '/taxonomy'
-    };
+    $scope.breadcrumbs = [
+        {title: 'главная', url: '/'},
+        {title: 'номенклатура', url: '/taxonomy'}
+    ];
 
     $scope.selected = null;
 
@@ -24,13 +24,25 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
     };
 
     $scope.edit = function() {
-        $location.path('/edit').search({'id': $scope.selected.id});
+        $location.path('/edit/' + $scope.selected.id);
     };
 
 });
 
 taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, Taxonomy) {
 
-    $scope.id = $routeParams.id;
+    Taxonomy.get({id: $routeParams.id}, function(t) {
+        $scope.item = t;
+    });
+
+    $scope.breadcrumbs = [
+        {title: 'главная', url: '/'},
+        {title: 'номенклатура', url: '/taxonomy'},
+        {title: 'редактор', url: $location.absUrl()}
+    ];
+
+    $scope.submit = function() {
+        $scope.item.$update();
+    };
 
 });
