@@ -1829,3 +1829,8 @@ table.selectable tr.selected {
 
 table.selectable tr.selected td {
   color: #fff; }
+
+.no-selection {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none; }

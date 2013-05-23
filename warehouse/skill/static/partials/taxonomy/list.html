@@ -20,7 +20,7 @@
                 <th>Наименование</th>
             </thead>
             <tbody>
-                <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-class="{'selected': isRowSelected(x)}">
+                <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-dblclick="edit()" ng-class="{'selected': isRowSelected(x)}" class="no-selection">
                     <td>{{ x.title }}</td>
                 </tr>
             </tbody>
