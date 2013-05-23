@@ -57,10 +57,14 @@ taxonomyControllers.controller('TaxonomyAddController', function($scope, $locati
 
 });
 
-taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, Taxonomy) {
+taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, $q, Taxonomy) {
 
-    Taxonomy.get({id: $routeParams.id}, function(t) {
-        $scope.item = t;
+    var getSingle = Taxonomy.get({id: $routeParams.id}),
+        getList = Taxonomy.query();
+
+    $q.all([getSingle, getList]).then(function(d) {
+        $scope.item = d[0];
+        $scope.taxonomy = d[1];
     });
 
     $scope.breadcrumbs = [

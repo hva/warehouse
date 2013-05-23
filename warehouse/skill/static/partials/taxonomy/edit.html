@@ -19,6 +19,17 @@
       </div>
 
       <div class="row">
+        <div class="small-3 columns">
+          <label for="parent-label" class="right inline">Родитель</label>
+        </div>
+        <div class="small-9 columns">
+          <select ng-model="item.parent_id" ng-options="x.id as x.title for x in taxonomy.objects">
+            <option value="">-- нет родителя --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="small-9 columns small-offset-3">
             <ul class="button-group">
               <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid"></li>
