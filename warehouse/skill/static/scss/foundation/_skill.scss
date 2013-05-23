@@ -22,8 +22,3 @@ table.selectable tr.selected {
 table.selectable tr.selected td {
     color: #fff;
 }
-
-/* skill.forms */
-input.ng-invalid {
-    @include form-error-color;
-}

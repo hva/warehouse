@@ -1829,11 +1829,3 @@ table.selectable tr.selected {
 
 table.selectable tr.selected td {
   color: #fff; }
-
-/* skill.forms */
-input.ng-invalid {
-  border-color: #c60f13;
-  background-color: rgba(198, 15, 19, 0.1); }
-  input.ng-invalid:focus {
-    background: #fafafa;
-    border-color: #999999; }

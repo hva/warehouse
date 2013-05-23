@@ -13,8 +13,8 @@
           <label for="title-label" class="right inline">Наименование</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" id="title-label" name="title" ng-model="item.title" required>
-          <small class="error" ng-show="form.title.$error.required" style="display:none">Обязательное поле</small>
+          <input type="text" id="title-label" name="title" ng-model="item.title" ng-class="{error: form.title.$dirty && form.title.$error.required}" required />
+          <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле</small>
         </div>
       </div>
 
