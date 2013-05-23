@@ -3,6 +3,7 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
     function loadList() {
         Taxonomy.query(function(d) {
             $scope.taxonomy = d.objects;
+            $scope.selected = null;
         });
     }
 
@@ -12,8 +13,6 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
         {title: 'главная', url: '/'},
         {title: 'номенклатура', url: '/taxonomy'}
     ];
-
-    $scope.selected = null;
 
     $scope.select = function(x) {
         $scope.selected = x;
