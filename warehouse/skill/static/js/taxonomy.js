@@ -9,6 +9,10 @@ taxonomy.config(function($routeProvider) {
         templateUrl: '/static/partials/taxonomy/list.html',
         controller: 'TaxonomyListController'
     });
+    $routeProvider.when('/add', {
+        templateUrl: '/static/partials/taxonomy/edit.html',
+        controller: 'TaxonomyAddController'
+    });
     $routeProvider.when('/edit/:id', {
         templateUrl: '/static/partials/taxonomy/edit.html',
         controller: 'TaxonomyEditController'
@@ -17,5 +21,8 @@ taxonomy.config(function($routeProvider) {
 });
 
 taxonomy.config(function($httpProvider) {
-    $httpProvider.defaults.headers.put['X-CSRFToken'] = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+    var input = document.querySelector('input[name=csrfmiddlewaretoken]');
+    if (input) {
+        $httpProvider.defaults.headers.common['X-CSRFToken'] = input.value;
+    }
 });

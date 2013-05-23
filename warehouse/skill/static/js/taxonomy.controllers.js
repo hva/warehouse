@@ -1,8 +1,12 @@
 taxonomyControllers.controller('TaxonomyListController', function($scope, $location, Taxonomy) {
 
-    Taxonomy.query(function(d) {
-        $scope.taxonomy = d.objects;
-    });
+    function loadList() {
+        Taxonomy.query(function(d) {
+            $scope.taxonomy = d.objects;
+        });
+    }
+
+    loadList();
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -27,6 +31,31 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
         $location.path('/edit/' + $scope.selected.id);
     };
 
+    $scope.remove = function() {
+        var message = "Группа '" + $scope.selected.title + "' будет удалена\nВы уверены?";
+        if (confirm(message)) {
+            Taxonomy.remove({id: $scope.selected.id}, loadList);
+        }
+    };
+
+});
+
+taxonomyControllers.controller('TaxonomyAddController', function($scope, $location, Taxonomy) {
+
+    $scope.breadcrumbs = [
+        {title: 'главная', url: '/'},
+        {title: 'номенклатура', url: '/taxonomy'},
+        {title: 'создание группы', url: $location.absUrl()}
+    ];
+
+    $scope.submit = function() {
+        $scope.item.$save(function() {
+            $location.path('/list');
+        });
+    };
+
+    $scope.item = new Taxonomy();
+
 });
 
 taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, Taxonomy) {
@@ -38,11 +67,13 @@ taxonomyControllers.controller('TaxonomyEditController', function($scope, $locat
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
         {title: 'номенклатура', url: '/taxonomy'},
-        {title: 'редактор', url: $location.absUrl()}
+        {title: 'редактирование группы', url: $location.absUrl()}
     ];
 
     $scope.submit = function() {
-        $scope.item.$update();
+        $scope.item.$update(function() {
+            $location.path('/list');
+        });
     };
 
 });
