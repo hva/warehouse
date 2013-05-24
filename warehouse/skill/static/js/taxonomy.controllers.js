@@ -39,7 +39,7 @@ taxonomyControllers.controller('TaxonomyListController', function($scope, $locat
 
 });
 
-taxonomyControllers.controller('TaxonomyAddController', function($scope, $location, Taxonomy) {
+taxonomyControllers.controller('TaxonomyAddController', function($scope, $location, Taxonomy, Sortorder) {
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -48,16 +48,29 @@ taxonomyControllers.controller('TaxonomyAddController', function($scope, $locati
     ];
 
     $scope.submit = function() {
-        $scope.item.$save(function() {
+        var item = $scope.item,
+            taxonomy = $scope.taxonomy.objects,
+            parentIndex = $scope.parentIndex,
+            parent = null;
+        if (parentIndex > -1) {
+            parent = taxonomy[parentIndex];
+        }
+        if (parent !== null) {
+            item.parent_id = parent.id;
+        }
+        item.sortorder = Sortorder.next(parent, taxonomy);
+        item.$save(function() {
             $location.path('/list');
         });
     };
 
     $scope.item = new Taxonomy();
+    $scope.taxonomy = Taxonomy.query();
+    $scope.parentIndex = -1;
 
 });
 
-taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, $q, Taxonomy) {
+taxonomyControllers.controller('TaxonomyEditController', function($scope, $location, $routeParams, $q, Taxonomy, Sortorder) {
 
     var getSingle = Taxonomy.get({id: $routeParams.id}),
         getList = Taxonomy.query();
@@ -74,7 +87,12 @@ taxonomyControllers.controller('TaxonomyEditController', function($scope, $locat
     ];
 
     $scope.submit = function() {
-        $scope.item.$update(function() {
+        var item = $scope.item;
+        if (item.parent_id === '') {
+            item.parent_id = null;
+        }
+        item.sortorder = Sortorder.next();
+        item.$update(function() {
             $location.path('/list');
         });
     };
