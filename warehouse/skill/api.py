@@ -20,3 +20,4 @@ class TaxonomyResource(ModelResource):
     class Meta(MetaBase):
         queryset = Taxonomy.objects.all()
         resource_name = 'taxonomy'
+        ordering = ['sortorder']

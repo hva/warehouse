@@ -1,6 +1,6 @@
 taxonomyServices.factory('Taxonomy', ['$resource', function ($resource) {
     return $resource('/api/v1/taxonomy/:id/', { id: '@id' }, {
-        'query': {method: 'GET', isArray: false},
+        'query': {method: 'GET', params: {order_by: 'sortorder', limit: 0}, isArray: false},
         'update': {method: 'PUT'}
     });
 }]);
@@ -8,29 +8,30 @@ taxonomyServices.factory('Taxonomy', ['$resource', function ($resource) {
 taxonomyServices.factory('Sortorder', function () {
 
     function _filterByParentId(x) {
-        return x.parent_id === this.parentId;
+        return x.parent_id === this.parent.id;
     }
 
     function _mapSortorder(x) {
-        return parseInt(x.sortorder, 10);
+        var str = x.sortorder,
+            last = str.substr(str.length - 3);
+        return parseInt(last, 10);
     }
 
-    function pad(n, width, z) {
-        z = z || '0';
+    function _pad(n, width) {
         n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
     }
 
     function next(parent, taxonomy) {
-        var parentId = (parent !== null) ? parent.id : null,
-            sameLevelItems = _.filter(taxonomy, _filterByParentId, {parentId: parentId}),
+        parent = parent || {id : null, sortorder: ''};
+        var sameLevelItems = _.filter(taxonomy, _filterByParentId, {parent: parent}),
             max = 0;
 
         if (sameLevelItems.length > 0) {
             max = _.chain(sameLevelItems).map(_mapSortorder).max().value();
         }
 
-        return pad(max + 1, 3);
+        return parent.sortorder + _pad(max + 1, 3);
     }
 
     return {
