@@ -1,7 +1,4 @@
-'use strict';
-
-
-taxonomyDirectives.directive('breadcrumbs', function(viewsPrefix) {
+angular.module('taxonomy.directives').directive('breadcrumbs', function (viewsPrefix) {
     return {
         restrict: 'E',
         replace: true,

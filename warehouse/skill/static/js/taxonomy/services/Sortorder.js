@@ -1,4 +1,4 @@
-taxonomyServices.factory('Sortorder', function () {
+angular.module('taxonomy.services').factory('Sortorder', function () {
 
     function _filterByParentId(x) {
         return x.parent_id === this.parent.id;
@@ -16,7 +16,7 @@ taxonomyServices.factory('Sortorder', function () {
     }
 
     function next(parent, taxonomy) {
-        parent = parent || {id : null, sortorder: ''};
+        parent = parent || {id: null, sortorder: ''};
         var sameLevelItems = _.filter(taxonomy, _filterByParentId, {parent: parent}),
             max = 0;
 

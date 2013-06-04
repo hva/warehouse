@@ -1,4 +1,4 @@
-taxonomyControllers.controller('TaxonomyAddController', function($scope, $location, Taxonomy, Sortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, Sortorder) {
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -6,7 +6,7 @@ taxonomyControllers.controller('TaxonomyAddController', function($scope, $locati
         {title: 'создание группы', url: $location.absUrl()}
     ];
 
-    $scope.submit = function() {
+    $scope.submit = function () {
         var item = $scope.item,
             taxonomy = $scope.taxonomy.objects,
             parentIndex = $scope.parentIndex,
@@ -18,7 +18,7 @@ taxonomyControllers.controller('TaxonomyAddController', function($scope, $locati
             item.parent_id = parent.id;
         }
         item.sortorder = Sortorder.next(parent, taxonomy);
-        item.$save(function() {
+        item.$save(function () {
             $location.path('/list');
         });
     };
