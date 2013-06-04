@@ -8,12 +8,15 @@
 {% endblock %}
 
 {% block script %}
-<script src="/static/js/vendor/underscore-min.js"></script>
-<script src="/static/js/vendor/angular.min.js"></script>
-<script src="/static/js/vendor/angular-resource.min.js"></script>
+    <script src="{{  STATIC_URL }}js/vendor/underscore-min.js"></script>
+    <script src="{{  STATIC_URL }}js/vendor/angular.min.js"></script>
+    <script src="{{  STATIC_URL }}js/vendor/angular-resource.min.js"></script>
 
-<script src="/static/js/taxonomy.js"></script>
-<script src="/static/js/taxonomy.services.js"></script>
-<script src="/static/js/taxonomy.controllers.js"></script>
-<script src="/static/js/taxonomy.directives.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/TaxonomyModule.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/services/Taxonomy.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/services/Sortorder.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/controllers/Add.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/controllers/Edit.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/controllers/List.js"></script>
+    <script src="{{  STATIC_URL }}js/taxonomy/directives/Breadcrumbs.js"></script>
 {% endblock %}

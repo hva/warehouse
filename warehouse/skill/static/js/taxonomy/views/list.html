@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="columns">
+        <breadcrumbs items="breadcrumbs"></breadcrumbs>
+    </div>
+</div>
+
+<div class="row">
+    <div class="columns">
+        <ul class="button-group">
+            <li><a href="#/add" class="small button">Создать группу</a></li>
+            <!--li><button class="small secondary button" ng-disabled="!canEdit()">Создать подгруппу</a></li-->
+            <li><button class="small secondary button" ng-click="remove()" ng-disabled="!canEdit()">Удалить</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="columns">
+        <table class="selectable" ng-show="taxonomy.length > 0">
+            <thead>
+                <th>Наименование</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-dblclick="edit()" ng-class="{'selected': isRowSelected(x)}" class="no-selection">
+                    <td>{{ x.title }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

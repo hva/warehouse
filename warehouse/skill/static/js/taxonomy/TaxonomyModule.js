@@ -4,17 +4,19 @@ var taxonomyDirectives = angular.module('taxonomy.directives', []);
 
 var taxonomy = angular.module('taxonomy', ['taxonomy.services','taxonomy.controllers', 'taxonomy.directives']);
 
-taxonomy.config(function($routeProvider) {
+taxonomy.constant('viewsPrefix', '/static/js/taxonomy/views/');
+
+taxonomy.config(function($routeProvider, viewsPrefix) {
     $routeProvider.when('/list', {
-        templateUrl: '/static/partials/taxonomy/list.html',
+        templateUrl: viewsPrefix + 'list.html',
         controller: 'TaxonomyListController'
     });
     $routeProvider.when('/add', {
-        templateUrl: '/static/partials/taxonomy/edit.html',
+        templateUrl: viewsPrefix + 'edit.html',
         controller: 'TaxonomyAddController'
     });
     $routeProvider.when('/edit/:id', {
-        templateUrl: '/static/partials/taxonomy/edit.html',
+        templateUrl: viewsPrefix + 'edit.html',
         controller: 'TaxonomyEditController'
     });
     $routeProvider.otherwise({redirectTo: '/list'});

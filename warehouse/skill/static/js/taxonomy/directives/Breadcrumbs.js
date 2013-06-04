@@ -1,11 +1,11 @@
 'use strict';
 
 
-taxonomyDirectives.directive('breadcrumbs', function() {
+taxonomyDirectives.directive('breadcrumbs', function(viewsPrefix) {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/static/partials/breadcrumbs.html',
+        templateUrl: viewsPrefix + 'breadcrumbs.html',
         scope: {
             items: '='
         }
