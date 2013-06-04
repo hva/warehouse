@@ -37,4 +37,8 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         }
     };
 
+    $scope.getMargin = function (x) {
+        return (x.sortorder.length / 3) - 1;
+    }
+
 });

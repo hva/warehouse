@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-dblclick="edit()" ng-class="{'selected': isRowSelected(x)}" class="no-selection">
-                    <td>{{ x.title }}</td>
+                    <td><span style="margin-left: {{ getMargin(x) }}em">{{ x.title }}</span></td>
                 </tr>
             </tbody>
         </table>
