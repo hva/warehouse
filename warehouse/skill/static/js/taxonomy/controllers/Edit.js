@@ -1,12 +1,13 @@
-angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $q, Taxonomy, TaxonomyUtils) {
+angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, TaxonomyUtils, TaxonomySortorder) {
 
-    var getSingle = Taxonomy.get({id: $routeParams.id}),
-        getList = Taxonomy.query();
+    var original;
 
-    $q.all([getSingle, getList]).then(function (d) {
-        $scope.item = d[0];
-        $scope.taxonomy = d[1];
+    Taxonomy.get({id: $routeParams.id}, function (i) {
+        $scope.item = i;
+        original = angular.copy(i);
     });
+
+    $scope.taxonomy = Taxonomy.query();
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -18,11 +19,16 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
 
     $scope.submit = function () {
         var item = $scope.item,
-            taxonomy = $scope.taxonomy.objects;
-        item.sortorder = TaxonomyUtils.nextSortorder(item, taxonomy);
-        item.$update(function () {
-            $location.path('/list');
-        });
+            taxonomy = $scope.taxonomy.objects,
+            afterSave = function () {
+                $location.path('/list');
+            };
+        TaxonomySortorder.updateBranch(item, taxonomy, afterSave);
+//        if (original.parent_id !== item.parent_id) {
+//            TaxonomySortorder.updateBranch(item, taxonomy, afterSave);
+//        } else {
+//            item.$update(afterSave);
+//        }
     };
 
 });
