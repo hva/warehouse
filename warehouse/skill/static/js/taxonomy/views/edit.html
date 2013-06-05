@@ -23,9 +23,8 @@
           <label for="parent-label" class="right inline">Родитель</label>
         </div>
         <div class="small-9 columns">
-          <select ng-model="parentIndex">
-            <option value="-1">-- нет родителя --</option>
-            <option ng-repeat="(key, x) in taxonomy.objects" value="{{ key }}">{{ x.title }}</option>
+          <select ng-model="item.parent_id" ng-options="x.id as utils.indentTitle(x) for x in taxonomy.objects">
+            <option value="">-- нет родителя --</option>
           </select>
         </div>
       </div>

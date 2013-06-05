@@ -1,4 +1,4 @@
-angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $q, Taxonomy, Sortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $q, Taxonomy, TaxonomyUtils) {
 
     var getSingle = Taxonomy.get({id: $routeParams.id}),
         getList = Taxonomy.query();
@@ -14,12 +14,12 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
         {title: 'редактирование группы', url: $location.absUrl()}
     ];
 
+    $scope.utils = TaxonomyUtils;
+
     $scope.submit = function () {
-        var item = $scope.item;
-        if (item.parent_id === '') {
-            item.parent_id = null;
-        }
-        item.sortorder = Sortorder.next();
+        var item = $scope.item,
+            taxonomy = $scope.taxonomy.objects;
+        item.sortorder = TaxonomyUtils.nextSortorder(item, taxonomy);
         item.$update(function () {
             $location.path('/list');
         });
