@@ -13,7 +13,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyAddController', funct
     $scope.submit = function () {
         var item = $scope.item,
             taxonomy = $scope.taxonomy.objects;
-        TaxonomySortorder.updateItem(item, taxonomy);
+        item.sortorder = TaxonomySortorder.getNextSortorder(item, taxonomy);
         item.$save(function () {
             $location.path('/list');
         });

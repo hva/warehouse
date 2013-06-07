@@ -22,8 +22,8 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
         return parent.sortorder + _pad(nextCounter, 3);
     }
 
-    function updateItem(item, taxonomy) {
-        item.sortorder = _getNextSortorder(item.parent_id, taxonomy);
+    function getNextSortorder(item, taxonomy) {
+        return _getNextSortorder(item.parent_id, taxonomy);
     }
 
     function updateBranch(modified, taxonomy, callback) {
@@ -54,7 +54,7 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
     }
 
     return {
-        updateItem: updateItem,
+        getNextSortorder: getNextSortorder,
         updateBranch: updateBranch
     };
 });
