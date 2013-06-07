@@ -23,12 +23,12 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
             afterSave = function () {
                 $location.path('/list');
             };
-        TaxonomySortorder.updateBranch(item, taxonomy, afterSave);
-//        if (original.parent_id !== item.parent_id) {
-//            TaxonomySortorder.updateBranch(item, taxonomy, afterSave);
-//        } else {
-//            item.$update(afterSave);
-//        }
+        if (original.parent_id !== item.parent_id) {
+            var modified = TaxonomySortorder.updateBranch(item, taxonomy);
+            Taxonomy.update({objects: modified}, afterSave);
+        } else {
+            item.$update(afterSave);
+        }
     };
 
 });

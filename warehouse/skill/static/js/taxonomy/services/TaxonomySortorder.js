@@ -26,15 +26,15 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
         return _getNextSortorder(item.parent_id, taxonomy);
     }
 
-    function updateBranch(modified, taxonomy, callback) {
+    function updateBranch(item, taxonomy) {
 
-        var newSortorder = _getNextSortorder(modified.parent_id);
+        var newSortorder = _getNextSortorder(item.parent_id, taxonomy);
 
         // change children's sortorder
 
         var children = _.filter(taxonomy, function (x) {
-            return x.sortorder.indexOf(modified.sortorder) === 0
-                && x.sortorder.length > modified.sortorder.length;
+            return x.sortorder.indexOf(item.sortorder) === 0
+                && x.sortorder.length > item.sortorder.length;
         });
 
         _.each(children, function (x) {
@@ -44,13 +44,13 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
 
         // change item's sortorder
 
-        var original = _.findWhere(taxonomy, {id: modified.id});
-        original.sortorder = newSortorder;
+        item.sortorder = newSortorder;
 
-        // save all
 
-        var modified = children; //.concat(original);
-        Taxonomy.updateAll({objects: modified}, callback);
+        // return modified items
+
+        return children.concat(item);
+
     }
 
     return {
