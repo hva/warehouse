@@ -1,5 +1,7 @@
 angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
 
+    var DIGITS = 4;
+
     function _pad(n, width, z) {
         z = z || '0';
         n = n + '';
@@ -7,7 +9,7 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
     }
 
     function _mapSortorder(x) {
-        return parseInt(x.sortorder.slice(-3), 10);
+        return parseInt(x.sortorder.slice(-DIGITS), 10);
     }
 
     function _getNextSortorder(parent_id, taxonomy) {
@@ -19,7 +21,7 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
             nextCounter = _.chain(sameLevelItems).map(_mapSortorder).max().value() + 1;
         }
 
-        return parent.sortorder + _pad(nextCounter, 3);
+        return parent.sortorder + _pad(nextCounter, DIGITS);
     }
 
     function getNextSortorder(item, taxonomy) {
@@ -38,7 +40,7 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
         });
 
         _.each(children, function (x) {
-            x.sortorder = newSortorder + x.sortorder.slice(-3);
+            x.sortorder = newSortorder + x.sortorder.slice(-DIGITS);
         });
 
 
@@ -55,6 +57,7 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
 
     return {
         getNextSortorder: getNextSortorder,
-        updateBranch: updateBranch
+        updateBranch: updateBranch,
+        DIGITS: DIGITS
     };
 });

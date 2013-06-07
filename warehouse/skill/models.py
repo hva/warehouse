@@ -6,7 +6,7 @@ from django.db import models
 class Taxonomy(models.Model):
     parent = models.ForeignKey('self', null=True)
     title = models.CharField(max_length=32)
-    sortorder = models.CharField(max_length=10)
+    sortorder = models.CharField(max_length=16)
 
 
 class Product(models.Model):

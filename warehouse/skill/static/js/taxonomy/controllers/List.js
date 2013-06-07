@@ -1,4 +1,6 @@
-angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy) {
+angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils) {
+
+    $scope.utils = TaxonomyUtils;
 
     function loadList() {
         Taxonomy.query(function (d) {
@@ -36,12 +38,5 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
             Taxonomy.remove({id: $scope.selected.id}, loadList);
         }
     };
-
-    $scope.getMargin = function (x) {
-        if (x.sortorder) {
-            return (x.sortorder.length / 3) - 1;
-        }
-        return 0;
-    }
 
 });
