@@ -7,32 +7,54 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
     }
 
     function _mapSortorder(x) {
-        var str = x.sortorder,
-            last = str.substr(str.length - 3);
-        return parseInt(last, 10);
+        return parseInt(x.sortorder.slice(-3), 10);
     }
 
-    function updateBranch(item, taxonomy, callback) {
-
-        var sameLevelItems = _.where(taxonomy, {parent_id: item.parent_id}),
-            parent = _.findWhere(taxonomy, {id: item.parent_id}) || { sortorder: '' },
+    function _getNextSortorder(parent_id, taxonomy) {
+        var sameLevelItems = _.where(taxonomy, {parent_id: parent_id}),
+            parent = _.findWhere(taxonomy, {id: parent_id}) || { sortorder: '' },
             nextCounter = 1;
 
         if (sameLevelItems.length > 0) {
             nextCounter = _.chain(sameLevelItems).map(_mapSortorder).max().value() + 1;
         }
 
-        var newSortorder = parent.sortorder + _pad(nextCounter, 3),
-            children = _.filter(taxonomy, function(x) {
-                return x.sortorder.indexOf(item.sortorder) === 0
-                    && x.sortorder.length > item.sortorder.length;
-            });
+        return parent.sortorder + _pad(nextCounter, 3);
+    }
 
-        console.log(item.sortorder, newSortorder);
-        console.log(children);
+    function updateItem(item, taxonomy) {
+        item.sortorder = _getNextSortorder(item.parent_id, taxonomy);
+    }
+
+    function updateBranch(modified, taxonomy, callback) {
+
+        var newSortorder = _getNextSortorder(modified.parent_id);
+
+        // change children's sortorder
+
+        var children = _.filter(taxonomy, function (x) {
+            return x.sortorder.indexOf(modified.sortorder) === 0
+                && x.sortorder.length > modified.sortorder.length;
+        });
+
+        _.each(children, function (x) {
+            x.sortorder = newSortorder + x.sortorder.slice(-3);
+        });
+
+
+        // change item's sortorder
+
+        var original = _.findWhere(taxonomy, {id: modified.id});
+        original.sortorder = newSortorder;
+
+        // save all
+
+        var modified = children; //.concat(original);
+        Taxonomy.updateAll({objects: modified}, callback);
     }
 
     return {
+        updateItem: updateItem,
         updateBranch: updateBranch
     };
 });

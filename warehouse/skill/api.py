@@ -3,7 +3,7 @@ from tastypie.resources import ModelResource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
 
-from skill.models import Taxonomy
+from warehouse.skill.models import Taxonomy
 
 
 class MetaBase:
@@ -14,7 +14,6 @@ class MetaBase:
 
 
 class TaxonomyResource(ModelResource):
-
     parent_id = fields.IntegerField(attribute='parent_id', null=True)
 
     class Meta(MetaBase):

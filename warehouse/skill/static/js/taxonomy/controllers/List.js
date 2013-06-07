@@ -38,7 +38,10 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
     };
 
     $scope.getMargin = function (x) {
-        return (x.sortorder.length / 3) - 1;
+        if (x.sortorder) {
+            return (x.sortorder.length / 3) - 1;
+        }
+        return 0;
     }
 
 });
