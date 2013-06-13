@@ -1,7 +1,7 @@
 angular.module('taxonomy.controllers').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, TaxonomySortorder, TaxonomyUtils) {
 
     $scope.utils = TaxonomyUtils;
-    $scope.item = new Taxonomy({parent_id: null});
+    $scope.item = new Taxonomy({parent_id: $location.search().parent_id || null});
     $scope.taxonomy = Taxonomy.query();
 
     $scope.breadcrumbs = [

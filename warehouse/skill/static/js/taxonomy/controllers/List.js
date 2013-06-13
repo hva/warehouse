@@ -24,6 +24,13 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         return $scope.selected === x;
     };
 
+    $scope.add = function () {
+        var loc = $location.path('/add');
+        if ($scope.selected !== null) {
+            loc.search({parent_id: $scope.selected.id});
+        }
+    };
+
     $scope.canEdit = function () {
         return $scope.selected !== null;
     };
