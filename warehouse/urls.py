@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'skill.views.home'),
     url(r'^taxonomy/$', 'skill.views.taxonomy'),
+    url(r'^backup/$', 'backup.views.home'),
 
     url(r'^api/', include(v1_api.urls)),
 )

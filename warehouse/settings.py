@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'south',
     'skill',
     'accounts',
+    'backup',
 )
 
 # A sample logging configuration. The only tangible logging

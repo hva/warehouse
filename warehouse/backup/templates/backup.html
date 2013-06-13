@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+
+{% block content %}
+    <div class="row">
+        <div class="columns">
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'skill.views.home' %}">Главная</a></li>
+                <li class="current"><a href="{% url 'backup.views.home' %}">Резервное копирование</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
