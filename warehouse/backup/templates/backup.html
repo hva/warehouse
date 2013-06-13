@@ -16,10 +16,25 @@
 
     <div class="row">
         <div class="columns">
-
-            <form action="{% url 'backup.views.import_data' %}" target="_blank">
+            <form action="{% url 'backup.views.export_data' %}" target="_blank">
                 {% csrf_token %}
-                <input type="submit" class="button" value="Экспортировать данные в файл">
+                <input type="submit" class="button" value="Экспортировать в файл">
+            </form>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-6 columns">
+            <form action="{% url 'backup.views.home' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.file }}
+                {% for error in form.file.errors %}
+                    <small class="error">{{ error }}</small>
+                {% endfor %}
+
+                <input type="submit" class="button" value="Восстановить из файла">
             </form>
         </div>
     </div>
