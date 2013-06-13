@@ -3,6 +3,7 @@
 {% load url from future %}
 
 {% block content %}
+
     <div class="row">
         <div class="columns">
             <ul class="breadcrumbs">
@@ -11,4 +12,16 @@
             </ul>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="columns">
+
+            <form action="{% url 'backup.views.import_data' %}" target="_blank">
+                {% csrf_token %}
+                <input type="submit" class="button" value="Экспортировать данные в файл">
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
