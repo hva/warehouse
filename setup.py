@@ -39,7 +39,7 @@ setup(
         'Programming Language :: Python :: 2',
     ],
     install_requires=[
-        'Django == 1.4.5',
+        'Django == 1.5.1',
         'South==0.7.6',
     ],
     zip_safe=False,
