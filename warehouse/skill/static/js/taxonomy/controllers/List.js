@@ -1,6 +1,7 @@
-angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils) {
+angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils, TaxonomySortorder) {
 
     $scope.utils = TaxonomyUtils;
+    $scope.sortorder = TaxonomySortorder;
 
     function loadList() {
         Taxonomy.query(function (d) {
@@ -31,7 +32,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         }
     };
 
-    $scope.canEdit = function () {
+    $scope.hasSelection = function () {
         return $scope.selected !== null;
     };
 

@@ -16,12 +16,12 @@ table.selectable tr {
 }
 
 table.selectable tr.selected {
-    background: $primary-color;
+    background: $secondary-color;
 }
 
-table.selectable tr.selected td {
-    color: #fff;
-}
+//table.selectable tr.selected td {
+//    color: #fff;
+//}
 
 .no-selection {
     -webkit-user-select: none; // webkit (safari, chrome) browsers

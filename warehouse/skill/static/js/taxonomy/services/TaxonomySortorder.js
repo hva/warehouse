@@ -55,9 +55,21 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
 
     }
 
+    // Move up/down
+
+    function canMoveUp(item, taxonomy) {
+        if (!item) {
+            return false;
+        }
+        var curNum = _mapSortorder(item),
+            minNum = _.chain(taxonomy).where({parent_id: item.parent_id}).map(_mapSortorder).min().value();
+        console.log(minNum);
+    }
+
     return {
+        DIGITS: DIGITS,
         getNextSortorder: getNextSortorder,
         updateBranch: updateBranch,
-        DIGITS: DIGITS
+        canMoveUp: canMoveUp
     };
 });
