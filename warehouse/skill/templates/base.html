@@ -48,11 +48,12 @@
 <script src="{{ STATIC_URL }}js/vendor/jquery-2.0.2.min.js"></script>
 <script src="{{ STATIC_URL }}js/vendor/foundation.js"></script>
 <script src="{{ STATIC_URL }}js/vendor/foundation.topbar.js"></script>
+
+{% block script %}{% endblock %}
+
 <script>
     $(document).foundation();
 </script>
-
-{% block script %}{% endblock %}
 
 </body>
 </html>
