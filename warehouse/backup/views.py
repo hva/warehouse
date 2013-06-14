@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import time
 from gzip import GzipFile
 
@@ -11,38 +13,37 @@ from django.contrib.auth.decorators import login_required
 from .forms import BackupImportForm
 from .uploadhandler import TemporaryGzipFileUploadHandler
 
-##### IMPORT #####
+breadcrumbs = [
+    ['skill.views.home', 'главная'],
+    ['backup.views.home', 'резервное копирование'],
+]
+
+info = [
+    {
+        'view': 'backup.views.export_gz',
+        'title': 'Экспорт',
+        'text': 'Позволяет сохранить данные из системы в файл.',
+        'cls': 'large-4',
+    },
+    {
+        'view': 'backup.views.import_gz',
+        'title': 'Импорт',
+        'text': 'Позволяет восстановить данные из экспортированного файла.',
+        'cls': 'large-4',
+    },
+]
+
+##### HOME   #####
 
 @login_required
-@csrf_exempt
 def home(request):
-    # changing suffix to '.gz' for temp file names
-    request.upload_handlers = [TemporaryGzipFileUploadHandler()]
-    return _import_data(request)
-
-
-@csrf_protect
-def _import_data(request):
-    if request.method == 'POST':
-        form = BackupImportForm(request.POST, request.FILES)
-        if form.is_valid():
-            _process_file(request.FILES['file'])
-            return HttpResponseRedirect('/success/url/')
-    else:
-        form = BackupImportForm()
-
-    return render_to_response('backup.html', {'form': form}, RequestContext(request))
-
-
-def _process_file(file):
-    file_path = file.temporary_file_path()
-    assert 0, file_path
+    return render_to_response('backup/home.html', {'breadcrumbs': breadcrumbs, 'info': info}, RequestContext(request))
 
 
 ##### EXPORT #####
 
 @login_required
-def export_data(request):
+def export_gz(request):
     filename = 'skill__%s' % time.strftime('%Y%m%d_%H%M%S')
 
     response = HttpResponse(mimetype='application/force-download')
@@ -52,5 +53,36 @@ def export_data(request):
         call_command('dumpdata', 'skill', stdout=gz_stream, natural=True, indent=2)
 
     return response
+
+
+##### IMPORT #####
+
+@login_required
+@csrf_exempt
+def import_gz(request):
+    # changing suffix to '.gz' for temp file names
+    request.upload_handlers = [TemporaryGzipFileUploadHandler()]
+    return _import_gz(request)
+
+
+@csrf_protect
+def _import_gz(request):
+    if request.method == 'POST':
+        form = BackupImportForm(request.POST, request.FILES)
+        if form.is_valid():
+            _process_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = BackupImportForm()
+
+    cur = ['backup.views.import_gz', 'импорт']
+    return render_to_response('backup/import.html', {'form': form, 'breadcrumbs': breadcrumbs + [cur]}, RequestContext(request))
+
+
+def _process_file(f):
+    file_path = f.temporary_file_path()
+    assert 0, file_path
+
+
 
 

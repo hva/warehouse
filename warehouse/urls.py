@@ -22,7 +22,8 @@ urlpatterns = patterns('',
 
     # backup
     url(r'^backup/$', 'backup.views.home'),
-    url(r'^backup/export$', 'backup.views.export_data'),
+    url(r'^backup/export$', 'backup.views.export_gz'),
+    url(r'^backup/import$', 'backup.views.import_gz'),
 
     # api
     url(r'^api/', include(v1_api.urls)),

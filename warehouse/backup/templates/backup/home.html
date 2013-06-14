@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="columns">
+            {% include 'partials/breadcrumbs.html' with items=breadcrumbs %}
+        </div>
+    </div>
+
+    <div class="row">
+        {% for i in info %}
+            {% include 'partials/info.html' with info=i %}
+        {% endfor %}
+        <div class="large-4 columns"></div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+<ul class="breadcrumbs">
+    {% for i in items %}
+        <li{% if forloop.last %} class="current"{% endif %}><a href="{% url i.0 %}">{{ i.1 }}</a></li>
+    {% endfor %}
+</ul>

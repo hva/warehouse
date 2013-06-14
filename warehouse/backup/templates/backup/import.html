@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="columns">
+            {% include 'partials/breadcrumbs.html' with items=breadcrumbs %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-6 columns">
+            <form action="{% url 'backup.views.import_gz' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.file }}
+                {% for error in form.file.errors %}
+                    <small class="error">{{ error }}</small>
+                {% endfor %}
+
+                <input type="submit" class="small button" value="Восстановить">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
