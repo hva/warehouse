@@ -11,6 +11,13 @@
     </div>
 
     <div class="row">
+        <div class="columns">
+            <span class="secondary radius label">Внимание! Все существующие записи будут безвозвратно утеряны!</span>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="large-6 columns">
             <form action="{% url 'backup.views.import_gz' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}

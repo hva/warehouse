@@ -1779,6 +1779,35 @@ small.error {
       content: " ";
       margin: 0; }
 
+/* Labels */
+.label {
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  padding: 0.1875em 0.625em 0.25em;
+  font-size: 0.875em;
+  background-color: #2ba6cb;
+  color: white; }
+  .label.radius {
+    -webkit-border-radius: 3px;
+    border-radius: 3px; }
+  .label.round {
+    -webkit-border-radius: 1000px;
+    border-radius: 1000px; }
+  .label.alert {
+    background-color: #c60f13;
+    color: white; }
+  .label.success {
+    background-color: #5da423;
+    color: white; }
+  .label.secondary {
+    background-color: #e9e9e9;
+    color: #333333; }
+
 /* Panels */
 .panel {
   border-style: solid;
