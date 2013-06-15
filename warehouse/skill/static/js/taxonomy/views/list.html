@@ -20,7 +20,7 @@
                     <button class="small secondary button" ng-disabled="!sortorder.canMoveUp(selected, taxonomy)">Вверх</button>
                 </li>
                 <li>
-                    <button class="small secondary button" ng-disabled="!hasSelection()">Вниз</button>
+                    <button class="small secondary button" ng-disabled="!sortorder.canMoveDown(selected, taxonomy)">Вниз</button>
                 </li>
             </ul>
         </div>

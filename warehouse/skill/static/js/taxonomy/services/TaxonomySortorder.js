@@ -63,13 +63,23 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
         }
         var curNum = _mapSortorder(item),
             minNum = _.chain(taxonomy).where({parent_id: item.parent_id}).map(_mapSortorder).min().value();
-        console.log(minNum);
+        return curNum > minNum;
+    }
+
+    function canMoveDown(item, taxonomy) {
+        if (!item) {
+            return false;
+        }
+        var curNum = _mapSortorder(item),
+            maxNum = _.chain(taxonomy).where({parent_id: item.parent_id}).map(_mapSortorder).max().value();
+        return curNum < maxNum;
     }
 
     return {
         DIGITS: DIGITS,
         getNextSortorder: getNextSortorder,
         updateBranch: updateBranch,
-        canMoveUp: canMoveUp
+        canMoveUp: canMoveUp,
+        canMoveDown: canMoveDown
     };
 });
