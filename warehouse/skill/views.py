@@ -28,3 +28,8 @@ def home(request):
 @login_required
 def taxonomy(request):
     return render_to_response('taxonomy.html', {}, RequestContext(request))
+
+
+@login_required
+def warehouse(request):
+    return render_to_response('warehouse.html', {}, RequestContext(request))

@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     # skill
     url(r'^$', 'skill.views.home'),
     url(r'^taxonomy/$', 'skill.views.taxonomy'),
+    url(r'^warehouse/$', 'skill.views.warehouse'),
 
     # backup
     url(r'^backup/$', 'backup.views.home'),

@@ -26,6 +26,8 @@
         {% if user.is_authenticated %}
             <ul class="right">
                 <li class="divider"></li>
+                <li><a href="{% url 'skill.views.warehouse' %}">Склад</a></li>
+                <li class="divider"></li>
                 <li><a href="{% url 'skill.views.taxonomy' %}">Номенклатура</a></li>
                 <li class="divider"></li>
                 <li class="has-dropdown"><a href="{% url 'backup.views.home' %}">Резервное копирование</a>
