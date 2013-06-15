@@ -102,12 +102,20 @@ angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
         return _switchPlaces(item, prevItem, taxonomy);
     }
 
+    function moveDown(item, taxonomy) {
+        var sameLevelItems = _.where(taxonomy, {parent_id: item.parent_id}),
+            curIndex = _.indexOf(sameLevelItems, item),
+            prevItem = sameLevelItems[curIndex + 1];
+        return _switchPlaces(item, prevItem, taxonomy);
+    }
+
     return {
         getLevel: getLevel,
         getNextSortorder: getNextSortorder,
         moveToBranch: moveToBranch,
         canMoveUp: canMoveUp,
         canMoveDown: canMoveDown,
-        moveUp: moveUp
+        moveUp: moveUp,
+        moveDown: moveDown
     };
 });

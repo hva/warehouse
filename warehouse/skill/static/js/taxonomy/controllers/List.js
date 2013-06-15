@@ -17,6 +17,12 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         {title: 'номенклатура', url: '/taxonomy'}
     ];
 
+    $scope.getMargin = function(x) {
+        var value = TaxonomySortorder.getLevel(x) * 2;
+        if (value > 0) value += 'em';
+        return value;
+    }
+
     $scope.select = function (x) {
         $scope.selected = x;
     };
@@ -49,6 +55,11 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
 
     $scope.moveUp = function () {
         var modified = TaxonomySortorder.moveUp($scope.selected, $scope.taxonomy);
+        Taxonomy.update({objects: modified}, loadList);
+    }
+
+    $scope.moveDown = function () {
+        var modified = TaxonomySortorder.moveDown($scope.selected, $scope.taxonomy);
         Taxonomy.update({objects: modified}, loadList);
     }
 
