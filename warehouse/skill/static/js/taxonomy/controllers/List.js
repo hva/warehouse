@@ -47,4 +47,9 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         }
     };
 
+    $scope.moveUp = function () {
+        var modified = TaxonomySortorder.moveUp($scope.selected, $scope.taxonomy);
+        Taxonomy.update({objects: modified}, loadList);
+    }
+
 });

@@ -27,7 +27,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
                 $location.path('/list');
             };
         if (original.parent_id !== item.parent_id) {
-            var modified = TaxonomySortorder.updateBranch(item, taxonomy);
+            var modified = TaxonomySortorder.moveToBranch(item, taxonomy);
             Taxonomy.update({objects: modified}, afterSave);
         } else {
             item.$update(afterSave);

@@ -12,15 +12,20 @@
                     <button class="small button" ng-click="add()">Создать группу</button>
                 </li>
                 <li>
-                    <button class="small secondary button" ng-click="remove()" ng-disabled="!hasSelection()">Удалить</button>
+                    <button class="small secondary button" ng-click="remove()" ng-disabled="!hasSelection()">Удалить
+                    </button>
                 </li>
             </ul>
             <ul class="button-group">
                 <li>
-                    <button class="small secondary button" ng-disabled="!sortorder.canMoveUp(selected, taxonomy)">Вверх</button>
+                    <button class="small secondary button" ng-disabled="!sortorder.canMoveUp(selected, taxonomy)" ng-click="moveUp()">
+                        Вверх
+                    </button>
                 </li>
                 <li>
-                    <button class="small secondary button" ng-disabled="!sortorder.canMoveDown(selected, taxonomy)">Вниз</button>
+                    <button class="small secondary button" ng-disabled="!sortorder.canMoveDown(selected, taxonomy)">
+                        Вниз
+                    </button>
                 </li>
             </ul>
         </div>
@@ -28,15 +33,12 @@
 </div>
 
 <div class="row">
-    <div class="columns">
-        <table class="selectable" ng-show="taxonomy.length > 0">
-            <thead>
-            <th>Наименование</th>
-            </thead>
+    <div class="large-5 columns">
+        <table class="selectable" ng-show="taxonomy.length > 0" width="100%">
             <tbody>
             <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-dblclick="edit()"
                 ng-class="{'selected': isRowSelected(x)}" class="no-selection">
-                <td><span style="margin-left: {{ utils.getMargin(x) }}em">{{ x.title }}</span></td>
+                <td><span style="margin-left: {{ sortorder.getLevel(x) * 2 }}em">{{ x.title }}</span></td>
             </tr>
             </tbody>
         </table>
