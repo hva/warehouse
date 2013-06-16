@@ -1,10 +1,12 @@
-angular.module('taxonomy.directives').directive('breadcrumbs', function (viewsPrefix) {
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: viewsPrefix + 'breadcrumbs.html',
-        scope: {
-            items: '='
-        }
-    };
-});
+angular.module('shared.breadcrumbs', [])
+
+    .directive('breadcrumbs', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/static/js/shared/views/breadcrumbs.html',
+            scope: {
+                items: '='
+            }
+        };
+    });
