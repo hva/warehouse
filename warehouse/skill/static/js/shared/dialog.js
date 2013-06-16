@@ -23,17 +23,22 @@ sharedDialog.provider("$dialog", function () {
         bgClass: 'reveal-modal-bg',
 //        backdropClass: 'modal-backdrop',
 //    transitionClass: 'fade',
-        triggerClass: 'in',
+//        triggerClass: 'in',
         resolve: {},
 //        backdropFade: false,
 //        dialogFade: false,
         keyboard: true, // close with esc key
+
+        // hva {
         css: {
             open: {
                 'visibility': 'visible',
                 'display': 'block'
             }
-        }
+        },
+        hasCloseButton: true,
+        bgClick: false
+        // } hva
 //        backdropClick: true // only in conjunction with backdrop=true
         /* other options: template, templateUrl, controller */
     };
@@ -85,6 +90,10 @@ sharedDialog.provider("$dialog", function () {
 
                 this.modalEl = createElement(options.dialogClass);
                 this.bgEl = createElement(options.bgClass);
+                if (self.options.hasCloseButton) {
+                    this.closeButton = angular.element('<a class="close-reveal-modal">&#215;</a>');
+                }
+
 //                if (options.dialogFade) {
 //                    this.modalEl.addClass(options.transitionClass);
 //                    this.modalEl.removeClass(options.triggerClass);
@@ -98,11 +107,11 @@ sharedDialog.provider("$dialog", function () {
                     }
                 };
 
-//                this.handleBackDropClick = function (e) {
-//                    self.close();
-//                    e.preventDefault();
-//                    self.$scope.$apply();
-//                };
+                this.handleBackDropClick = function (e) {
+                    self.close();
+                    e.preventDefault();
+                    self.$scope.$apply();
+                };
 
 //                this.handleLocationChange = function () {
 //                    self.close();
@@ -134,6 +143,10 @@ sharedDialog.provider("$dialog", function () {
                     var $scope = locals.$scope = self.$scope = locals.$scope ? locals.$scope : $rootScope.$new();
 
                     self.modalEl.html(locals.$template);
+
+                    if (self.options.hasCloseButton) {
+                        self.modalEl.append(self.closeButton);
+                    }
 
                     if (self.options.controller) {
                         var ctrl = $controller(self.options.controller, locals);
@@ -206,6 +219,15 @@ sharedDialog.provider("$dialog", function () {
                 if (this.options.keyboard) {
                     body.bind('keydown', this.handledEscapeKey);
                 }
+
+                if (this.options.bgClick) {
+                    this.bgEl.bind('click', this.handleBackDropClick);
+                }
+
+                if (this.options.hasCloseButton) {
+                    this.closeButton.bind('click', this.handleBackDropClick);
+                }
+
 //                if (this.options.backdrop && this.options.backdropClick) {
 //                    this.backdropEl.bind('click', this.handleBackDropClick);
 //                }
@@ -214,6 +236,14 @@ sharedDialog.provider("$dialog", function () {
             Dialog.prototype._unbindEvents = function () {
                 if (this.options.keyboard) {
                     body.unbind('keydown', this.handledEscapeKey);
+                }
+
+                if (this.options.bgClick) {
+                    this.bgEl.unbind('click', this.handleBackDropClick);
+                }
+
+                if (this.options.hasCloseButton) {
+                    this.closeButton.unbind('click', this.handleBackDropClick);
                 }
 //                if (this.options.backdrop && this.options.backdropClick) {
 //                    this.backdropEl.unbind('click', this.handleBackDropClick);
@@ -242,6 +272,10 @@ sharedDialog.provider("$dialog", function () {
             };
 
             Dialog.prototype._removeElementsFromDom = function () {
+                if (this.options.hasCloseButton) {
+                    this.closeButton.remove();
+                }
+
                 this.modalEl.remove();
                 this.bgEl.remove();
 
