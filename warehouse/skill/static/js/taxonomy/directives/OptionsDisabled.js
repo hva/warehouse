@@ -3,12 +3,14 @@
 angular.module('taxonomy.directives').directive('optionsDisabled', function ($parse) {
     var disableOptions = function (scope, attr, element, data, fnDisableIfTrue) {
         // refresh the disabled options in the select element.
-        $("option", element).each(function (i, e) {
+        var options = element.find('option');
+        angular.forEach(options, function (o) {
             var locals = {},
-                val = $(this).val();
+                option = angular.element(o),
+                val = option.val();
             if (!isNaN(parseInt(val, 10))) {
                 locals[attr] = data[val];
-                $(this).attr("disabled", fnDisableIfTrue(scope, locals));
+                option.attr("disabled", fnDisableIfTrue(scope, locals));
             }
         });
     };

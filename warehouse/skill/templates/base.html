@@ -47,7 +47,9 @@
 {% block content %}{% endblock %}
 
 {# vendor #}
-<script src="{{ STATIC_URL }}js/vendor/jquery-2.0.2.min.js"></script>
+<script>
+    document.write('<script src={{ STATIC_URL }}js/vendor/' + ('__proto__' in {} ? 'zepto.min' : 'jquery-2.0.2.min') + '.js><\/script>')
+</script>
 <script src="{{ STATIC_URL }}js/vendor/foundation.js"></script>
 <script src="{{ STATIC_URL }}js/vendor/foundation.topbar.js"></script>
 
