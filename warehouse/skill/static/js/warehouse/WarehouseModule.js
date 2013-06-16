@@ -1,9 +1,8 @@
 angular.module('warehouse.services', ['ngResource']);
 angular.module('warehouse.controllers', []);
 angular.module('warehouse.directives', []);
-angular.module('warehouse.providers', []);
 
-angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.directives', 'warehouse.providers'])
+angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.directives', 'shared.dialog'])
 
     .constant('viewsPrefix', '/static/js/warehouse/views/')
 
