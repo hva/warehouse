@@ -30,12 +30,6 @@ sharedDialog.provider("$dialog", function () {
         keyboard: true, // close with esc key
 
         // hva {
-        css: {
-            open: {
-                'visibility': 'visible',
-                'display': 'block'
-            }
-        },
         hasCloseButton: true,
         bgClick: false
         // } hva
@@ -45,7 +39,7 @@ sharedDialog.provider("$dialog", function () {
 
     var globalOptions = {};
 
-    var activeBackdrops = {value: 0};
+//    var activeBackdrops = {value: 0};
 
     // The `options({})` allows global configuration of all dialogs in the application.
     //
@@ -169,8 +163,9 @@ sharedDialog.provider("$dialog", function () {
                     self._bindEvents();
 
                     // hva {
-                    self.modalEl.css(self.options.css.open);
-                    self.bgEl.css(self.options.css.open);
+                    var css = {'visibility': 'visible', 'display': 'block'};
+                    self.bgEl.css(css);
+                    self.modalEl.css(css);
                     // } hva
                 });
 
