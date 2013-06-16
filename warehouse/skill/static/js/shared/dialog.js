@@ -20,13 +20,20 @@ sharedDialog.provider("$dialog", function () {
     var defaults = {
 //        backdrop: true,
         dialogClass: 'reveal-modal',
+        bgClass: 'reveal-modal-bg',
 //        backdropClass: 'modal-backdrop',
 //    transitionClass: 'fade',
         triggerClass: 'in',
         resolve: {},
 //        backdropFade: false,
 //        dialogFade: false,
-        keyboard: true // close with esc key
+        keyboard: true, // close with esc key
+        css: {
+            open: {
+                'visibility': 'visible',
+                'display': 'block'
+            }
+        }
 //        backdropClick: true // only in conjunction with backdrop=true
         /* other options: template, templateUrl, controller */
     };
@@ -77,6 +84,7 @@ sharedDialog.provider("$dialog", function () {
 //                }
 
                 this.modalEl = createElement(options.dialogClass);
+                this.bgEl = createElement(options.bgClass);
 //                if (options.dialogFade) {
 //                    this.modalEl.addClass(options.transitionClass);
 //                    this.modalEl.removeClass(options.triggerClass);
@@ -96,9 +104,9 @@ sharedDialog.provider("$dialog", function () {
 //                    self.$scope.$apply();
 //                };
 
-                this.handleLocationChange = function () {
-                    self.close();
-                };
+//                this.handleLocationChange = function () {
+//                    self.close();
+//                };
             }
 
             // The `isOpen()` method returns wether the dialog is currently visible.
@@ -148,7 +156,8 @@ sharedDialog.provider("$dialog", function () {
                     self._bindEvents();
 
                     // hva {
-                    self.modalEl.foundation('reveal', 'open');
+                    self.modalEl.css(self.options.css.open);
+                    self.bgEl.css(self.options.css.open);
                     // } hva
                 });
 
@@ -167,10 +176,6 @@ sharedDialog.provider("$dialog", function () {
 //                    }
 //                    return;
 //                }
-
-                // hva {
-                self.modalEl.foundation('reveal', 'close');
-                // } hva
 
                 this._onCloseComplete(result);
 
@@ -224,6 +229,7 @@ sharedDialog.provider("$dialog", function () {
 
             Dialog.prototype._addElementsToDom = function () {
                 body.append(this.modalEl);
+                body.append(this.bgEl);
 
 //                if (this.options.backdrop) {
 //                    if (activeBackdrops.value === 0) {
@@ -237,6 +243,7 @@ sharedDialog.provider("$dialog", function () {
 
             Dialog.prototype._removeElementsFromDom = function () {
                 this.modalEl.remove();
+                this.bgEl.remove();
 
 //                if (this.options.backdrop) {
 //                    activeBackdrops.value--;
