@@ -1,6 +1,6 @@
 // http://jsfiddle.net/alalonde/dZDLg/9/
 
-angular.module('shared.optionsDisabled', [])
+angular.module('wh.shared.optionsDisabled', [])
 
     .directive('optionsDisabled', function ($parse) {
         var disableOptions = function (scope, attr, element, data, fnDisableIfTrue) {

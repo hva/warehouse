@@ -1,4 +1,4 @@
-angular.module('shared.breadcrumbs', [])
+angular.module('wh.shared.breadcrumbs', [])
 
     .directive('breadcrumbs', function () {
         return {

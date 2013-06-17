@@ -9,6 +9,12 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     info = [
         {
+            'view': 'skill.views.warehouse',
+            'title': 'Склад',
+            'text': 'Управление товарами на складе: постановка на приход, списание, просмотр остатков.',
+            'cls': 'large-4',
+        },
+        {
             'view': 'skill.views.taxonomy',
             'title': 'Номенклатура',
             'text': 'Редактор товарных позиций, сгруппированных по категриям.',

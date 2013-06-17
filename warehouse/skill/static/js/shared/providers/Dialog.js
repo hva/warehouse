@@ -12,7 +12,7 @@
 //  };
 //}]);
 
-var sharedDialog = angular.module('shared.dialog', []);
+var sharedDialog = angular.module('wh.shared.dialog', []);
 
 sharedDialog.provider("$dialog", function () {
 

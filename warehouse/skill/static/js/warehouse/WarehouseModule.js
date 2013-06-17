@@ -2,7 +2,7 @@ angular.module('warehouse.services', ['ngResource']);
 angular.module('warehouse.controllers', []);
 angular.module('warehouse.directives', []);
 
-angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.directives', 'shared.dialog'])
+angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.directives', 'wh.shared.breadcrumbs'])
 
     .constant('viewsPrefix', '/static/js/warehouse/views/')
 

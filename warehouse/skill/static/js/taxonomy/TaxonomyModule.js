@@ -1,7 +1,7 @@
-angular.module('taxonomy.services', ['ngResource']);
-angular.module('taxonomy.controllers', []);
+angular.module('taxonomy.services', ['wh.shared.taxonomy']);
+angular.module('taxonomy.controllers', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled']);
 
-angular.module('taxonomy', ['taxonomy.services', 'taxonomy.controllers', 'shared.breadcrumbs', 'shared.optionsDisabled'])
+angular.module('taxonomy', ['taxonomy.services', 'taxonomy.controllers'])
 
     .constant('viewsPrefix', '/static/js/taxonomy/views/')
 

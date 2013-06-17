@@ -1,16 +1,8 @@
-angular.module('warehouse.controllers').controller('WarehouseMainController', function ($scope, $dialog, viewsPrefix) {
+angular.module('warehouse.controllers').controller('WarehouseMainController', function ($scope) {
 
-    $scope.click = function () {
-        var item = {id: 1};
-        var d = $dialog.dialog({
-            dialogFade: false,
-            resolve: {
-                item: function () {
-                    return angular.copy(item);
-                }
-            }
-        });
-        d.open(viewsPrefix + 'edit.html', 'WarehouseEditController');
+    $scope.breadcrumbs = [
+        {title: 'главная', url: '/'},
+        {title: 'склад', url: '/warehouse'}
+    ];
 
-    }
 });
