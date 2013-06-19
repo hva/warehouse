@@ -1,8 +1,8 @@
-angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, TaxonomyUtils, Sortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, Sortorder) {
 
     var original;
 
-    $scope.utils = TaxonomyUtils;
+    $scope.utils = Sortorder;
 
     $scope.item = Taxonomy.get({id: $routeParams.id}, function (i) {
         original = angular.copy(i);

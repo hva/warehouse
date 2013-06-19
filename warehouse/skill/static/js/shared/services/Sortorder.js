@@ -66,6 +66,16 @@ angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
         return value;
     }
 
+    function indentOption(x) {
+        if (x.sortorder) {
+            var level = getLevel(x),
+                indent = level * 4;
+            return new Array(indent + 1).join('\u00a0') + x.title;
+        }
+        return x.title;
+    }
+
+
     // item: record with modified 'parent_id'
     // returns next sortorder for the same level items
     function getNextSortorder(item, taxonomy) {
@@ -121,6 +131,7 @@ angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
         MAX_LEVEL: MAX_LEVEL,
         getLevel: getLevel,
         getMargin: getMargin,
+        indentOption: indentOption,
         getNextSortorder: getNextSortorder,
         moveToBranch: moveToBranch,
         canMoveUp: canMoveUp,

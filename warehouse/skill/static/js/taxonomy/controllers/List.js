@@ -1,6 +1,5 @@
-angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils, Sortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, Sortorder) {
 
-    $scope.utils = TaxonomyUtils;
     $scope.sortorder = Sortorder;
 
     function loadList() {

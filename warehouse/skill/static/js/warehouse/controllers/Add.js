@@ -1,6 +1,8 @@
-angular.module('warehouse.controllers').controller('WarehouseAddController', function ($scope, $location) {
+angular.module('warehouse.controllers').controller('WarehouseAddController', function ($scope, $location, Taxonomy, Sortorder) {
 
     angular.extend($scope, {
+
+        utils: Sortorder,
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
@@ -10,5 +12,8 @@ angular.module('warehouse.controllers').controller('WarehouseAddController', fun
 
     });
 
+    Taxonomy.query(function(d) {
+        $scope.taxonomy = d.objects;
+    });
 
 });

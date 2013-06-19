@@ -3,3 +3,50 @@
         <breadcrumbs items="breadcrumbs"></breadcrumbs>
     </div>
 </div>
+
+<form name="form" novalidate ng-submit="submit()">
+    <div class="row">
+        <div class="small-6">
+
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="title-label" class="right inline">Наименование</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" id="title-label" name="title" ng-model="item.title"
+                           ng-class="{error: form.title.$dirty && form.title.$error.required}" required/>
+                    <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле
+                    </small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="group" class="right inline">Группа</label>
+                </div>
+                <div class="small-9 columns">
+                    <select id="group"
+                            name="taxonomy_id"
+                            ng-model="item.parent_id"
+                            ng-options="x.id as utils.indentOption(x) for x in taxonomy"
+                            required>
+                        <option value="">-- выберите группу --</option>
+                    </select>
+                    <small class="error" ng-show="form.taxonomy_id.$dirty && form.taxonomy_id.$error.required">Обязательное поле
+                    </small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-9 columns small-offset-3">
+                    <ul class="button-group">
+                        <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid">
+                        </li>
+                        <li><a href="#/list" class="small secondary button">Отмена</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

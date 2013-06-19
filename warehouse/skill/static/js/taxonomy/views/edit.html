@@ -24,7 +24,7 @@
         </div>
         <div class="small-9 columns">
           <select ng-model="item.parent_id"
-                  ng-options="x.id as utils.indentTitle(x) for x in taxonomy.objects"
+                  ng-options="x.id as utils.indentOption(x) for x in taxonomy.objects"
                   options-disabled="isDisabledItem(x) for x in taxonomy.objects">
             <option value="">-- нет родителя --</option>
           </select>
