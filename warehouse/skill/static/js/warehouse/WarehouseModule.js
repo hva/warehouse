@@ -13,6 +13,10 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'war
             templateUrl: viewsPrefix + 'main.html',
             controller: 'WarehouseMainController'
         });
+        $routeProvider.when('/add', {
+            templateUrl: viewsPrefix + 'add.html',
+            controller: 'WarehouseAddController'
+        });
         $routeProvider.otherwise({redirectTo: '/main'});
     })
 

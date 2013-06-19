@@ -5,10 +5,25 @@
 </div>
 
 <div class="row">
+    <div class="columns">
+        <div class="button-bar">
+            <ul class="button-group">
+                <li>
+                    <button class="small button" ng-click="addProduct()">Добавить позицию</button>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="large-4 columns">
         <ul class="side-nav">
-            <li ng-repeat="x in taxonomy | taxonomyFilter:selectedTaxonomy" ng-class="{'active': isTaxonomyActive(x)}">
-                <a href ng-click="selectTaxonomy(x)"><span style="margin-left: {{ sortorder.getMargin(x) }}">{{ x.title }}</span></a>
+            <li ng-repeat="x in taxonomy | taxonomyFilter:selectedTaxonomy"
+                ng-class="{'active': isTaxonomyActive(x)}">
+                <a href ng-click="selectTaxonomy(x)"><span
+                        style="margin-left: {{ sortorder.getMargin(x) }}">{{ x.title }}</span></a>
             </li>
         </ul>
     </div>
