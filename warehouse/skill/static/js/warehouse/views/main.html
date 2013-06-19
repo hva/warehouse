@@ -7,7 +7,9 @@
 <div class="row">
     <div class="large-4 columns">
         <ul class="side-nav">
-            <li ng-repeat="x in taxonomy | taxonomyFilter:selectedTaxonomy"><a href ng-click="selectTaxonomy(x)">{{ x.title }}</a></li>
+            <li ng-repeat="x in taxonomy | taxonomyFilter:selectedTaxonomy" ng-class="{'active': isTaxonomyActive(x)}">
+                <a href ng-click="selectTaxonomy(x)"><span style="margin-left: {{ sortorder.getMargin(x) }}">{{ x.title }}</span></a>
+            </li>
         </ul>
     </div>
 </div>

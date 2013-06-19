@@ -1,6 +1,7 @@
 angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
 
-    var DIGITS = 4;
+    var DIGITS = 4,
+        MAX_LEVEL = 3;
 
 // Private methods
 
@@ -59,6 +60,12 @@ angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
         return 0;
     }
 
+    function getMargin(x) {
+        var value = getLevel(x) * 2;
+        if (value > 0) value += 'em';
+        return value;
+    }
+
     // item: record with modified 'parent_id'
     // returns next sortorder for the same level items
     function getNextSortorder(item, taxonomy) {
@@ -110,7 +117,9 @@ angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
     }
 
     return {
+        MAX_LEVEL: MAX_LEVEL,
         getLevel: getLevel,
+        getMargin: getMargin,
         getNextSortorder: getNextSortorder,
         moveToBranch: moveToBranch,
         canMoveUp: canMoveUp,

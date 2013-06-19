@@ -38,7 +38,7 @@
             <tbody>
             <tr ng-repeat="x in taxonomy" ng-click="select(x)" ng-dblclick="edit()"
                 ng-class="{'selected': isRowSelected(x)}" class="no-selection">
-                <td><span style="margin-left: {{ getMargin(x) }}">{{ x.title }}</span></td>
+                <td><span style="margin-left: {{ sortorder.getMargin(x) }}">{{ x.title }}</span></td>
             </tr>
             </tbody>
         </table>

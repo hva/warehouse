@@ -1,4 +1,6 @@
-angular.module('warehouse.controllers').controller('WarehouseMainController', function ($scope, Taxonomy) {
+angular.module('warehouse.controllers').controller('WarehouseMainController', function ($scope, Taxonomy, Sortorder) {
+
+    $scope.sortorder = Sortorder;
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -10,8 +12,13 @@ angular.module('warehouse.controllers').controller('WarehouseMainController', fu
     });
 
     $scope.selectedTaxonomy = null;
-    $scope.selectTaxonomy = function(x) {
+
+    $scope.selectTaxonomy = function (x) {
         $scope.selectedTaxonomy = x;
+    }
+
+    $scope.isTaxonomyActive = function (x) {
+        return angular.equals(x, $scope.selectedTaxonomy);
     }
 
 });

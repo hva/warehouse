@@ -17,7 +17,8 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
     ];
 
     $scope.isDisabledItem = function (x) {
-        return x.sortorder.indexOf($scope.item.sortorder) === 0;
+        return (x.sortorder.indexOf($scope.item.sortorder) === 0)
+            || (Sortorder.getLevel(x) >= Sortorder.MAX_LEVEL);
     }
 
     $scope.submit = function () {

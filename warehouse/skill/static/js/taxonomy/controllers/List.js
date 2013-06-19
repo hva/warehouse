@@ -17,12 +17,6 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         {title: 'номенклатура', url: '/taxonomy'}
     ];
 
-    $scope.getMargin = function(x) {
-        var value = Sortorder.getLevel(x) * 2;
-        if (value > 0) value += 'em';
-        return value;
-    }
-
     $scope.select = function (x) {
         $scope.selected = x;
     };

@@ -1,9 +1,10 @@
-angular.module('warehouse.services', ['ngResource']);
-angular.module('warehouse.controllers', ['wh.shared.breadcrumbs', 'wh.shared.taxonomy']);
+angular.module('warehouse.services', ['ngResource', 'wh.shared.taxonomy', 'wh.shared.sortorder']);
+angular.module('warehouse.controllers', []);
+angular.module('warehouse.directives', ['wh.shared.breadcrumbs']);
 angular.module('warehouse.filters', ['wh.warehouse.taxonomyFilter']);
 
 
-angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.filters'])
+angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'warehouse.filters', 'warehouse.directives'])
 
     .constant('viewsPrefix', '/static/js/warehouse/views/')
 

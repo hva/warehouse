@@ -10,6 +10,10 @@ angular.module('taxonomy.controllers').controller('TaxonomyAddController', funct
         {title: 'создание группы', url: $location.absUrl()}
     ];
 
+    $scope.isDisabledItem = function (x) {
+        return Sortorder.getLevel(x) >= Sortorder.MAX_LEVEL;
+    }
+
     $scope.submit = function () {
         var item = $scope.item,
             taxonomy = $scope.taxonomy.objects;
