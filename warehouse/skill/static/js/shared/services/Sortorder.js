@@ -117,6 +117,7 @@ angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
     }
 
     return {
+        DIGITS: DIGITS,
         MAX_LEVEL: MAX_LEVEL,
         getLevel: getLevel,
         getMargin: getMargin,
