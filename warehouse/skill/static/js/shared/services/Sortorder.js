@@ -1,4 +1,4 @@
-angular.module('taxonomy.services').factory('TaxonomySortorder', function () {
+angular.module('wh.shared.sortorder', []).factory('Sortorder', function () {
 
     var DIGITS = 4;
 

@@ -1,7 +1,7 @@
-angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils, TaxonomySortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, TaxonomyUtils, Sortorder) {
 
     $scope.utils = TaxonomyUtils;
-    $scope.sortorder = TaxonomySortorder;
+    $scope.sortorder = Sortorder;
 
     function loadList() {
         Taxonomy.query(function (d) {
@@ -18,7 +18,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
     ];
 
     $scope.getMargin = function(x) {
-        var value = TaxonomySortorder.getLevel(x) * 2;
+        var value = Sortorder.getLevel(x) * 2;
         if (value > 0) value += 'em';
         return value;
     }
@@ -54,12 +54,12 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
     };
 
     $scope.moveUp = function () {
-        var modified = TaxonomySortorder.moveUp($scope.selected, $scope.taxonomy);
+        var modified = Sortorder.moveUp($scope.selected, $scope.taxonomy);
         Taxonomy.update({objects: modified}, loadList);
     }
 
     $scope.moveDown = function () {
-        var modified = TaxonomySortorder.moveDown($scope.selected, $scope.taxonomy);
+        var modified = Sortorder.moveDown($scope.selected, $scope.taxonomy);
         Taxonomy.update({objects: modified}, loadList);
     }
 

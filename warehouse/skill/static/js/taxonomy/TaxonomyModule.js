@@ -1,4 +1,4 @@
-angular.module('taxonomy.services', ['wh.shared.taxonomy']);
+angular.module('taxonomy.services', ['wh.shared.taxonomy', 'wh.shared.sortorder']);
 angular.module('taxonomy.controllers', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled']);
 
 angular.module('taxonomy', ['taxonomy.services', 'taxonomy.controllers'])

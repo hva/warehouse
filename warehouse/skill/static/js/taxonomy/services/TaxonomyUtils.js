@@ -1,6 +1,6 @@
-angular.module('taxonomy.services').factory('TaxonomyUtils', function (TaxonomySortorder) {
+angular.module('taxonomy.services').factory('TaxonomyUtils', function (Sortorder) {
 
-    var getLevel = TaxonomySortorder.getLevel;
+    var getLevel = Sortorder.getLevel;
 
     return {
 

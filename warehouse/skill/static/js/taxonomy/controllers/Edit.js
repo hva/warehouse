@@ -1,4 +1,4 @@
-angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, TaxonomyUtils, TaxonomySortorder) {
+angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, TaxonomyUtils, Sortorder) {
 
     var original;
 
@@ -27,7 +27,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyEditController', func
                 $location.path('/list');
             };
         if (original.parent_id !== item.parent_id) {
-            var modified = TaxonomySortorder.moveToBranch(item, taxonomy);
+            var modified = Sortorder.moveToBranch(item, taxonomy);
             Taxonomy.update({objects: modified}, afterSave);
         } else {
             item.$update(afterSave);
