@@ -1,4 +1,4 @@
-angular.module('warehouse.services', ['ngResource', 'wh.shared.taxonomy', 'wh.shared.sortorder']);
+angular.module('warehouse.services', ['wh.shared.taxonomy', 'wh.shared.product', 'wh.shared.sortorder']);
 angular.module('warehouse.controllers', []);
 angular.module('warehouse.directives', ['wh.shared.breadcrumbs']);
 angular.module('warehouse.filters', ['wh.warehouse.taxonomyFilter']);
