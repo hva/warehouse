@@ -9,13 +9,31 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'war
     .constant('viewsPrefix', '/static/js/warehouse/views/')
 
     .config(function ($routeProvider, viewsPrefix) {
+
+        var taxonomyPromise = function ($q, Taxonomy) {
+            var deferred = $q.defer();
+            Taxonomy.query(function (d) {
+                deferred.resolve(d.objects);
+            });
+            return deferred.promise;
+        };
+
         $routeProvider.when('/main', {
             templateUrl: viewsPrefix + 'main.html',
-            controller: 'WarehouseMainController'
+            controller: 'WarehouseMainController',
+            resolve: {
+                taxonomy: taxonomyPromise
+            }
         });
         $routeProvider.when('/add', {
             templateUrl: viewsPrefix + 'add.html',
-            controller: 'WarehouseAddController'
+            controller: 'WarehouseAddController',
+            resolve: {
+                taxonomy: taxonomyPromise,
+                parentId: function ($route) {
+                    return parseInt($route.current.params.pid, 10) || null;
+                }
+            }
         });
         $routeProvider.otherwise({redirectTo: '/main'});
     })
