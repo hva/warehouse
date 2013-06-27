@@ -10,12 +10,8 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.controllers', 'war
 
     .config(function ($routeProvider, viewsPrefix) {
 
-                var taxonomyPromise = function ($q, Taxonomy) {
-                        var deferred = $q.defer();
-                        Taxonomy.query(function (d) {
-                            deferred.resolve(d.objects);
-                        });
-                        return deferred.promise;
+                var taxonomyPromise = function (Taxonomy) {
+                        return Taxonomy.queryPromise();
                     },
                     delay = function ($q, $timeout) {
                         var delay = $q.defer();
