@@ -8,7 +8,7 @@ angular.module('warehouse.controllers').controller('WarehouseAddController', fun
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
-            {title: 'склад', url: '/warehouse'},
+            {title: 'склад', url: '#/main'},
             {title: 'добавление позиции', url: $location.absUrl()}
         ]
 
