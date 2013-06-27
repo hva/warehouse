@@ -6,11 +6,9 @@ angular.module('wh.shared.busyIndicator', [])
                        link: function (scope, element) {
                            $rootScope.$on('$routeChangeStart', function () {
                                element.addClass('show');
-                               element.text('Loading...');
                            });
                            $rootScope.$on('$routeChangeSuccess', function () {
                                element.removeClass('show');
-                               element.text('');
                            });
                        }
                    };

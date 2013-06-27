@@ -1992,3 +1992,19 @@ table.selectable tr.selected {
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none; }
+
+/* busy indicator */
+.busy-indicator {
+  display: none; }
+
+.busy-indicator.show {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 0; }
+  .busy-indicator.show div {
+    position: relative;
+    left: -50%;
+    background: yellow;
+    padding: .5em 2em;
+    border: 1px solid #b4b400; }

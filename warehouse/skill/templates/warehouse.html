@@ -5,7 +5,11 @@
     {% csrf_token %}
 
     <div ng-app="warehouse">
-        <div class="busy-indicator"></div>
+
+        <div class="busy-indicator">
+            <div>Загрузка...</div>
+        </div>
+
         <div ng-view></div>
     </div>
 

@@ -1,30 +1,47 @@
 /* skill.logo */
 
 .logo {
-    background: url(/static/img/logo.png) no-repeat 0 10px;
-    border-bottom: 5px solid #89BA00;
-    width: 77px;
-    height: 38px;
-    float: left;
-    margin-right: 10px;
+  background: url(/static/img/logo.png) no-repeat 0 10px;
+  border-bottom: 5px solid #89BA00;
+  width: 77px;
+  height: 38px;
+  float: left;
+  margin-right: 10px;
 }
 
 /* skill.selectable */
 
 table.selectable tr {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 table.selectable tr.selected {
-    background: $secondary-color;
+  background: $secondary-color;
 }
 
-//table.selectable tr.selected td {
-//    color: #fff;
-//}
-
 .no-selection {
-    -webkit-user-select: none; // webkit (safari, chrome) browsers
-    -moz-user-select: none; // mozilla browsers
-    -khtml-user-select: none; // webkit (konqueror) browsers
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+}
+
+
+/* busy indicator */
+
+.busy-indicator {
+  display: none;
+}
+
+.busy-indicator.show {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  div {
+    position: relative;
+    left: -50%;
+    background: yellow;
+    padding: .5em 2em;
+    border: 1px solid #b4b400;
+  }
 }
