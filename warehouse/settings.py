@@ -170,10 +170,3 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/'
 
 TASTYPIE_ALLOW_MISSING_SLASH = True
-
-# Local Settings
-try:
-    from settings_local import *
-except ImportError:
-    pass
-# /Local Settings
