@@ -1,13 +1,13 @@
-angular.module('taxonomy').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, Sortorder) {
+angular.module('taxonomy').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, Sortorder, taxonomy) {
 
     $scope.utils = Sortorder;
     $scope.item = new Taxonomy({parent_id: $location.search().parent_id || null});
-    $scope.taxonomy = Taxonomy.query();
+    $scope.taxonomy = taxonomy;
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '/taxonomy'},
-        {title: 'создание группы', url: $location.absUrl()}
+        {title: 'номенклатура', url: '#/list'},
+        {title: 'создание группы'}
     ];
 
     $scope.isDisabledItem = function (x) {

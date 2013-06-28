@@ -13,7 +13,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '/taxonomy'}
+        {title: 'номенклатура'}
     ];
 
     $scope.select = function (x) {

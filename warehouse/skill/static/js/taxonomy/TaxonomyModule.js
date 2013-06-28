@@ -17,11 +17,17 @@ angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonom
             })
             .when('/add', {
                 templateUrl: viewsPrefix + 'edit.html',
-                controller: 'TaxonomyAddController'
+                controller: 'TaxonomyAddController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy')
+                }
             })
             .when('/edit/:id', {
                 templateUrl: viewsPrefix + 'edit.html',
-                controller: 'TaxonomyEditController'
+                controller: 'TaxonomyEditController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy')
+                }
             })
             .otherwise({redirectTo: '/list'});
     })

@@ -1,4 +1,4 @@
-angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, Sortorder) {
+angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, taxonomy) {
 
     var original;
 
@@ -8,12 +8,12 @@ angular.module('taxonomy').controller('TaxonomyEditController', function ($scope
         original = angular.copy(i);
     });
 
-    $scope.taxonomy = Taxonomy.query();
+    $scope.taxonomy = taxonomy;
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '/taxonomy'},
-        {title: 'редактирование группы', url: $location.absUrl()}
+        {title: 'номенклатура', url: '#/list'},
+        {title: 'редактирование группы'}
     ];
 
     $scope.isDisabledItem = function (x) {
