@@ -15,16 +15,14 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
-                    taxonomy: promiseProvider.query('Taxonomy'),
-                    delay: promiseProvider.delay
+                    taxonomy: promiseProvider.query('Taxonomy')
                 }
             })
             .when('/add', {
                 templateUrl: viewsPrefix + 'add.html',
                 controller: 'WarehouseAddController',
                 resolve: {
-                    taxonomy: promiseProvider.query('Taxonomy'),
-                    delay: promiseProvider.delay
+                    taxonomy: promiseProvider.query('Taxonomy')
                 }
             })
             .otherwise({redirectTo: '/main'});
