@@ -10,26 +10,24 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
 
     .config(function ($routeProvider, viewsPrefix, promiseProvider) {
 
-        $routeProvider.when('/main', {
-            templateUrl: viewsPrefix + 'main.html',
-            controller: 'WarehouseMainController',
-            resolve: {
-                taxonomy: promiseProvider.query('Taxonomy'),
-                delay: promiseProvider.delay
-            }
-        });
-        $routeProvider.when('/add', {
-            templateUrl: viewsPrefix + 'add.html',
-            controller: 'WarehouseAddController',
-            resolve: {
-                taxonomy: promiseProvider.query('Taxonomy'),
-                parentId: function ($route) {
-                    return parseInt($route.current.params.pid, 10) || null;
-                },
-                delay: promiseProvider.delay
-            }
-        });
-        $routeProvider.otherwise({redirectTo: '/main'});
+        $routeProvider
+            .when('/main', {
+                templateUrl: viewsPrefix + 'main.html',
+                controller: 'WarehouseMainController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy'),
+                    delay: promiseProvider.delay
+                }
+            })
+            .when('/add', {
+                templateUrl: viewsPrefix + 'add.html',
+                controller: 'WarehouseAddController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy'),
+                    delay: promiseProvider.delay
+                }
+            })
+            .otherwise({redirectTo: '/main'});
     })
 
     .config(function ($httpProvider) {

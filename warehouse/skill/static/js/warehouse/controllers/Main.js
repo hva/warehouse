@@ -1,15 +1,14 @@
-angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, Sortorder, taxonomy) {
+angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, $routeParams, Sortorder, taxonomy) {
 
     angular.extend($scope, {
 
         sortorder: Sortorder,
-
         taxonomy: taxonomy,
-        selectedTaxonomy: null,
+        selectedTaxonomy: _.findWhere(taxonomy, {id: parseInt($routeParams.gid, 10)}) || null,
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
-            {title: 'склад', url: '/warehouse'}
+            {title: 'склад'}
         ],
 
         selectTaxonomy: function (x) {
@@ -23,9 +22,9 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
         addProduct: function () {
             var loc = $location.path('/add');
             if ($scope.selectedTaxonomy !== null) {
-                loc.search({pid: $scope.selectedTaxonomy.id});
+                loc.search({gid: $scope.selectedTaxonomy.id});
             }
         }
-    });
 
+    });
 });

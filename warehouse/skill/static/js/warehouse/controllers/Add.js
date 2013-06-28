@@ -1,4 +1,6 @@
-angular.module('warehouse').controller('WarehouseAddController', function ($scope, $location, taxonomy, parentId, Product, Sortorder) {
+angular.module('warehouse').controller('WarehouseAddController', function ($scope, $location, $routeParams, Sortorder, taxonomy, Product) {
+
+    var parentId = parseInt($routeParams.gid, 10) || null;
 
     angular.extend($scope, {
 
@@ -9,8 +11,15 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         breadcrumbs: [
             {title: 'главная', url: '/'},
             {title: 'склад', url: '#/main'},
-            {title: 'добавление позиции', url: $location.absUrl()}
-        ]
+            {title: 'добавление позиции'}
+        ],
+
+        cancel: function () {
+            var loc = $location.path('/main');
+            if (parentId !== null) {
+                loc.search({gid: parentId});
+            }
+        }
 
     });
 
