@@ -1,13 +1,10 @@
-angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, taxonomy) {
+angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, item, taxonomy) {
 
     var original;
 
     $scope.utils = Sortorder;
 
-    $scope.item = Taxonomy.get({id: $routeParams.id}, function (i) {
-        original = angular.copy(i);
-    });
-
+    $scope.item = item;
     $scope.taxonomy = taxonomy;
 
     $scope.breadcrumbs = [
@@ -23,7 +20,7 @@ angular.module('taxonomy').controller('TaxonomyEditController', function ($scope
 
     $scope.submit = function () {
         var item = $scope.item,
-            taxonomy = $scope.taxonomy.objects,
+            taxonomy = $scope.taxonomy,
             afterSave = function () {
                 $location.path('/list');
             };

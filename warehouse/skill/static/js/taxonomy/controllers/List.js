@@ -10,6 +10,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     }
 
     $scope.taxonomy = taxonomy;
+    $scope.selected = null;
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
@@ -27,7 +28,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     $scope.add = function () {
         var loc = $location.path('/add');
         if ($scope.selected !== null) {
-            loc.search({parent_id: $scope.selected.id});
+            loc.search({pid: $scope.selected.id});
         }
     };
 
@@ -40,7 +41,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     };
 
     $scope.remove = function () {
-        var message = "Группа '" + $scope.selected.title + "' будет удалена\nВы уверены?";
+        var message = "Группа '" + $scope.selected.title + "', а так же все её подгруппы и товарные позиции будут удалены!\n\nВы уверены?";
         if (confirm(message)) {
             Taxonomy.remove({id: $scope.selected.id}, loadList);
         }
