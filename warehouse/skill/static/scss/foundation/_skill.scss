@@ -45,3 +45,10 @@ table.selectable tr.selected {
     border: 1px solid #b4b400;
   }
 }
+
+/* form validation */
+
+input.ng-invalid.ng-dirty
+{
+  @extend input.error;
+}

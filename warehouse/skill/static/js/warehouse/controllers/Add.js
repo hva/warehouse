@@ -1,12 +1,12 @@
 angular.module('warehouse').controller('WarehouseAddController', function ($scope, $location, $routeParams, Sortorder, taxonomy, Product) {
 
-    var parentId = parseInt($routeParams.gid, 10) || null;
+    var groupId = parseInt($routeParams.gid, 10) || null;
 
     angular.extend($scope, {
 
         utils: Sortorder,
         taxonomy: taxonomy,
-        item: new Product({parent_id: parentId}),
+        item: new Product({taxonomy_id: groupId, price: 0}),
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
@@ -14,10 +14,16 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
             {title: 'добавление позиции'}
         ],
 
+        submit: function () {
+            $scope.item.$save(function () {
+                $location.path('/main');
+            });
+        },
+
         cancel: function () {
             var loc = $location.path('/main');
-            if (parentId !== null) {
-                loc.search({gid: parentId});
+            if (groupId !== null) {
+                loc.search({gid: groupId});
             }
         }
 

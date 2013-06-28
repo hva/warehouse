@@ -1267,12 +1267,14 @@ fieldset {
 /* Error Handling */
 .error input,
 input.error,
+input.ng-invalid.ng-dirty,
 .error textarea,
 textarea.error {
   border-color: #c60f13;
   background-color: rgba(198, 15, 19, 0.1); }
   .error input:focus,
   input.error:focus,
+  input.ng-invalid.ng-dirty:focus,
   .error textarea:focus,
   textarea.error:focus {
     background: #fafafa;
@@ -2008,3 +2010,5 @@ table.selectable tr.selected {
     background: yellow;
     padding: .5em 2em;
     border: 1px solid #b4b400; }
+
+/* form validation */

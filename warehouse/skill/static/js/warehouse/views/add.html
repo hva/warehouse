@@ -13,10 +13,11 @@
                     <label for="title-label" class="right inline">Наименование</label>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" id="title-label" name="title" ng-model="item.title"
-                           ng-class="{error: form.title.$dirty && form.title.$error.required}" required/>
-                    <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле
-                    </small>
+                    <input type="text" id="title-label" name="title" ng-model="item.title" required maxlength="32"/>
+
+                    <div ng-show="form.title.$dirty && form.title.$invalid">
+                        <small class="error" ng-show="form.title.$error.required">Обязательное поле</small>
+                    </div>
                 </div>
             </div>
 
@@ -27,13 +28,30 @@
                 <div class="small-9 columns">
                     <select id="group"
                             name="taxonomy_id"
-                            ng-model="item.parent_id"
+                            ng-model="item.taxonomy_id"
                             ng-options="x.id as utils.indentOption(x) for x in taxonomy"
                             required>
                         <option value="">-- выберите группу --</option>
                     </select>
-                    <small class="error" ng-show="form.taxonomy_id.$dirty && form.taxonomy_id.$error.required">Обязательное поле
+                    <small class="error" ng-show="form.taxonomy_id.$dirty && form.taxonomy_id.$error.required">
+                        Обязательное поле
                     </small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="price-label" class="right inline">Цена (без НДС)</label>
+                </div>
+                <div class="small-9 columns">
+                    <input type="number" id="price-label" name="price" ng-model="item.price" required maxlength="10"
+                           min="0"/>
+
+                    <div ng-show="form.price.$dirty && form.price.$invalid">
+                        <small class="error" ng-show="form.price.$error.required">Введите число</small>
+                        <small class="error" ng-show="form.price.$error.number">Введите число</small>
+                        <small class="error" ng-show="form.price.$error.min">Введите положительное число</small>
+                    </div>
                 </div>
             </div>
 
@@ -42,7 +60,7 @@
                     <ul class="button-group">
                         <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid">
                         </li>
-                        <li><button ng-click="cancel()" class="small secondary button">Отмена</button></li>
+                        <li><input type="button" ng-click="cancel()" class="small secondary button" value="Отмена"/>
                     </ul>
                 </div>
             </div>
