@@ -1,15 +1,27 @@
 angular.module('wh.shared.busyIndicator', [])
 
-    .directive('busyIndicator', function ($rootScope) {
-                   return {
-                       restrict: 'C',
-                       link: function (scope, element) {
-                           $rootScope.$on('$routeChangeStart', function () {
-                               element.addClass('show');
-                           });
-                           $rootScope.$on('$routeChangeSuccess', function () {
-                               element.removeClass('show');
-                           });
-                       }
-                   };
-               });
+    .directive('busyIndicator', function ($rootScope, $timeout) {
+        return {
+            restrict: 'C',
+            link: function (scope, element) {
+                var toBeDisplayed;
+                $rootScope.$on('$routeChangeStart', function () {
+                    toBeDisplayed = true;
+                    // wait some time
+                    $timeout(function () {
+                        if (toBeDisplayed) {
+                            // if still need to be displayed
+                            element.addClass('show');
+                        }
+                    }, 200);
+                });
+                $rootScope.$on('$routeChangeSuccess', function () {
+                    // don't need to be displayed
+                    toBeDisplayed = false;
+                    element.removeClass('show');
+                });
+            }
+        };
+    })
+
+;
