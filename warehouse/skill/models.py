@@ -12,19 +12,6 @@ class Taxonomy(models.Model):
 class Product(models.Model):
     taxonomy = models.ForeignKey(Taxonomy)
     title = models.CharField(max_length=32)
-
-
-class Shipper(models.Model):
-    title = models.CharField(max_length=32)
-
-
-class Buyer(models.Model):
-    title = models.CharField(max_length=32)
-
-
-class Income(models.Model):
-    product = models.ForeignKey(Product)
-    shipper = models.ForeignKey(Shipper)
     price = models.DecimalField(max_digits=10, decimal_places=0)
     weight = models.FloatField()
     margin = models.IntegerField()
@@ -32,17 +19,21 @@ class Income(models.Model):
     create_date = models.DateTimeField()
 
 
-class Outcome(models.Model):
-    income = models.ForeignKey(Income)
-    buyer = models.ForeignKey(Buyer)
+class Contragent(models.Model):
+    title = models.CharField(max_length=32)
+
+
+class Opertaion(models.Model):
+    product = models.ForeignKey(Product)
+    contragent = models.ForeignKey(Contragent)
     weight = models.FloatField()
     create_date = models.DateTimeField()
 
 
 class Attachment(models.Model):
     ATTACHMENT_TYPE = (
-        (0, 'income'),
-        (1, 'shipper'),
+        (0, 'product'),
+        (1, 'contragent'),
     )
     item_id = models.IntegerField()
     item_type = models.IntegerField(choices=ATTACHMENT_TYPE)
