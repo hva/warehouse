@@ -32,9 +32,12 @@ angular.module('wh.shared.promise', [])
             query: function (resourceName) {
                 var func = function ($q, resource) {
                     var deferred = $q.defer();
-                    resource.query(function (d) {
-                        deferred.resolve(d.objects);
-                    });
+                    resource.query(
+                        function (d) {
+                            deferred.resolve(d.objects);
+                        },
+                        deferred.reject
+                    );
                     return deferred.promise;
                 };
                 func.$inject = ['$q', resourceName];
@@ -55,7 +58,7 @@ angular.module('wh.shared.promise', [])
                 var func = function ($q, $route, resource) {
                     var deferred = $q.defer(),
                         id = $route.current.params.id;
-                    resource.get({id: id}, deferred.resolve);
+                    resource.get({id: id}, deferred.resolve, deferred.reject);
                     return deferred.promise;
                 };
                 func.$inject = ['$q', '$route', resourceName];
