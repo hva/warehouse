@@ -8,6 +8,12 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         taxonomy: taxonomy,
         item: new Product({taxonomy_id: groupId, price: 0}),
 
+        // form layout
+        formSize: 8,
+        labelSize: 4,
+        inputSize: 8,
+
+
         breadcrumbs: [
             {title: 'главная', url: '/'},
             {title: 'склад', url: '#/main'},
