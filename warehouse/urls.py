@@ -4,10 +4,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 from tastypie.api import Api
-from skill.api import TaxonomyResource
+from skill.api import TaxonomyResource, ProductResource
 
 v1_api = Api(api_name='v1')
 v1_api.register(TaxonomyResource())
+v1_api.register(ProductResource())
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
