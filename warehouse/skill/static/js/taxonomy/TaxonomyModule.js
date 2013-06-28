@@ -1,24 +1,29 @@
 angular.module('taxonomy.services', ['wh.shared.taxonomy', 'wh.shared.sortorder']);
-angular.module('taxonomy.controllers', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled']);
+angular.module('taxonomy.directives', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled']);
+angular.module('taxonomy.providers', ['wh.shared.promise']);
 
-angular.module('taxonomy', ['taxonomy.services', 'taxonomy.controllers'])
+angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonomy.providers'])
 
     .constant('viewsPrefix', '/static/js/taxonomy/views/')
 
-    .config(function ($routeProvider, viewsPrefix) {
-        $routeProvider.when('/list', {
-            templateUrl: viewsPrefix + 'list.html',
-            controller: 'TaxonomyListController'
-        });
-        $routeProvider.when('/add', {
-            templateUrl: viewsPrefix + 'edit.html',
-            controller: 'TaxonomyAddController'
-        });
-        $routeProvider.when('/edit/:id', {
-            templateUrl: viewsPrefix + 'edit.html',
-            controller: 'TaxonomyEditController'
-        });
-        $routeProvider.otherwise({redirectTo: '/list'});
+    .config(function ($routeProvider, viewsPrefix, promiseProvider) {
+        $routeProvider
+            .when('/list', {
+                templateUrl: viewsPrefix + 'list.html',
+                controller: 'TaxonomyListController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy')
+                }
+            })
+            .when('/add', {
+                templateUrl: viewsPrefix + 'edit.html',
+                controller: 'TaxonomyAddController'
+            })
+            .when('/edit/:id', {
+                templateUrl: viewsPrefix + 'edit.html',
+                controller: 'TaxonomyEditController'
+            })
+            .otherwise({redirectTo: '/list'});
     })
 
     .config(function ($httpProvider) {

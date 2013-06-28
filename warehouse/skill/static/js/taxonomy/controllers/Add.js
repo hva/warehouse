@@ -1,4 +1,4 @@
-angular.module('taxonomy.controllers').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, Sortorder) {
+angular.module('taxonomy').controller('TaxonomyAddController', function ($scope, $location, Taxonomy, Sortorder) {
 
     $scope.utils = Sortorder;
     $scope.item = new Taxonomy({parent_id: $location.search().parent_id || null});

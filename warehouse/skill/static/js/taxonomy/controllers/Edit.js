@@ -1,4 +1,4 @@
-angular.module('taxonomy.controllers').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, Sortorder) {
+angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, $timeout, Taxonomy, Sortorder) {
 
     var original;
 

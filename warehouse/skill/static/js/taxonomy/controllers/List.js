@@ -1,4 +1,4 @@
-angular.module('taxonomy.controllers').controller('TaxonomyListController', function ($scope, $location, Taxonomy, Sortorder) {
+angular.module('taxonomy').controller('TaxonomyListController', function ($scope, $location, Taxonomy, Sortorder, taxonomy) {
 
     $scope.sortorder = Sortorder;
 
@@ -9,7 +9,7 @@ angular.module('taxonomy.controllers').controller('TaxonomyListController', func
         });
     }
 
-    loadList();
+    $scope.taxonomy = taxonomy;
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
