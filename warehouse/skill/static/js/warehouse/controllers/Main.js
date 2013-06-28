@@ -1,4 +1,4 @@
-angular.module('warehouse.controllers').controller('WarehouseMainController', function ($scope, $location, Sortorder, taxonomy) {
+angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, Sortorder, taxonomy) {
 
     angular.extend($scope, {
 
