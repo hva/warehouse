@@ -14,19 +14,19 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
             templateUrl: viewsPrefix + 'main.html',
             controller: 'WarehouseMainController',
             resolve: {
-                taxonomy: promiseProvider.query,
-                delay: promiseProvider.delay(500)
+                taxonomy: promiseProvider.query('Taxonomy'),
+                delay: promiseProvider.delay
             }
         });
         $routeProvider.when('/add', {
             templateUrl: viewsPrefix + 'add.html',
             controller: 'WarehouseAddController',
             resolve: {
-                taxonomy: promiseProvider.query,
+                taxonomy: promiseProvider.query('Taxonomy'),
                 parentId: function ($route) {
                     return parseInt($route.current.params.pid, 10) || null;
                 },
-                delay: promiseProvider.delay(500)
+                delay: promiseProvider.delay
             }
         });
         $routeProvider.otherwise({redirectTo: '/main'});
