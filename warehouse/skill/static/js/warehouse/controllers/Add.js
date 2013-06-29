@@ -21,6 +21,8 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         ],
 
         submit: function () {
+            console.log($scope.item);
+            return;
             $scope.item.$save(function () {
                 $location.path('/main');
             });

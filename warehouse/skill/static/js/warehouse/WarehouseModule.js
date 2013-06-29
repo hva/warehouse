@@ -1,5 +1,5 @@
 angular.module('warehouse.services', ['wh.shared.taxonomy', 'wh.shared.product', 'wh.shared.sortorder']);
-angular.module('warehouse.directives', ['wh.shared.breadcrumbs', 'wh.shared.busyIndicator']);
+angular.module('warehouse.directives', ['wh.shared.breadcrumbs', 'wh.shared.busyIndicator', 'wh.shared.form']);
 angular.module('warehouse.filters', ['wh.warehouse.taxonomyFilter']);
 angular.module('warehouse.providers', ['wh.shared.promise']);
 
