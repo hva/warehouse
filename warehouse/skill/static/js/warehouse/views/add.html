@@ -21,9 +21,10 @@
                 required>
             <option value="">-- выберите группу --</option>
         </select>
-        <small class="error" ng-show="form.taxonomy.$dirty && form.taxonomy.$error.required">
-            Обязательное поле
-        </small>
+
+        <div ng-show="form.taxonomy.$dirty && form.taxonomy.$invalid">
+            <small class="error" ng-show="form.taxonomy.$error.required"> Обязательное поле</small>
+        </div>
     </div>
 
     <div wh-form-element label="Приходная цена за т.<br/>(без НДС), руб.">
