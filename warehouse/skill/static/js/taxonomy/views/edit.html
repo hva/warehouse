@@ -4,42 +4,26 @@
     </div>
 </div>
 
-<form name="form" novalidate ng-submit="submit()">
-  <div class="row">
-    <div class="small-6">
+<form name="form" novalidate ng-submit="submit()" wh-form-form>
 
-      <div class="row">
-        <div class="small-3 columns">
-          <label for="title-label" class="right inline">Наименование</label>
-        </div>
-        <div class="small-9 columns">
-          <input type="text" id="title-label" name="title" ng-model="item.title" required />
-          <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле</small>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-3 columns">
-          <label for="parent-label" class="right inline">Родитель</label>
-        </div>
-        <div class="small-9 columns">
-          <select ng-model="item.parent_id"
-                  ng-options="x.id as utils.indentOption(x) for x in taxonomy"
-                  options-disabled="isDisabledItem(x) for x in taxonomy">
-            <option value="">-- нет родителя --</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-9 columns small-offset-3">
-            <ul class="button-group">
-              <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid"></li>
-              <li><a href="#/list" class="small secondary button">Отмена</a></li>
-            </ul>
-        </div>
-      </div>
-
+    <div wh-form-element label="Наименование">
+        <input type="text" id="title-label" name="title" ng-model="item.title" required/>
+        <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле</small>
     </div>
-  </div>
+
+    <div wh-form-element label="Родитель">
+        <select ng-model="item.parent_id"
+                ng-options="x.id as utils.indentOption(x) for x in taxonomy"
+                options-disabled="isDisabledItem(x) for x in taxonomy">
+            <option value="">-- нет родителя --</option>
+        </select>
+    </div>
+
+    <div wh-form-submit>
+        <ul class="button-group">
+            <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid"></li>
+            <li><a href="#/list" class="small secondary button">Отмена</a></li>
+        </ul>
+    </div>
+
 </form>
