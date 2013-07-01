@@ -28,12 +28,10 @@
     </div>
 
     <div wh-form-element label="Приходная цена за т.<br/>(без НДС), руб.">
-        <input type="number" name="price" ng-model="item.price" required maxlength="10" min="0"/>
+        <input type="text" name="price" ng-model="item.price" maxlength="10" wh-format-price/>
 
         <div ng-show="form.price.$dirty && form.price.$invalid">
-            <small class="error" ng-show="form.price.$error.required">Введите число</small>
-            <small class="error" ng-show="form.price.$error.number">Введите число</small>
-            <small class="error" ng-show="form.price.$error.min">Введите положительное число</small>
+            <small class="error" ng-show="form.price.$error.price">Введите неотрицательное целое число</small>
         </div>
     </div>
 

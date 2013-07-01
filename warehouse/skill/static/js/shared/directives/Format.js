@@ -1,37 +1,29 @@
 angular.module('wh.shared.format', [])
 
-    .directive('whFormatDecimal', function ($filter, $locale) {
+    .constant('INTEGER_REGEXP', /^\-?\d*$/)
+    .constant('FLOAT_REGEXP', /^\-?\d+((\.|\,)\d+)?$/)
+
+    .directive('whFormatPrice', function (INTEGER_REGEXP) {
         return {
             require: '?ngModel',
             link: function (scope, elem, attrs, ctrl) {
                 if (!ctrl) return;
 
-                var convert = function (x) {
-                    return $filter('number')(x);
-                }
-
-                ctrl.$formatters.unshift(convert);
-
-                //view -> model
                 ctrl.$parsers.unshift(function (viewValue) {
-                    // strip spaces
-                    var intValue = viewValue.replace(/\s+/g, '');
-                    if (/^\-?\d*$/.test(intValue)) {
-                        ctrl.$setValidity('integer', true);
+                    var isValid = false,
+                        value = undefined;
 
-                        var converted = convert(intValue);
-
-                        if (!angular.equals(viewValue, converted)) {
-                            ctrl.$setViewValue(converted);
-                            ctrl.$render();
+                    if (INTEGER_REGEXP.test(viewValue)) {
+                        var intValue = parseInt(viewValue, 10);
+                        if (intValue > 0) {
+                            value = intValue;
+                            isValid = true;
                         }
-
-                        return intValue;
-                    } else {
-                        ctrl.$setValidity('integer', false);
-                        return undefined;
                     }
+                    ctrl.$setValidity('price', isValid);
+                    return value;
                 });
+
             }
         };
     })
