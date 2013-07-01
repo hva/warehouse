@@ -28,4 +28,29 @@ angular.module('wh.shared.format', [])
         };
     })
 
+    .directive('whFormatFloat', function (FLOAT_REGEXP) {
+        return {
+            require: '?ngModel',
+            link: function (scope, elem, attrs, ctrl) {
+                if (!ctrl) return;
+
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var isValid = false,
+                        value = undefined;
+
+                    if (FLOAT_REGEXP.test(viewValue)) {
+                        var floatValue = parseFloat(viewValue.replace(',', '.'));
+                        if (floatValue > 0) {
+                            value = floatValue;
+                            isValid = true;
+                        }
+                    }
+                    ctrl.$setValidity('float', isValid);
+                    return value;
+                });
+
+            }
+        };
+    })
+
 ;

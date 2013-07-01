@@ -31,17 +31,15 @@
         <input type="text" name="price" ng-model="item.price" maxlength="10" wh-format-price/>
 
         <div ng-show="form.price.$dirty && form.price.$invalid">
-            <small class="error" ng-show="form.price.$error.price">Введите неотрицательное целое число</small>
+            <small class="error" ng-show="form.price.$error.price">Введите положительное целое число</small>
         </div>
     </div>
 
     <div wh-form-element label="Тоннаж, т">
-        <input type="text" name="weight" ng-model="item.weight" required min="0"/>
+        <input type="text" name="weight" ng-model="item.weight" wh-format-float />
 
         <div ng-show="form.weight.$dirty && form.weight.$invalid">
-            <small class="error" ng-show="form.weight.$error.required">Введите число</small>
-            <small class="error" ng-show="form.weight.$error.number">Введите число</small>
-            <small class="error" ng-show="form.weight.$error.min">Введите положительное число</small>
+            <small class="error" ng-show="form.weight.$error.float">Введите положительное число</small>
         </div>
 
     </div>
