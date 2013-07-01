@@ -19,7 +19,6 @@ angular.module('wh.shared.form', [])
             transclude: true,
             replace: true,
             templateUrl: '/static/js/shared/views/form/element.html',
-            templateUrl: '/static/js/shared/views/form/element.html',
             scope: {
                 label: '@'
             },
@@ -33,4 +32,20 @@ angular.module('wh.shared.form', [])
             }
         };
     })
+
+    .directive('whFormSubmit', function (labelColumns, inputColumns) {
+
+        return {
+            restrict: 'A',
+            transclude: true,
+            replace: true,
+            templateUrl: '/static/js/shared/views/form/submit.html',
+//            scope: {},
+            link: function (scope, element) {
+                scope.labelColumns = labelColumns;
+                scope.inputColumns = inputColumns;
+            }
+        };
+    })
+
 ;
