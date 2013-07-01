@@ -6,13 +6,7 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
 
         utils: Sortorder,
         taxonomy: taxonomy,
-        item: new Product({taxonomy_id: groupId, price: 0}),
-
-        // form layout
-        formSize: 8,
-        labelSize: 4,
-        inputSize: 8,
-
+        item: new Product({taxonomy_id: groupId, price: 10000, weight: 0}),
 
         breadcrumbs: [
             {title: 'главная', url: '/'},

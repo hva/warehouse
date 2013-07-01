@@ -37,11 +37,13 @@
         </div>
     </div>
 
-    <div wh-form-element label="Label">
-        <input type="text" name="asd" ng-model="item.asd" required/>
+    <div wh-form-element label="Тоннаж, т">
+        <input type="text" name="weight" ng-model="item.weight" required min="0"/>
 
-        <div ng-show="form.asd.$dirty && form.asd.$invalid">
-            <small class="error" ng-show="form.asd.$error.required">Обязательное поле</small>
+        <div ng-show="form.weight.$dirty && form.weight.$invalid">
+            <small class="error" ng-show="form.weight.$error.required">Введите число</small>
+            <small class="error" ng-show="form.weight.$error.number">Введите число</small>
+            <small class="error" ng-show="form.weight.$error.min">Введите положительное число</small>
         </div>
 
     </div>
