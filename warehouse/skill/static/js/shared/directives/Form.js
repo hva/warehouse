@@ -4,6 +4,19 @@ angular.module('wh.shared.form', [])
     .constant('labelColumns', 4)
     .constant('inputColumns', 8)
 
+    .directive('whFormForm', function (formColumns) {
+
+        return {
+            restrict: 'A',
+            transclude: true,
+            replace: true,
+            templateUrl: '/static/js/shared/views/form/form.html',
+            link: function (scope) {
+                scope.formColumns = formColumns;
+            }
+        };
+    })
+
     .directive('whFormElement', function (labelColumns, inputColumns) {
 
         function findInput(el) {
@@ -40,8 +53,7 @@ angular.module('wh.shared.form', [])
             transclude: true,
             replace: true,
             templateUrl: '/static/js/shared/views/form/submit.html',
-//            scope: {},
-            link: function (scope, element) {
+            link: function (scope) {
                 scope.labelColumns = labelColumns;
                 scope.inputColumns = inputColumns;
             }
