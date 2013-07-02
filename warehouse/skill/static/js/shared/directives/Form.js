@@ -78,4 +78,12 @@ angular.module('wh.shared.form', [])
         };
     })
 
+    .directive('whFormFocus', function () {
+
+        return function (scope, element) {
+            element[0].focus();
+        };
+    })
+
+
 ;
