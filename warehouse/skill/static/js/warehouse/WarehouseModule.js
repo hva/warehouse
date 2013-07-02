@@ -28,7 +28,8 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'edit.html',
                 controller: 'WarehouseAddController',
                 resolve: {
-                    taxonomy: promiseProvider.query('Taxonomy')
+                    taxonomy: promiseProvider.query('Taxonomy'),
+                    contragents: promiseProvider.query('Contragent')
                 }
             })
             .when('/edit/:id', {
