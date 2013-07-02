@@ -15,7 +15,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=0)
     vat = models.IntegerField()
     margin = models.IntegerField()
-    weight = models.FloatField()
     k = models.FloatField()
     description = models.CharField(max_length=64)
     create_date = models.DateTimeField(auto_now_add=True)
@@ -29,7 +28,9 @@ class Operation(models.Model):
     product = models.ForeignKey(Product)
     contragent = models.ForeignKey(Contragent)
     weight = models.FloatField()
-    create_date = models.DateTimeField()
+    len = models.FloatField()
+    margin = models.IntegerField()
+    create_date = models.DateTimeField(auto_now_add=True)
 
 
 class Attachment(models.Model):
@@ -40,4 +41,4 @@ class Attachment(models.Model):
     item_id = models.IntegerField()
     item_type = models.IntegerField(choices=ATTACHMENT_TYPE)
     description = models.CharField(max_length=256)
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(auto_now_add=True)
