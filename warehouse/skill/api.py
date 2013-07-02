@@ -3,7 +3,7 @@ from tastypie.resources import ModelResource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
 
-from warehouse.skill.models import Taxonomy, Product
+from warehouse.skill.models import Taxonomy, Product, Operation
 
 
 class MetaBase:
@@ -28,3 +28,11 @@ class ProductResource(ModelResource):
     class Meta(MetaBase):
         queryset = Product.objects.all()
         resource_name = 'product'
+
+
+class OperationResource(ModelResource):
+    product_id = fields.IntegerField(attribute='product_id', null=True)
+
+    class Meta(MetaBase):
+        queryset = Operation.objects.all()
+        resource_name = 'operation'
