@@ -11,20 +11,24 @@
                 <li>
                     <button class="small button" ng-click="add()">Создать группу</button>
                 </li>
+            </ul>
+            <ul class="button-group">
                 <li>
-                    <button class="small secondary button" ng-click="remove()" ng-disabled="!hasSelection()">Удалить
+                    <button class="small secondary button" ng-disabled="!sortorder.canMoveUp(selected, taxonomy)"
+                            ng-click="moveUp()">
+                        Вверх
+                    </button>
+                </li>
+                <li>
+                    <button class="small secondary button" ng-disabled="!sortorder.canMoveDown(selected, taxonomy)"
+                            ng-click="moveDown()">
+                        Вниз
                     </button>
                 </li>
             </ul>
             <ul class="button-group">
                 <li>
-                    <button class="small secondary button" ng-disabled="!sortorder.canMoveUp(selected, taxonomy)" ng-click="moveUp()">
-                        Вверх
-                    </button>
-                </li>
-                <li>
-                    <button class="small secondary button" ng-disabled="!sortorder.canMoveDown(selected, taxonomy)" ng-click="moveDown()">
-                        Вниз
+                    <button class="small secondary button" ng-click="remove()" ng-disabled="!hasSelection()">Удалить
                     </button>
                 </li>
             </ul>
