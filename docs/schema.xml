@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="100" y="50" name="taxonomy">
+</datatypes><table x="50" y="50" name="taxonomy">
 <row name="taxonomy_id" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
@@ -55,7 +55,7 @@
 <part>taxonomy_id</part>
 </key>
 </table>
-<table x="350" y="50" name="product">
+<table x="300" y="50" name="product">
 <row name="product_id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
@@ -69,15 +69,18 @@
 <row name="price" null="1" autoincrement="0">
 <datatype>DECIMAL</datatype>
 <default>NULL</default></row>
-<row name="weigth" null="1" autoincrement="0">
-<datatype>FLOAT</datatype>
-<default>NULL</default></row>
-<row name="margin" null="1" autoincrement="0">
-<datatype>INT</datatype>
-<default>NULL</default></row>
 <row name="vat" null="1" autoincrement="0">
 <datatype>INT</datatype>
 <default>NULL</default></row>
+<row name="margin" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default></row>
+<row name="k" null="0" autoincrement="0">
+<datatype>FLOAT</datatype>
+<default>NULL</default></row>
+<row name="description" null="0" autoincrement="0">
+<datatype>VARCHAR(64)</datatype>
+<default>'NULL'</default></row>
 <row name="create_date" null="0" autoincrement="0">
 <datatype>DATETIME</datatype>
 <default>'NULL'</default></row>
@@ -85,7 +88,7 @@
 <part>product_id</part>
 </key>
 </table>
-<table x="850" y="50" name="contragent">
+<table x="900" y="50" name="contragent">
 <row name="contragent_id" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
@@ -96,7 +99,7 @@
 <part>contragent_id</part>
 </key>
 </table>
-<table x="600" y="250" name="attachment">
+<table x="600" y="300" name="attachment">
 <row name="attachment_id" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
@@ -132,6 +135,12 @@
 </row>
 <row name="weight" null="1" autoincrement="0">
 <datatype>FLOAT</datatype>
+<default>NULL</default></row>
+<row name="len" null="0" autoincrement="0">
+<datatype>FLOAT</datatype>
+<default>NULL</default></row>
+<row name="margin" null="0" autoincrement="0">
+<datatype>INT</datatype>
 <default>NULL</default></row>
 <row name="create_date" null="0" autoincrement="0">
 <datatype>DATETIME</datatype>
