@@ -1,4 +1,4 @@
-angular.module('warehouse.services', ['wh.shared.taxonomy', 'wh.shared.product', 'wh.shared.sortorder']);
+angular.module('warehouse.services', ['wh.shared.resource', 'wh.shared.sortorder']);
 angular.module('warehouse.directives', [
     'wh.shared.breadcrumbs',
     'wh.shared.busyIndicator',

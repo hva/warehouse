@@ -1,4 +1,4 @@
-angular.module('taxonomy.services', ['wh.shared.taxonomy', 'wh.shared.sortorder']);
+angular.module('taxonomy.services', ['wh.shared.resource', 'wh.shared.sortorder']);
 angular.module('taxonomy.directives', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled', 'wh.shared.busyIndicator', 'wh.shared.form']);
 angular.module('taxonomy.providers', ['wh.shared.promise']);
 
