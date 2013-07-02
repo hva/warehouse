@@ -8,13 +8,16 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
 
         products: products,
         selectedProduct: null,
-        productClick: function (p) {
+        selectProduct: function (p) {
             if (!$scope.isProductSelected(p)) {
                 $scope.selectedProduct = p;
             }
         },
         isProductSelected: function (p) {
             return angular.equals(p, $scope.selectedProduct);
+        },
+        editProduct: function(p) {
+            $location.path('/edit/' + p.id);
         },
 
         breadcrumbs: [

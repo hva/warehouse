@@ -25,10 +25,18 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 }
             })
             .when('/add', {
-                templateUrl: viewsPrefix + 'add.html',
+                templateUrl: viewsPrefix + 'edit.html',
                 controller: 'WarehouseAddController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy')
+                }
+            })
+            .when('/edit/:id', {
+                templateUrl: viewsPrefix + 'edit.html',
+                controller: 'WarehouseEditController',
+                resolve: {
+                    taxonomy: promiseProvider.query('Taxonomy'),
+                    product: promiseProvider.get('Product')
                 }
             })
             .otherwise({redirectTo: '/main'});

@@ -44,7 +44,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="p in products"
-                ng-click="productClick(p)"
+                ng-click="selectProduct(p)"
+                ng-dblclick="editProduct(p)"
                 ng-class="{'selected': isProductSelected(p)}" class="no-selection">
                 <td>{{ p.title }}</td>
                 <td>{{ p.price | number:0 }}</td>
