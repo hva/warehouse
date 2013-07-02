@@ -2,6 +2,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
+from tastypie.constants import ALL
 
 from warehouse.skill.models import Taxonomy, Product, Operation, Contragent
 
@@ -11,6 +12,7 @@ class MetaBase:
     authentication = SessionAuthentication()
     authorization = Authorization()
     always_return_data = True
+    include_resource_uri = False
 
 
 class TaxonomyResource(ModelResource):
@@ -28,6 +30,9 @@ class ProductResource(ModelResource):
     class Meta(MetaBase):
         queryset = Product.objects.all()
         resource_name = 'product'
+        filtering = {
+            'taxonomy_id': ALL
+        }
 
 
 class OperationResource(ModelResource):

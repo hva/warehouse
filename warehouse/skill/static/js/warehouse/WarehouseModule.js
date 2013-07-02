@@ -20,8 +20,29 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
-                    taxonomy: promiseProvider.query('Taxonomy'),
-                    products: promiseProvider.query('Product')
+                    resolve: function ($q, $route, Taxonomy, Product) {
+                        var deferred = $q.defer(),
+                            taxonomyId = parseInt($route.current.params.gid, 10);
+                        Taxonomy.query(function (d) {
+                            var taxonomy = d.objects,
+                                selectedTaxonomy = _.findWhere(taxonomy, {id: taxonomyId}),
+                                ids = _.chain(taxonomy)
+                                    .filter(function (z) {
+                                        return z.sortorder.indexOf(selectedTaxonomy.sortorder) === 0;
+                                    })
+                                    .pluck('id')
+                                    .value()
+                                    .join(',');
+                            Product.query({taxonomy_id__in: ids}, function (p) {
+                                deferred.resolve({
+                                    taxonomy: taxonomy,
+                                    selectedTaxonomy: selectedTaxonomy,
+                                    products: p.objects
+                                });
+                            });
+                        });
+                        return deferred.promise;
+                    }
                 }
             })
             .when('/add', {

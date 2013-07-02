@@ -1,4 +1,4 @@
-angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, $routeParams, Sortorder, Product, taxonomy, products) {
+angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, Sortorder, Product, resolve) {
 
     angular.extend($scope, {
 
@@ -10,11 +10,11 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
 
         // taxonomy
 
-        taxonomy: taxonomy,
-        selectedTaxonomy: _.findWhere(taxonomy, {id: parseInt($routeParams.gid, 10)}) || null,
+        taxonomy: resolve.taxonomy,
+        selectedTaxonomy: resolve.selectedTaxonomy,
 
         selectTaxonomy: function (x) {
-            $scope.selectedTaxonomy = x;
+            $location.search({gid: x.id});
         },
 
         isTaxonomyActive: function (x) {
@@ -23,7 +23,7 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
 
         // products
 
-        products: products || [],
+        products: resolve.products,
         selectedProduct: null,
 
         selectProduct: function (p) {
