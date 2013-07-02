@@ -9,10 +9,12 @@
         <div class="button-bar">
             <ul class="button-group">
                 <li>
-                    <button class="small button" ng-click="addProduct()">На приход</button>
+                    <button class="small button" ng-click="addProduct()">Поставить на приход</button>
+                </li>
+                <li>
+                    <button class="small secondary button" ng-click="removeProduct()" ng-disabled="!canEditProduct()">Удалить</button>
                 </li>
             </ul>
-
         </div>
     </div>
 </div>
@@ -28,7 +30,8 @@
         </ul>
     </div>
     <div class="large-10 columns">
-        <table class="selectable">
+        <div ng-hide="products.length > 0">Товары отстутствуют.</div>
+        <table class="selectable" ng-show="products.length > 0">
             <thead>
             <tr>
                 <th>Наименование</th>
