@@ -13,30 +13,27 @@ angular.module('warehouse.filters')
     })
 
     // отпускная цена за т. (c НДС)
-    .filter('whProductMarginVat', function () {
+    .filter('whProductMarginVat', function ($filter) {
         return function (p) {
             if (!p) return null;
 
-            var price = p.price || 0,
-                margin = p.margin || 0,
+            var prev = $filter('whProductMargin')(p),
                 vat = p.vat || 0;
 
-            return price * ((margin + vat) / 100 + 1);
+            return prev + prev * vat / 100;
         }
     })
 
     // отпускная цена за м. (c НДС)
-    .filter('whProductMarginVatK', function () {
+    .filter('whProductMarginVatK', function ($filter) {
         return function (p) {
             if (!p) return null;
 
-            var price = p.price || 0,
-                margin = p.margin || 0,
-                vat = p.vat || 0,
+            var prev = $filter('whProductMarginVat')(p),
                 k = p.k || 0,
-                value = price * ((margin + vat) / 100 + 1) * k / 1000;
+                value = prev * k / 1000;
 
-            return Math.ceil(value / 10) * 10;
+            return Math.round(value / 10) * 10;
         }
     })
 
