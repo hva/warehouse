@@ -23,7 +23,7 @@ angular.module('wh.shared.resource', ['ngResource'])
 
     .factory('Operation', ['$resource', function ($resource) {
         return $resource('/api/v1/operation/:id/', { id: '@id' }, {
-            'query': {method: 'GET', params: {limit: 0}, isArray: false},
+            'query': {method: 'GET', params: {limit: 0, order_by: 'title'}, isArray: false},
             'update': {method: 'PATCH'}
         });
     }])

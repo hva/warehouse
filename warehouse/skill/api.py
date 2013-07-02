@@ -32,6 +32,7 @@ class ProductResource(ModelResource):
 
 class OperationResource(ModelResource):
     product_id = fields.IntegerField(attribute='product_id', null=True)
+    contragent_id = fields.IntegerField(attribute='contragent_id', null=True)
 
     class Meta(MetaBase):
         queryset = Operation.objects.all()

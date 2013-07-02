@@ -29,7 +29,7 @@ class Operation(models.Model):
     contragent = models.ForeignKey(Contragent)
     weight = models.FloatField()
     len = models.FloatField()
-    margin = models.IntegerField()
+    margin = models.IntegerField(null=True)
     create_date = models.DateTimeField(auto_now_add=True)
 
 
