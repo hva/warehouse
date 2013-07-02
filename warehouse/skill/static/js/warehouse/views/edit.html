@@ -25,7 +25,7 @@
                 </div>
 
                 <div wh-form-input label="Наименование">
-                    <input type="text" name="title" ng-model="product.title" required maxlength="32"/>
+                    <input type="text" name="title" ng-model="product.title" required maxlength="32" wh-form-focus/>
 
                     <div ng-show="form.title.$dirty && form.title.$invalid">
                         <small class="error" ng-show="form.title.$error.required">Обязательное поле</small>
