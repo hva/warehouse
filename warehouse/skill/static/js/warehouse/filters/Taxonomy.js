@@ -1,4 +1,4 @@
-angular.module('wh.warehouse.taxonomyFilter', [])
+angular.module('warehouse.filters')
     .filter('taxonomyFilter', function (Sortorder) {
         return function (taxonomy, selected) {
 
@@ -22,7 +22,7 @@ angular.module('wh.warehouse.taxonomyFilter', [])
 
                     // items to the 'left'
                     var selectedLevel = getLevel(selected),
-                        currentLevel =getLevel(x);
+                        currentLevel = getLevel(x);
                     if (currentLevel <= selectedLevel) {
                         return true;
                     }

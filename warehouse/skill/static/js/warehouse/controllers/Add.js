@@ -6,7 +6,14 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
 
         utils: Sortorder,
         taxonomy: taxonomy,
-        item: new Product({taxonomy_id: groupId, price: 0, weight: 0}),
+        item: new Product({
+            taxonomy_id: groupId,
+            price: 0,
+            vat: 20,
+            margin: 0,
+            weight: 0,
+            k: 0
+        }),
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
@@ -15,8 +22,6 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         ],
 
         submit: function () {
-            console.log($scope.item);
-            return;
             $scope.item.$save(function () {
                 $location.path('/main');
             });

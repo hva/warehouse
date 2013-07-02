@@ -6,7 +6,7 @@
 
 <form name="form" novalidate ng-submit="submit()" wh-form-form>
 
-    <div wh-form-element label="Наименование">
+    <div wh-form-input label="Наименование">
         <input type="text" name="title" ng-model="item.title" required maxlength="32"/>
 
         <div ng-show="form.title.$dirty && form.title.$invalid">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div wh-form-element label="Группа">
+    <div wh-form-input label="Группа">
         <select name="taxonomy"
                 ng-model="item.taxonomy_id"
                 ng-options="x.id as utils.indentOption(x) for x in taxonomy"
@@ -25,9 +25,16 @@
         <div ng-show="form.taxonomy.$dirty && form.taxonomy.$invalid">
             <small class="error" ng-show="form.taxonomy.$error.required"> Обязательное поле</small>
         </div>
+
     </div>
 
-    <div wh-form-element label="Приходная цена за т.<br/>(без НДС), руб.">
+    <div wh-form-input label="Примечание">
+        <input type="text" name="description" ng-model="item.description" maxlength="64"/>
+    </div>
+
+    <hr/>
+
+    <div wh-form-input label="Приходная цена за т.<br/>(без НДС), руб.">
         <input type="text" name="price" ng-model="item.price" maxlength="10" wh-format-price/>
 
         <div ng-show="form.price.$dirty && form.price.$invalid">
@@ -35,13 +42,56 @@
         </div>
     </div>
 
-    <div wh-form-element label="Тоннаж, т">
-        <input type="text" name="weight" ng-model="item.weight" wh-format-float />
+    <div wh-form-input label="Ставка НДС, %">
+        <input type="text" name="vat" ng-model="item.vat" wh-format-price/>
+
+        <div ng-show="form.vat.$dirty && form.vat.$invalid">
+            <small class="error" ng-show="form.vat.$error.price">Введите положительное целое число</small>
+        </div>
+
+    </div>
+
+    <div wh-form-input label="Наценка, %">
+        <input type="text" name="margin" ng-model="item.margin" wh-format-price/>
+
+        <div ng-show="form.margin.$dirty && form.margin.$invalid">
+            <small class="error" ng-show="form.margin.$error.price">Введите положительное целое число</small>
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div wh-form-input label="Тоннаж, т">
+        <input type="text" name="weight" ng-model="item.weight" wh-format-float/>
 
         <div ng-show="form.weight.$dirty && form.weight.$invalid">
             <small class="error" ng-show="form.weight.$error.float">Введите положительное число</small>
         </div>
 
+    </div>
+
+    <div wh-form-input label="Коэффициент, кг/м">
+        <input type="text" name="k" ng-model="item.k" wh-format-float/>
+
+        <div ng-show="form.k.$dirty && form.k.$invalid">
+            <small class="error" ng-show="form.k.$error.float">Введите положительное число</small>
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div wh-form-static label="Отпускная цена за т.<br/>(без НДС), руб.">
+        {{ item | whProductMargin | number:0 }}
+    </div>
+
+    <div wh-form-static label="Отпускная цена за т.<br/>(с НДС), руб.">
+        {{ item | whProductMarginVat | number:0 }}
+    </div>
+
+    <div wh-form-static label="Отпускная цена за м.<br/>(с НДС), руб.">
+        {{ item | whProductMarginVatK | number:0 }}
     </div>
 
     <div wh-form-submit>

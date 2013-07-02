@@ -5,7 +5,7 @@ angular.module('warehouse.directives', [
     'wh.shared.form',
     'wh.shared.format'
 ]);
-angular.module('warehouse.filters', ['wh.warehouse.taxonomyFilter']);
+angular.module('warehouse.filters', []);
 angular.module('warehouse.providers', ['wh.shared.promise']);
 
 

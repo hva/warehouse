@@ -6,12 +6,12 @@
 
 <form name="form" novalidate ng-submit="submit()" wh-form-form>
 
-    <div wh-form-element label="Наименование">
+    <div wh-form-input label="Наименование">
         <input type="text" id="title-label" name="title" ng-model="item.title" required/>
         <small class="error" ng-show="form.title.$dirty && form.title.$error.required">Обязательное поле</small>
     </div>
 
-    <div wh-form-element label="Родитель">
+    <div wh-form-input label="Родитель">
         <select ng-model="item.parent_id"
                 ng-options="x.id as utils.indentOption(x) for x in taxonomy"
                 options-disabled="isDisabledItem(x) for x in taxonomy">

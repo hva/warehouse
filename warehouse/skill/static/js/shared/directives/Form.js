@@ -1,8 +1,8 @@
 angular.module('wh.shared.form', [])
 
     .constant('formColumns', 6)
-    .constant('labelColumns', 4)
-    .constant('inputColumns', 8)
+    .constant('labelColumns', 5)
+    .constant('inputColumns', 7)
 
     .directive('whFormForm', function (formColumns) {
 
@@ -17,7 +17,7 @@ angular.module('wh.shared.form', [])
         };
     })
 
-    .directive('whFormElement', function (labelColumns, inputColumns) {
+    .directive('whFormInput', function (labelColumns, inputColumns) {
 
         function findInput(el) {
             var input = el.find('input');
@@ -53,6 +53,24 @@ angular.module('wh.shared.form', [])
             transclude: true,
             replace: true,
             templateUrl: '/static/js/shared/views/form/submit.html',
+            link: function (scope) {
+                scope.labelColumns = labelColumns;
+                scope.inputColumns = inputColumns;
+            }
+        };
+    })
+
+
+    .directive('whFormStatic', function (labelColumns, inputColumns) {
+
+        return {
+            restrict: 'A',
+            transclude: true,
+            replace: true,
+            templateUrl: '/static/js/shared/views/form/static.html',
+            scope: {
+                label: '@'
+            },
             link: function (scope) {
                 scope.labelColumns = labelColumns;
                 scope.inputColumns = inputColumns;
