@@ -11,6 +11,9 @@
                 <li>
                     <button class="small button" ng-click="addProduct()">Добавить товар</button>
                 </li>
+                <li>
+                    <button class="small secondary button" ng-click="editProduct()" ng-disabled="!canEditProduct()">Редактировать</button>
+                </li>
             </ul>
             <ul class="button-group">
                 <li>
