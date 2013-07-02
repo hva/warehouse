@@ -3,7 +3,7 @@ from tastypie.resources import ModelResource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
 
-from warehouse.skill.models import Taxonomy, Product, Operation
+from warehouse.skill.models import Taxonomy, Product, Operation, Contragent
 
 
 class MetaBase:
@@ -36,3 +36,9 @@ class OperationResource(ModelResource):
     class Meta(MetaBase):
         queryset = Operation.objects.all()
         resource_name = 'operation'
+
+
+class ContragentResource(ModelResource):
+    class Meta(MetaBase):
+        queryset = Contragent.objects.all()
+        resource_name = 'contragent'
