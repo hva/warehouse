@@ -42,10 +42,11 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         },
 
         cancel: function () {
-            var loc = $location.path('/main');
+            var path = '/main';
             if (groupId !== null) {
-                loc.search({gid: groupId});
+                path += '/' + groupId;
             }
+            $location.path(path).search({});
         }
 
     });

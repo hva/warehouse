@@ -10,11 +10,11 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
 
         // taxonomy
 
-        taxonomy: resolve.taxonomy,
-        selectedTaxonomy: resolve.selectedTaxonomy,
+        taxonomy: resolve[0],
+        selectedTaxonomy: resolve[2] || null,
 
         selectTaxonomy: function (x) {
-            $location.search({gid: x.id});
+            $location.path('/main/' + x.id);
         },
 
         isTaxonomyActive: function (x) {
@@ -23,7 +23,7 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
 
         // products
 
-        products: resolve.products,
+        products: resolve[1],
         selectedProduct: null,
 
         selectProduct: function (p) {

@@ -33,6 +33,7 @@ class ProductResource(ModelResource):
         filtering = {
             'taxonomy_id': ALL
         }
+        ordering = ['title']
 
 
 class OperationResource(ModelResource):

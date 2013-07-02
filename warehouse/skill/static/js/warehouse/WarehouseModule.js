@@ -16,7 +16,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
     .config(function ($routeProvider, viewsPrefix, promiseProvider) {
 
         $routeProvider
-            .when('/main', {
+            .when('/main/:gid', {
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
@@ -34,14 +34,27 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                                     .value()
                                     .join(',');
                             Product.query({taxonomy_id__in: ids}, function (p) {
-                                deferred.resolve({
-                                    taxonomy: taxonomy,
-                                    selectedTaxonomy: selectedTaxonomy,
-                                    products: p.objects
-                                });
+                                deferred.resolve([taxonomy, p.objects, selectedTaxonomy]);
                             });
                         });
                         return deferred.promise;
+                    }
+                }
+            })
+            .when('/main', {
+                templateUrl: viewsPrefix + 'main.html',
+                controller: 'WarehouseMainController',
+                resolve: {
+                    resolve: function ($q, Taxonomy, Product) {
+                        var d1 = $q.defer(),
+                            d2 = $q.defer();
+                        Taxonomy.query(function (x) {
+                            d1.resolve(x.objects);
+                        });
+                        Product.query(function (x) {
+                            d2.resolve(x.objects);
+                        });
+                        return $q.all([d1.promise, d2.promise]);
                     }
                 }
             })
