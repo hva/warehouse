@@ -20,7 +20,8 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
-                    taxonomy: promiseProvider.query('Taxonomy')
+                    taxonomy: promiseProvider.query('Taxonomy'),
+                    products: promiseProvider.query('Product')
                 }
             })
             .when('/add', {

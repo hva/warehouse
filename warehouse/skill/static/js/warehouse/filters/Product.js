@@ -1,6 +1,6 @@
 angular.module('warehouse.filters')
 
-    // отпускная цена за т. (без НДС)
+    // цена реализации за т. (без НДС)
     .filter('whProductMargin', function () {
         return function (p) {
             if (!p) return null;
@@ -12,7 +12,7 @@ angular.module('warehouse.filters')
         }
     })
 
-    // отпускная цена за т. (c НДС)
+    // цена реализации за т. (c НДС)
     .filter('whProductMarginVat', function ($filter) {
         return function (p) {
             if (!p) return null;
@@ -24,7 +24,7 @@ angular.module('warehouse.filters')
         }
     })
 
-    // отпускная цена за м. (c НДС)
+    // цена реализации за м. (c НДС)
     .filter('whProductMarginVatK', function ($filter) {
         return function (p) {
             if (!p) return null;

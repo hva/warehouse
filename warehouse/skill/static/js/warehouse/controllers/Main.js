@@ -1,10 +1,21 @@
-angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, $routeParams, Sortorder, taxonomy) {
+angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, $routeParams, Sortorder, taxonomy, products) {
 
     angular.extend($scope, {
 
         sortorder: Sortorder,
         taxonomy: taxonomy,
         selectedTaxonomy: _.findWhere(taxonomy, {id: parseInt($routeParams.gid, 10)}) || null,
+
+        products: products,
+        selectedProduct: null,
+        productClick: function (p) {
+            if (!$scope.isProductSelected(p)) {
+                $scope.selectedProduct = p;
+            }
+        },
+        isProductSelected: function (p) {
+            return angular.equals(p, $scope.selectedProduct);
+        },
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
