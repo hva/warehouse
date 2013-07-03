@@ -3,7 +3,8 @@ angular.module('warehouse.directives', [
     'wh.shared.breadcrumbs',
     'wh.shared.busyIndicator',
     'wh.shared.form',
-    'wh.shared.format'
+    'wh.shared.format',
+    'wh.shared.validate'
 ]);
 angular.module('warehouse.filters', []);
 angular.module('warehouse.providers', ['wh.shared.promise']);
@@ -12,6 +13,11 @@ angular.module('warehouse.providers', ['wh.shared.promise']);
 angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'warehouse.filters', 'warehouse.providers'])
 
     .constant('viewsPrefix', '/static/js/warehouse/views/')
+
+    .constant('OPERATION_TYPE', {
+        IN: 0,
+        OUT: 1
+    })
 
     .config(function ($routeProvider, viewsPrefix, promiseProvider) {
 
@@ -50,7 +56,8 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'card-out.html',
                 controller: 'WarehouseCardOutController',
                 resolve: {
-                    product: promiseProvider.get('Product')
+                    product: promiseProvider.get('Product'),
+                    contragents: promiseProvider.query('Contragent')
                 }
             })
             .when('/card/:id', {

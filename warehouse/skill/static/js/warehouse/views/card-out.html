@@ -3,3 +3,44 @@
         <breadcrumbs items="breadcrumbs"></breadcrumbs>
     </div>
 </div>
+
+<form name="form" novalidate ng-submit="submit()" wh-form-form>
+
+    <div wh-form-input label="Тоннаж">
+        <input type="text" name="weight" ng-model="operation.weight" wh-form-focus wh-float wh-range gt="0" lte="{{ product.weight }}">{{ product.weight }}
+
+        <div ng-show="showErrors || form.weight.$dirty">
+            <small class="error" ng-show="form.weight.$error.float">Введите число</small>
+            <small class="error" ng-show="form.weight.$error.rangeGt">Введите положительное число</small>
+            <small class="error" ng-show="form.weight.$error.rangeLte">Вы превысили остаток товара на складе</small>
+        </div>
+    </div>
+
+    <div wh-form-input label="Метраж">
+        <input type="text" name="len" ng-model="operation.len" wh-format-float/>
+
+        <div ng-show="showErrors || form.len.$dirty">
+            <small class="error" ng-show="form.len.$error.float">Введите положительное число</small>
+        </div>
+    </div>
+
+    <div wh-form-input label="Получатель">
+        <select name="contragent"
+                ng-model="operation.contragent_id"
+                ng-options="x.id as x.title for x in contragents"
+                required>
+            <option value="">-- пусто --</option>
+        </select>
+        <div ng-show="showErrors || form.contragent.$dirty">
+            <small class="error" ng-show="form.contragent.$error.required">Обязательное поле</small>
+        </div>
+    </div>
+
+    <div wh-form-submit>
+        <ul class="button-group">
+            <li><input type="submit" class="small button" value="Сохранить"></li>
+            <li><input type="button" ng-click="cancel()" class="small secondary button" value="Отмена"></li>
+        </ul>
+    </div>
+
+</form>
