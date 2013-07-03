@@ -78,8 +78,9 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'card.html',
                 controller: 'WarehouseCardController',
                 resolve: {
-//                    taxonomy: promiseProvider.query('Taxonomy'),
-//                    product: promiseProvider.get('Product')
+                    product: promiseProvider.get('Product'),
+                    operations: promiseProvider.cardOperations,
+                    contragents: promiseProvider.query('Contragent')
                 }
             })
             .otherwise({redirectTo: '/main'});

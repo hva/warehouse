@@ -53,6 +53,9 @@ class OperationResource(ModelResource):
     class Meta(MetaBase):
         queryset = Operation.objects.all()
         resource_name = 'operation'
+        filtering = {
+            'product_id': ['exact']
+        }
 
 
 class ContragentResource(ModelResource):

@@ -1,5 +1,5 @@
 <ul class="breadcrumbs">
-    <li ng-repeat="x in items" ng-class="{'current':$last}">
+    <li ng-repeat="x in items" ng-class="{'current':$last, 'unavailable': x.disabled}">
         <a href="{{ x.url }}">{{ x.title }}</a>
     </li>
 </ul>

@@ -63,6 +63,21 @@ angular.module('wh.shared.promise', [])
                 };
                 func.$inject = ['$q', '$route', resourceName];
                 return func;
+            },
+
+            // returns all operations for the product with route ':id'
+            cardOperations: function ($q, $route, Operation) {
+                var d = $q.defer(),
+                    pid = parseInt($route.current.params.id, 10);
+
+                Operation.query({product_id: pid},
+                    function (data) {
+                        d.resolve(data.objects);
+                    },
+                    d.reject
+                );
+
+                return d.promise;
             }
 
         }

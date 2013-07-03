@@ -1,1 +1,37 @@
-card
+<div class="row">
+    <div class="columns">
+        <breadcrumbs items="breadcrumbs"></breadcrumbs>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="columns">
+        <h4 class="subheader">{{ product.title }}</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Контрагент</th>
+                <th>Тоннаж</th>
+                <th>Длина</th>
+                <th>Пользователь</th>
+                <th>Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in operations">
+                <td>{{ resolveContragentName(x) }}</td>
+                <td>{{ x.weight }}</td>
+                <td>{{ x.len }}</td>
+                <td>{{ x.user }}</td>
+                <td>{{ x.create_date | date:'short'}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ul>
+    <li ng-repeat="x in operations">{{ x.id }}</li>
+</ul>
