@@ -25,12 +25,17 @@ class Contragent(models.Model):
 
 
 class Operation(models.Model):
+    OPERATION_TYPE = (
+        (0, 'in'),
+        (1, 'out'),
+    )
     product = models.ForeignKey(Product)
     contragent = models.ForeignKey(Contragent)
     weight = models.FloatField()
     len = models.FloatField()
     margin = models.IntegerField(null=True)
-    user = models.CharField(max_length=30, null=True)
+    user = models.CharField(max_length=30, null=True)  #  disallow null later
+    type = models.IntegerField(choices=OPERATION_TYPE, default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 
 
