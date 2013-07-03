@@ -1,10 +1,14 @@
 angular.module('warehouse').controller('WarehouseEditController', function ($scope, $location, Sortorder, taxonomy, product) {
 
+    function back() {
+        $location.path('/main/' + $scope.product.taxonomy_id);
+    }
+
     angular.extend($scope, {
 
         utils: Sortorder,
         taxonomy: taxonomy,
-        item: product,
+        product: product,
 
         breadcrumbs: [
             {title: 'главная', url: '/'},
@@ -13,13 +17,11 @@ angular.module('warehouse').controller('WarehouseEditController', function ($sco
         ],
 
         submit: function () {
-            $scope.item.$update(function () {
-                $location.path('/main');
-            });
+            $scope.product.$update(back);
         },
 
         cancel: function () {
-            $location.path('/main');
+            back();
         }
 
     });

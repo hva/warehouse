@@ -36,8 +36,8 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
             return angular.equals(p, $scope.selectedProduct);
         },
 
-        editProduct: function (p) {
-            $location.path('/edit/' + p.id);
+        editProduct: function () {
+            $location.path('/edit/' + $scope.selectedProduct.id);
         },
 
         canEditProduct: function () {

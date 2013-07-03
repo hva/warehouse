@@ -59,7 +59,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 }
             })
             .when('/add', {
-                templateUrl: viewsPrefix + 'edit.html',
+                templateUrl: viewsPrefix + 'add.html',
                 controller: 'WarehouseAddController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy'),

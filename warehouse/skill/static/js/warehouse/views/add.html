@@ -97,6 +97,42 @@
 
     <div class="row">
         <div class="large-6 columns">
+            <fieldset>
+                <legend>Приходная операция</legend>
+
+                <div wh-form-input label="Поставщик">
+                    <select name="contragent"
+                            ng-model="operation.contragent_id"
+                            ng-options="x.id as x.title for x in contragents"
+                            required>
+                        <option value="">-- выберите поставщика --</option>
+                    </select>
+
+                    <div ng-show="form.contragent.$dirty && form.contragent.$invalid">
+                        <small class="error" ng-show="form.contragent.$error.required"> Обязательное поле</small>
+                    </div>
+
+                </div>
+
+                <div wh-form-input label="Тоннаж, т">
+                    <input type="text" name="weight" ng-model="operation.weight" wh-format-float/>
+
+                    <div ng-show="form.weight.$dirty && form.weight.$invalid">
+                        <small class="error" ng-show="form.weight.$error.float">Введите положительное число</small>
+                    </div>
+
+                </div>
+
+                <div wh-form-input label="Метраж, м">
+                    <input type="text" name="len" ng-model="operation.len" wh-format-float/>
+
+                    <div ng-show="form.len.$dirty && form.len.$invalid">
+                        <small class="error" ng-show="form.len.$error.float">Введите положительное число</small>
+                    </div>
+
+                </div>
+
+            </fieldset>
 
             <div wh-form-submit>
                 <ul class="button-group">

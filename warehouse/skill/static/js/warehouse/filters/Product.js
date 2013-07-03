@@ -33,7 +33,7 @@ angular.module('warehouse.filters')
                 k = p.k || 0,
                 value = prev * k / 1000;
 
-            return Math.round(value / 10) * 10;
+            return Math.round(value / 100) * 100;
         }
     })
 
