@@ -20,42 +20,14 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
-                    resolve: function ($q, $route, Taxonomy, Product) {
-                        var deferred = $q.defer(),
-                            taxonomyId = parseInt($route.current.params.gid, 10);
-                        Taxonomy.query(function (d) {
-                            var taxonomy = d.objects,
-                                selectedTaxonomy = _.findWhere(taxonomy, {id: taxonomyId}),
-                                ids = _.chain(taxonomy)
-                                    .filter(function (z) {
-                                        return z.sortorder.indexOf(selectedTaxonomy.sortorder) === 0;
-                                    })
-                                    .pluck('id')
-                                    .value()
-                                    .join(',');
-                            Product.query({taxonomy_id__in: ids}, function (p) {
-                                deferred.resolve([taxonomy, p.objects, selectedTaxonomy]);
-                            });
-                        });
-                        return deferred.promise;
-                    }
+                    resolve: promiseProvider.warehouseMainFiltered
                 }
             })
             .when('/main', {
                 templateUrl: viewsPrefix + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
-                    resolve: function ($q, Taxonomy, Product) {
-                        var d1 = $q.defer(),
-                            d2 = $q.defer();
-                        Taxonomy.query(function (x) {
-                            d1.resolve(x.objects);
-                        });
-                        Product.query(function (x) {
-                            d2.resolve(x.objects);
-                        });
-                        return $q.all([d1.promise, d2.promise]);
-                    }
+                    resolve: promiseProvider.warehouseMain
                 }
             })
             .when('/add', {
