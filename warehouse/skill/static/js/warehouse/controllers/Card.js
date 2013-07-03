@@ -10,10 +10,7 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
 
         product: product,
         operations: operations,
-
-        resolveContragentName: function(x) {
-            return _.findWhere(contragents, {id: x.contragent_id}).title;
-        }
+        contragents: contragents
 
     });
 });

@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="columns">
-        <h4 class="subheader">{{ product.title }}</h4>
+        <h5 class="subheader">{{ product.title }}</h5>
         <table>
             <thead>
             <tr>
@@ -20,18 +20,13 @@
             </thead>
             <tbody>
             <tr ng-repeat="x in operations">
-                <td>{{ resolveContragentName(x) }}</td>
+                <td>{{ x | contragentName:contragents }}</td>
                 <td>{{ x.weight }}</td>
                 <td>{{ x.len }}</td>
                 <td>{{ x.user }}</td>
                 <td>{{ x.create_date | date:'short'}}</td>
-
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-
-<ul>
-    <li ng-repeat="x in operations">{{ x.id }}</li>
-</ul>
