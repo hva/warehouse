@@ -14,7 +14,8 @@ angular.module('warehouse').controller('WarehouseCardOutController', function ($
         operation: new Operation({
             product_id: product.id,
             type: OPERATION_TYPE.OUT,
-            weight: 0
+            weight: 0,
+            len: 0
         }),
         product: product,
 

@@ -7,7 +7,9 @@
 <form name="form" novalidate ng-submit="submit()" wh-form-form>
 
     <div wh-form-input label="Тоннаж">
-        <input type="text" name="weight" ng-model="operation.weight" wh-form-focus wh-float wh-range gt="0" lte="{{ product.weight }}">{{ product.weight }}
+        <input type="text" name="weight"
+               ng-model="operation.weight" placeholder="остаток {{ product.weight }}"
+               wh-form-focus wh-float wh-range gt="0" lte="{{ product.weight }}">
 
         <div ng-show="showErrors || form.weight.$dirty">
             <small class="error" ng-show="form.weight.$error.float">Введите число</small>
@@ -17,10 +19,14 @@
     </div>
 
     <div wh-form-input label="Метраж">
-        <input type="text" name="len" ng-model="operation.len" wh-format-float/>
+        <input type="text" name="len"
+               ng-model="operation.len" placeholder="остаток {{ product.len }}"
+               wh-form-focus wh-float wh-range gt="0" lte="{{ product.len }}">
 
         <div ng-show="showErrors || form.len.$dirty">
-            <small class="error" ng-show="form.len.$error.float">Введите положительное число</small>
+            <small class="error" ng-show="form.len.$error.float">Введите число</small>
+            <small class="error" ng-show="form.len.$error.rangeGt">Введите положительное число</small>
+            <small class="error" ng-show="form.len.$error.rangeLte">Вы превысили остаток товара на складе</small>
         </div>
     </div>
 
@@ -31,6 +37,7 @@
                 required>
             <option value="">-- пусто --</option>
         </select>
+
         <div ng-show="showErrors || form.contragent.$dirty">
             <small class="error" ng-show="form.contragent.$error.required">Обязательное поле</small>
         </div>
