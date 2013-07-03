@@ -55,11 +55,15 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
             var p = $scope.selectedProduct,
                 message = "Товарная позиция '" + p.title + "' будет удалена!\n\nВы уверены?";
             if (confirm(message)) {
-                Product.remove({id: p.id}, function() {
+                Product.remove({id: p.id}, function () {
                     $scope.selectedProduct = null;
                     $scope.products = _.without($scope.products, p);
                 });
             }
+        },
+
+        showProductCard: function (p) {
+            $location.path('/card/' + p.id);
         }
 
     });
