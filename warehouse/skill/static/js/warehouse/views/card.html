@@ -4,10 +4,24 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="columns">
+        <ul class="button-group">
+            <li>
+                <input type="button" class="small button" value="Списать" ng-click="out()">
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="row">
     <div class="columns">
         <h5 class="subheader">{{ product.title }}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="columns">
         <table>
             <thead>
             <tr>
@@ -24,7 +38,7 @@
                 <td>{{ x.weight }}</td>
                 <td>{{ x.len }}</td>
                 <td>{{ x.user }}</td>
-                <td>{{ x.create_date | date:'short'}}</td>
+                <td>{{ x.create_date | date:'short' }}</td>
             </tr>
             </tbody>
         </table>

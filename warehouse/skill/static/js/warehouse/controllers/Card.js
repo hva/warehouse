@@ -1,4 +1,4 @@
-angular.module('warehouse').controller('WarehouseCardController', function ($scope, product, operations, contragents) {
+angular.module('warehouse').controller('WarehouseCardController', function ($scope, $location, product, operations, contragents) {
     angular.extend($scope, {
 
         breadcrumbs: [
@@ -10,7 +10,11 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
 
         product: product,
         operations: operations,
-        contragents: contragents
+        contragents: contragents,
+
+        out: function() {
+            $location.path('/card/' + product.id + '/out');
+        }
 
     });
 });

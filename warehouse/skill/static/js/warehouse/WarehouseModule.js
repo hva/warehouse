@@ -46,6 +46,13 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     product: promiseProvider.get('Product')
                 }
             })
+            .when('/card/:id/out', {
+                templateUrl: viewsPrefix + 'card-out.html',
+                controller: 'WarehouseCardOutController',
+                resolve: {
+                    product: promiseProvider.get('Product')
+                }
+            })
             .when('/card/:id', {
                 templateUrl: viewsPrefix + 'card.html',
                 controller: 'WarehouseCardController',
