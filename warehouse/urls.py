@@ -1,19 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from skill.api.urls import v1_api
+
 admin.autodiscover()
 
-from tastypie.api import Api
-from skill.api import TaxonomyResource, ProductResource, OperationResource, ContragentResource
-
-v1_api = Api(api_name='v1')
-v1_api.register(TaxonomyResource())
-v1_api.register(ProductResource())
-v1_api.register(OperationResource())
-v1_api.register(ContragentResource())
-
-
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
 
     # accounts
