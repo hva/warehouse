@@ -4,6 +4,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
+from skill.models import Product
+
 
 @login_required
 def home(request):
@@ -39,3 +41,9 @@ def taxonomy(request):
 @login_required
 def warehouse(request):
     return render_to_response('warehouse.html', {}, RequestContext(request))
+
+
+@login_required
+def add_file(request, productId):
+    product = Product.objects.get(pk=productId)
+    return render_to_response('add-file.html', {'product': product}, RequestContext(request))

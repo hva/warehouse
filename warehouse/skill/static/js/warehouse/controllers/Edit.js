@@ -1,4 +1,4 @@
-angular.module('warehouse').controller('WarehouseEditController', function ($scope, $location, Sortorder, taxonomy, product, csrf_token) {
+angular.module('warehouse').controller('WarehouseEditController', function ($scope, $location, Sortorder, taxonomy, product) {
 
     function back() {
         $location.path('/main/' + $scope.product.taxonomy_id);
@@ -9,8 +9,6 @@ angular.module('warehouse').controller('WarehouseEditController', function ($sco
         utils: Sortorder,
         taxonomy: taxonomy,
         product: product,
-
-        csrf: csrf_token,
 
         breadcrumbs: [
             {title: 'главная', url: '/'},

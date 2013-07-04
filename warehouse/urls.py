@@ -25,4 +25,7 @@ urlpatterns = patterns(
 
     # api
     url(r'^api/', include(v1_api.urls)),
+
+    # upload
+    url(r'^warehouse/product/(?P<productId>\d{1,4})/add_file$', 'skill.views.add_file'),
 )

@@ -4,6 +4,12 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="columns">
+        <a href="/warehouse/product/{{ product.id }}/add_file" type="button" class="small secondary button" >Добавить файл</a>
+    </div>
+</div>
+
 <form name="form" novalidate ng-submit="submit()">
     <div class="row">
         <div class="large-6 columns">
@@ -113,14 +119,3 @@
         </div>
     </div>
 </form>
-
-<div class="row">
-    <div class="columns">
-        <form method="post" action="/api/v1/attachment" enctype="multipart/form-data">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf }}" />
-            <input type="hidden" name="asd" value="asd" />
-            <input type="file" name="file">
-            <input type="submit" value="Загрузить" class="small button">
-        </form>
-    </div>
-</div>

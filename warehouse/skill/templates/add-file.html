@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="columns">
+            <ul class="breadcrumbs">
+                <li><a href="/">главная</a></li>
+                <li><a href="/warehouse/#/main">склад</a></li>
+                <li><a href="/warehouse/#/edit/{{ product.id }}">{{ product.title }}</a></li>
+                <li class="current"><a>добавление файла</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" small-6 columns">
+
+            <div class="row">
+                <div class="columns">
+                    <h5 class="subheader">{{ product.title }}</h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="columns">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="file"/>
+                        <ul class="button-group">
+                            <li><input type="submit" value="Загрузить" class="small button"/></li>
+                            <li><a href="/warehouse/#/edit/{{ product.id }}" class="small secondary button">Отмена</a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
