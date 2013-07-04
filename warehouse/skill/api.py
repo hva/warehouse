@@ -4,7 +4,7 @@ from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
 
 from warehouse.skill.models import Taxonomy, Product, Operation, Contragent
-
+from context_processors import get_user_name
 
 product_weight = 'SELECT SUM(weight) FROM skill_operation WHERE product_id = skill_product.id'
 product_len = 'SELECT SUM(len) FROM skill_operation WHERE product_id = skill_product.id'
@@ -61,11 +61,7 @@ class OperationResource(ModelResource):
     contragent_id = fields.IntegerField(attribute='contragent_id', null=True)
 
     def hydrate_user(self, bundle):
-        user = bundle.request.user
-        username = user.username
-        if user.first_name or user.last_name:
-            username = '%s %s' % (user.first_name, user.last_name)
-        bundle.data['user'] = username.strip()
+        bundle.data['user'] = get_user_name(bundle.request)
         return bundle
 
 

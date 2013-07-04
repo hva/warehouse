@@ -9,6 +9,11 @@
   margin-right: 10px;
 }
 
+.username {
+  color: #6f6f6f;
+  font-size: 80%;
+}
+
 /* skill.selectable */
 
 table.selectable tr {
@@ -24,7 +29,6 @@ table.selectable tr.selected {
   -moz-user-select: none;
   -khtml-user-select: none;
 }
-
 
 /* busy indicator */
 
@@ -48,7 +52,6 @@ table.selectable tr.selected {
 
 /* form validation */
 
-input.ng-invalid.ng-dirty
-{
+input.ng-invalid.ng-dirty {
   @extend input.error;
 }

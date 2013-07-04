@@ -1983,6 +1983,10 @@ table {
   float: left;
   margin-right: 10px; }
 
+.username {
+  color: #6f6f6f;
+  font-size: 80%; }
+
 /* skill.selectable */
 table.selectable tr {
   cursor: pointer; }
