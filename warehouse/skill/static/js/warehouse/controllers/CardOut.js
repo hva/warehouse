@@ -24,8 +24,7 @@ angular.module('warehouse').controller('WarehouseCardOutController', function ($
                 $scope.showErrors = true;
                 return;
             }
-
-            var op = $scope.operation;
+            var op = angular.copy($scope.operation);
 
             op.weight = -op.weight;
             op.len = -op.len;

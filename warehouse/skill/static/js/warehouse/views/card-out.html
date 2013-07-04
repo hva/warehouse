@@ -4,11 +4,18 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="small-6 columns">
+        <h5 class="subheader right">{{ product.title }} ({{ product.weight | number:3 }} / {{ product.len }})</h5>
+        <hr>
+    </div>
+</div>
+
 <form name="form" novalidate ng-submit="submit()" wh-form-form>
 
     <div wh-form-input label="Тоннаж">
         <input type="text" name="weight"
-               ng-model="operation.weight" placeholder="остаток {{ product.weight }}"
+               ng-model="operation.weight"
                wh-form-focus wh-float wh-range gt="0" lte="{{ product.weight }}">
 
         <div ng-show="showErrors || form.weight.$dirty">
@@ -20,8 +27,8 @@
 
     <div wh-form-input label="Метраж">
         <input type="text" name="len"
-               ng-model="operation.len" placeholder="остаток {{ product.len }}"
-               wh-float wh-range gt="0" lte="{{ product.len }}">
+               ng-model="operation.len"
+               wh-form-focus wh-float wh-range gt="0" lte="{{ product.len }}">
 
         <div ng-show="showErrors || form.len.$dirty">
             <small class="error" ng-show="form.len.$error.float">Введите число</small>
