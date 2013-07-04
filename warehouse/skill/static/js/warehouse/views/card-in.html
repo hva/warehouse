@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="columns">
+        <breadcrumbs items="breadcrumbs"></breadcrumbs>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <h5 class="subheader right">{{ product.title }} ({{ product.weight | number:3 }} / {{ product.len }})</h5>
+        <hr>
+    </div>
+</div>
+
+<form name="form" novalidate ng-submit="submit()" wh-form-form>
+
+    <div wh-form-input label="Тоннаж">
+        <input type="text" name="weight" maxlength="10"
+               ng-model="operation.weight"
+               wh-form-focus wh-float wh-range gt="0">
+
+        <div ng-show="showErrors || form.weight.$dirty">
+            <small class="error" ng-show="form.weight.$error.float">Введите число</small>
+            <small class="error" ng-show="form.weight.$error.rangeGt">Введите положительное число</small>
+        </div>
+    </div>
+
+    <div wh-form-input label="Метраж">
+        <input type="text" name="len" maxlength="10"
+               ng-model="operation.len"
+               wh-float wh-range gt="0">
+
+        <div ng-show="showErrors || form.len.$dirty">
+            <small class="error" ng-show="form.len.$error.float">Введите число</small>
+            <small class="error" ng-show="form.len.$error.rangeGt">Введите положительное число</small>
+        </div>
+    </div>
+
+    <div wh-form-input label="Поставщик">
+        <select name="contragent"
+                ng-model="operation.contragent_id"
+                ng-options="x.id as x.title for x in contragents"
+                required>
+            <option value="">-- пусто --</option>
+        </select>
+
+        <div ng-show="showErrors || form.contragent.$dirty">
+            <small class="error" ng-show="form.contragent.$error.required">Обязательное поле</small>
+        </div>
+    </div>
+
+    <div wh-form-submit>
+        <ul class="button-group">
+            <li><input type="submit" class="small button" value="Сохранить"></li>
+            <li><input type="button" ng-click="cancel()" class="small secondary button" value="Отмена"></li>
+        </ul>
+    </div>
+
+</form>

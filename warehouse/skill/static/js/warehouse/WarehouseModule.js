@@ -60,6 +60,14 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
+            .when('/card/:id/in', {
+                templateUrl: viewsPrefix + 'card-in.html',
+                controller: 'WarehouseCardInController',
+                resolve: {
+                    product: promiseProvider.get('Product'),
+                    contragents: promiseProvider.query('Contragent')
+                }
+            })
             .when('/card/:id', {
                 templateUrl: viewsPrefix + 'card.html',
                 controller: 'WarehouseCardController',

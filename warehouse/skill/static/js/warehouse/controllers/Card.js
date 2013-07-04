@@ -14,6 +14,10 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
 
         out: function() {
             $location.path('/card/' + product.id + '/out');
+        },
+
+        in: function() {
+            $location.path('/card/' + product.id + '/in');
         }
 
     });
