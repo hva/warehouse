@@ -40,7 +40,7 @@ setup(
     ],
     install_requires=[
         'Django == 1.5.1',
-        'South==0.7.6',
+        'South==0.8.1',
     ],
     zip_safe=False,
     cmdclass={'install': install},

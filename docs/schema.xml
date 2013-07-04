@@ -111,6 +111,9 @@
 <row name="item_type" null="1" autoincrement="0">
 <datatype>INT</datatype>
 <default>NULL</default></row>
+<row name="file" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default>'NULL'</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>VARCHAR(256)</datatype>
 <default>NULL</default></row>
