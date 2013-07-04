@@ -19,7 +19,6 @@
             <h1><a href="{% url 'skill.views.home' %}">
                 <div class="logo"></div>
                 <small>v. {{ globals.version }}</small>
-                <span class="username">{{ globals.username }}</span>
             </a></h1>
         </li>
     </ul>
@@ -38,7 +37,7 @@
                     </ul>
                 </li>
                 <li class="divider"></li>
-                <li class="has-form"><a href="{% url 'django.contrib.auth.views.logout' %}" class="button">Выйти</a>
+                <li class="has-form"><a href="{% url 'django.contrib.auth.views.logout' %}" >Выйти ({{ globals.username }})</a>
                 </li>
             </ul>
         {% endif %}
