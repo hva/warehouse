@@ -1,6 +1,6 @@
 angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, item, taxonomy) {
 
-    var original;
+    var original = angular.copy(item);
 
     $scope.utils = Sortorder;
 
