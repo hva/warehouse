@@ -2,12 +2,29 @@ from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import Authorization
+from tastypie.serializers import Serializer
+from django.utils.timezone import is_naive
 
 from warehouse.skill.models import Taxonomy, Product, Operation, Contragent
 from context_processors import get_user_name
 
+
 product_weight = 'SELECT SUM(weight) FROM skill_operation WHERE product_id = skill_product.id'
 product_len = 'SELECT SUM(len) FROM skill_operation WHERE product_id = skill_product.id'
+
+
+class MyDateSerializer(Serializer):
+    """
+    Our own serializer to format datetimes in ISO 8601 but with timezone
+    offset.
+    """
+
+    def format_datetime(self, data):
+        # If naive or rfc-2822, default behavior...
+        if is_naive(data) or self.datetime_formatting == 'rfc-2822':
+            return super(MyDateSerializer, self).format_datetime(data)
+
+        return data.isoformat()
 
 
 class MetaBase:
@@ -16,6 +33,7 @@ class MetaBase:
     authorization = Authorization()
     always_return_data = True
     include_resource_uri = False
+    serializer = MyDateSerializer()
 
 
 class TaxonomyResource(ModelResource):
@@ -43,10 +61,10 @@ class ProductResource(ModelResource):
         }
         ordering = ['title']
 
-    # def get_object_list(self, request):
-    #     queryset = super(ProductResource, self).get_object_list(request)
-    #     assert False, queryset.query
-    #     return queryset
+        # def get_object_list(self, request):
+        #     queryset = super(ProductResource, self).get_object_list(request)
+        #     assert False, queryset.query
+        #     return queryset
 
 
 class OperationResource(ModelResource):

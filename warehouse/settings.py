@@ -47,7 +47,7 @@ USE_L10N = False
 USE_THOUSAND_SEPARATOR = False
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = False
+USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -170,3 +170,4 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/'
 
 TASTYPIE_ALLOW_MISSING_SLASH = True
+# TASTYPIE_DATETIME_FORMATTING = 'rfc-2822'

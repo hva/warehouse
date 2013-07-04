@@ -16,7 +16,7 @@ def get_user_name(request):
     if user.is_authenticated():
         username = user.username
         if user.first_name or user.last_name:
-            username = '%s %s' % (user.first_name, user.last_name)
+            username = '%s %s' % (user.last_name, user.first_name)
         return username.strip()
     else:
         return None
