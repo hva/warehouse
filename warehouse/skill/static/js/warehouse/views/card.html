@@ -5,42 +5,45 @@
 </div>
 
 <div class="row">
-    <div class="columns">
-        <ul class="button-group">
-            <li>
-                <input type="button" class="small button" value="Списать" ng-click="out()">
-            </li>
-        </ul>
-    </div>
-</div>
+    <div class="small-6 columns">
 
-<div class="row">
-    <div class="columns">
-        <h5 class="subheader">{{ product.title }}</h5>
-    </div>
-</div>
+        <div class="row">
+            <div class="small-6 columns">
+                <ul class="button-group">
+                    <li>
+                        <input type="button" class="small button" value="Списать" ng-click="out()">
+                    </li>
+                </ul>
+            </div>
+            <div class="small-6 columns">
+                <h5 class="subheader right">{{ product.title }}</h5>
+            </div>
+        </div>
 
-<div class="row">
-    <div class="columns">
-        <table>
-            <thead>
-            <tr>
-                <th>Контрагент</th>
-                <th>Тоннаж</th>
-                <th>Метраж</th>
-                <th>Пользователь</th>
-                <th>Дата</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="x in operations">
-                <td>{{ x | contragentName:contragents }}</td>
-                <td>{{ x.weight }}</td>
-                <td>{{ x.len }}</td>
-                <td>{{ x.user }}</td>
-                <td>{{ x.create_date | date:'short' }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="columns">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Контрагент</th>
+                        <th>Тоннаж</th>
+                        <th>Метраж</th>
+                        <th>Пользователь</th>
+                        <th>Дата</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in operations">
+                        <td>{{ x | contragentName:contragents }}</td>
+                        <td>{{ x.weight }}</td>
+                        <td>{{ x.len }}</td>
+                        <td>{{ x.user }}</td>
+                        <td>{{ x.create_date | date:'short' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>

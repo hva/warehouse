@@ -69,29 +69,25 @@ angular.module('wh.shared.validate', [])
                 });
 
                 var validate = function (value) {
-                    var isValidLt = true,
-                        isValidLte = true,
-                        isValidGt = true,
-                        isValidGte = true;
                     if (angular.isNumber(value)) {
-                        if (angular.isNumber(lt) && !(value < lt)) {
-                            isValidLt = false;
+                        if (!isNaN(lt)) {
+                            ctrl.$setValidity('rangeLt', value < lt);
                         }
-                        if (angular.isNumber(lte) && !(value <= lte)) {
-                            isValidLte = false;
+                        if (!isNaN(lte)) {
+                            ctrl.$setValidity('rangeLte', value <= lte);
                         }
-                        if (angular.isNumber(gt) && !(value > gt)) {
-                            isValidGt = false;
+                        if (!isNaN(gt)) {
+                            ctrl.$setValidity('rangeGt', value > gt);
                         }
-                        if (angular.isNumber(gte) && !(value >= gte)) {
-                            isValidGte = false;
+                        if (!isNaN(gte)) {
+                            ctrl.$setValidity('rangeGte', value >= gte);
                         }
+                    } else {
+                        ctrl.$setValidity('rangeLt', true);
+                        ctrl.$setValidity('rangeLte', true);
+                        ctrl.$setValidity('rangeGt', true);
+                        ctrl.$setValidity('rangeGte', true);
                     }
-                    ctrl.$setValidity('rangeLt', isValidLt);
-                    ctrl.$setValidity('rangeLte', isValidLte);
-                    ctrl.$setValidity('rangeGt', isValidGt);
-                    ctrl.$setValidity('rangeGte', isValidGte);
-                    ctrl.$setValidity('range', isValidLt && isValidLte && isValidGt && isValidGte);
                     return value;
                 };
 

@@ -21,7 +21,7 @@
     <div wh-form-input label="Метраж">
         <input type="text" name="len"
                ng-model="operation.len" placeholder="остаток {{ product.len }}"
-               wh-form-focus wh-float wh-range gt="0" lte="{{ product.len }}">
+               wh-float wh-range gt="0" lte="{{ product.len }}">
 
         <div ng-show="showErrors || form.len.$dirty">
             <small class="error" ng-show="form.len.$error.float">Введите число</small>
