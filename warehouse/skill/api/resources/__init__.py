@@ -2,3 +2,4 @@ from taxonomy import TaxonomyResource
 from product import ProductResource
 from operation import OperationResource
 from contragent import ContragentResource
+from attachment import AttachmentResource

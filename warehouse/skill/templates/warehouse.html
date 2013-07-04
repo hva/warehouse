@@ -42,6 +42,6 @@
     <script src="{{ STATIC_URL }}js/shared/services/Sortorder.js"></script>
     <script src="{{ STATIC_URL }}js/shared/providers/Promise.js"></script>
 
-    <script>angular.module('warehouse').constant('scrf', '{{ csrf_token }}')</script>
+    <script>angular.module('warehouse').constant('csrf_token', '{{ csrf_token }}')</script>
 
 {% endblock %}

@@ -79,8 +79,8 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
             .otherwise({redirectTo: '/main'});
     })
 
-    .config(function ($httpProvider, scrf) {
-        $httpProvider.defaults.headers.common['X-CSRFToken'] = scrf;
+    .config(function ($httpProvider, csrf_token) {
+        $httpProvider.defaults.headers.common['X-CSRFToken'] = csrf_token;
 
         // bug in angular 1.0.6
         // PATCH requests use 'application/xml' content type
