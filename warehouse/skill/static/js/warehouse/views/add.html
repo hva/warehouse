@@ -18,7 +18,7 @@
                         <option value="">-- выберите группу --</option>
                     </select>
 
-                    <div ng-show="form.taxonomy.$dirty && form.taxonomy.$invalid">
+                    <div ng-show="showErrors || form.taxonomy.$dirty">
                         <small class="error" ng-show="form.taxonomy.$error.required"> Обязательное поле</small>
                     </div>
 
@@ -27,43 +27,48 @@
                 <div wh-form-input label="Наименование">
                     <input type="text" name="title" ng-model="product.title" required maxlength="32" wh-form-focus/>
 
-                    <div ng-show="form.title.$dirty && form.title.$invalid">
+                    <div ng-show="showErrors || form.title.$dirty">
                         <small class="error" ng-show="form.title.$error.required">Обязательное поле</small>
                     </div>
                 </div>
 
                 <div wh-form-input label="Приходная цена за т.<br/>(без НДС), руб.">
-                    <input type="text" name="price" ng-model="product.price" maxlength="10" wh-format-price/>
+                    <input type="text" name="price" ng-model="product.price" wh-int wh-range gt="0">
 
-                    <div ng-show="form.price.$dirty && form.price.$invalid">
-                        <small class="error" ng-show="form.price.$error.price">Введите положительное целое число</small>
+                    <div ng-show="showErrors || form.price.$dirty">
+                        <small class="error" ng-show="form.price.$error.int">Введите целое число</small>
+                        <small class="error" ng-show="form.price.$error.rangeGt">Введите положительное целое число
+                        </small>
                     </div>
                 </div>
 
                 <div wh-form-input label="Ставка НДС, %">
-                    <input type="text" name="vat" ng-model="product.vat" wh-format-price/>
+                    <input type="text" name="vat" ng-model="product.vat" wh-int wh-range gt="0"/>
 
-                    <div ng-show="form.vat.$dirty && form.vat.$invalid">
-                        <small class="error" ng-show="form.vat.$error.price">Введите положительное целое число</small>
+                    <div ng-show="showErrors || form.vat.$dirty">
+                        <small class="error" ng-show="form.vat.$error.int">Введите целое число</small>
+                        <small class="error" ng-show="form.vat.$error.rangeGt">Введите положительное целое число</small>
                     </div>
 
                 </div>
 
                 <div wh-form-input label="Наценка, %">
-                    <input type="text" name="margin" ng-model="product.margin" wh-format-price/>
+                    <input type="text" name="margin" ng-model="product.margin" wh-int wh-range gte="0"/>
 
-                    <div ng-show="form.margin.$dirty && form.margin.$invalid">
-                        <small class="error" ng-show="form.margin.$error.price">Введите положительное целое число
+                    <div ng-show="showErrors || form.margin.$dirty">
+                        <small class="error" ng-show="form.margin.$error.int">Введите целое число</small>
+                        <small class="error" ng-show="form.margin.$error.rangeGte">Введите неотрицательное целое число
                         </small>
                     </div>
 
                 </div>
 
                 <div wh-form-input label="Коэффициент, кг/м">
-                    <input type="text" name="k" ng-model="product.k" wh-format-float/>
+                    <input type="text" name="k" ng-model="product.k" wh-float wh-range gt="0"/>
 
-                    <div ng-show="form.k.$dirty && form.k.$invalid">
-                        <small class="error" ng-show="form.k.$error.float">Введите положительное число</small>
+                    <div ng-show="showErrors || form.k.$dirty">
+                        <small class="error" ng-show="form.k.$error.float">Введите число</small>
+                        <small class="error" ng-show="form.k.$error.rangeGt">Введите положительное число</small>
                     </div>
 
                 </div>
@@ -75,6 +80,44 @@
             </fieldset>
         </div>
         <div class="large-6 columns">
+            <fieldset>
+                <legend>Приходная операция</legend>
+
+                <div wh-form-input label="Поставщик">
+                    <select name="contragent"
+                            ng-model="operation.contragent_id"
+                            ng-options="x.id as x.title for x in contragents"
+                            required>
+                        <option value="">-- выберите поставщика --</option>
+                    </select>
+
+                    <div ng-show="showErrors || form.contragent.$dirty">
+                        <small class="error" ng-show="form.contragent.$error.required"> Обязательное поле</small>
+                    </div>
+
+                </div>
+
+                <div wh-form-input label="Тоннаж, т">
+                    <input type="text" name="weight" ng-model="operation.weight" wh-float wh-range gt="0"/>
+
+                    <div ng-show="showErrors || form.weight.$dirty">
+                        <small class="error" ng-show="form.weight.$error.float">Введите число</small>
+                        <small class="error" ng-show="form.weight.$error.rangeGt">Введите положительное число</small>
+                    </div>
+
+                </div>
+
+                <div wh-form-input label="Метраж, м">
+                    <input type="text" name="len" ng-model="operation.len" wh-float wh-range gt="0"/>
+
+                    <div ng-show="showErrors || form.len.$dirty">
+                        <small class="error" ng-show="form.len.$error.float">Введите число</small>
+                        <small class="error" ng-show="form.len.$error.rangeGt">Введите положительное число</small>
+                    </div>
+
+                </div>
+            </fieldset>
+
             <fieldset>
                 <legend>Отпускная цена</legend>
 
@@ -91,52 +134,17 @@
                 </div>
 
             </fieldset>
+
         </div>
     </div>
 
 
     <div class="row">
         <div class="large-6 columns">
-            <fieldset>
-                <legend>Приходная операция</legend>
-
-                <div wh-form-input label="Поставщик">
-                    <select name="contragent"
-                            ng-model="operation.contragent_id"
-                            ng-options="x.id as x.title for x in contragents"
-                            required>
-                        <option value="">-- выберите поставщика --</option>
-                    </select>
-
-                    <div ng-show="form.contragent.$dirty && form.contragent.$invalid">
-                        <small class="error" ng-show="form.contragent.$error.required"> Обязательное поле</small>
-                    </div>
-
-                </div>
-
-                <div wh-form-input label="Тоннаж, т">
-                    <input type="text" name="weight" ng-model="operation.weight" wh-format-float/>
-
-                    <div ng-show="form.weight.$dirty && form.weight.$invalid">
-                        <small class="error" ng-show="form.weight.$error.float">Введите положительное число</small>
-                    </div>
-
-                </div>
-
-                <div wh-form-input label="Метраж, м">
-                    <input type="text" name="len" ng-model="operation.len" wh-format-float/>
-
-                    <div ng-show="form.len.$dirty && form.len.$invalid">
-                        <small class="error" ng-show="form.len.$error.float">Введите положительное число</small>
-                    </div>
-
-                </div>
-
-            </fieldset>
 
             <div wh-form-submit>
                 <ul class="button-group">
-                    <li><input type="submit" class="small button" value="Сохранить" ng-disabled="form.$invalid"></li>
+                    <li><input type="submit" class="small button" value="Сохранить"></li>
                     <li><input type="button" ng-click="cancel()" class="small secondary button" value="Отмена"/>
                 </ul>
             </div>

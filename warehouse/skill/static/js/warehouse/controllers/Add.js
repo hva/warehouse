@@ -30,6 +30,12 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         }),
 
         submit: function () {
+
+            if ($scope.form.$invalid) {
+                $scope.showErrors = true;
+                return;
+            }
+
             var p = $scope.product,
                 o = $scope.operation;
 
