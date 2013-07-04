@@ -50,15 +50,23 @@ class ProductResource(ModelResource):
 
 
 class OperationResource(ModelResource):
-    product_id = fields.IntegerField(attribute='product_id', null=True)
-    contragent_id = fields.IntegerField(attribute='contragent_id', null=True)
-
     class Meta(MetaBase):
         queryset = Operation.objects.all()
         resource_name = 'operation'
         filtering = {
             'product_id': ['exact']
         }
+
+    product_id = fields.IntegerField(attribute='product_id', null=True)
+    contragent_id = fields.IntegerField(attribute='contragent_id', null=True)
+
+    def hydrate_user(self, bundle):
+        user = bundle.request.user
+        username = user.username
+        if user.first_name or user.last_name:
+            username = '%s %s' % (user.first_name, user.last_name)
+        bundle.data['user'] = username.strip()
+        return bundle
 
 
 class ContragentResource(ModelResource):

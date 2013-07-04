@@ -34,7 +34,7 @@ class Operation(models.Model):
     weight = models.FloatField()
     len = models.FloatField()
     margin = models.IntegerField(null=True)
-    user = models.CharField(max_length=30, null=True)  #  disallow null later
+    user = models.CharField(max_length=60)  #  disallow null later
     type = models.IntegerField(choices=OPERATION_TYPE, default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 
