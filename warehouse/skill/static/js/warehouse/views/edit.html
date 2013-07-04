@@ -33,37 +33,40 @@
                 </div>
 
                 <div wh-form-input label="Приходная цена за т.<br/>(без НДС), руб.">
-                    <input type="text" name="price" ng-model="product.price" maxlength="10" wh-format-price/>
+                    <input type="text" name="price" ng-model="product.price" maxlength="10" wh-int wh-range gt="0"/>
 
                     <div ng-show="form.price.$dirty && form.price.$invalid">
-                        <small class="error" ng-show="form.price.$error.price">Введите положительное целое число</small>
+                        <small class="error" ng-show="form.price.$error.int">Введите число</small>
+                        <small class="error" ng-show="form.price.$error.rangeGt">Введите положительное целое число</small>
                     </div>
                 </div>
 
                 <div wh-form-input label="Ставка НДС, %">
-                    <input type="text" name="vat" ng-model="product.vat" wh-format-price/>
+                    <input type="text" name="vat" ng-model="product.vat" wh-int wh-range gt="0"/>
 
                     <div ng-show="form.vat.$dirty && form.vat.$invalid">
-                        <small class="error" ng-show="form.vat.$error.price">Введите положительное целое число</small>
+                        <small class="error" ng-show="form.vat.$error.int">Введите число</small>
+                        <small class="error" ng-show="form.vat.$error.rangeGt">Введите положительное целое число</small>
                     </div>
 
                 </div>
 
                 <div wh-form-input label="Наценка, %">
-                    <input type="text" name="margin" ng-model="product.margin" wh-format-price/>
+                    <input type="text" name="margin" ng-model="product.margin" wh-int wh-range gte="0"/>
 
                     <div ng-show="form.margin.$dirty && form.margin.$invalid">
-                        <small class="error" ng-show="form.margin.$error.price">Введите положительное целое число
-                        </small>
+                        <small class="error" ng-show="form.margin.$error.int">Введите число</small>
+                        <small class="error" ng-show="form.margin.$error.rangeGte">Введите неотрицательное целое число</small>
                     </div>
 
                 </div>
 
                 <div wh-form-input label="Коэффициент, кг/м">
-                    <input type="text" name="k" ng-model="product.k" wh-format-float/>
+                    <input type="text" name="k" ng-model="product.k" wh-float wh-range gt="0"/>
 
                     <div ng-show="form.k.$dirty && form.k.$invalid">
-                        <small class="error" ng-show="form.k.$error.float">Введите положительное число</small>
+                        <small class="error" ng-show="form.k.$error.float">Введите число</small>
+                        <small class="error" ng-show="form.k.$error.rangeGt">Введите положительное число</small>
                     </div>
 
                 </div>

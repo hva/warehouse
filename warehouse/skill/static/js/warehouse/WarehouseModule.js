@@ -3,7 +3,6 @@ angular.module('warehouse.directives', [
     'wh.shared.breadcrumbs',
     'wh.shared.busyIndicator',
     'wh.shared.form',
-    'wh.shared.format',
     'wh.shared.validate'
 ]);
 angular.module('warehouse.filters', []);
