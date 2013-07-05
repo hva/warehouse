@@ -1,10 +1,12 @@
 # coding=utf-8
 
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from skill.models import Product
+from skill.forms import AttachmentForm
 
 
 @login_required
@@ -46,4 +48,13 @@ def warehouse(request):
 @login_required
 def add_file(request, productId):
     product = Product.objects.get(pk=productId)
-    return render_to_response('add-file.html', {'product': product}, RequestContext(request))
+
+    if request.method == 'POST':
+        form = AttachmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/warehouse/#/edit/%s' % productId)
+    else:
+        form = AttachmentForm()
+
+    return render_to_response('add-file.html', {'form': form, 'product': product}, RequestContext(request))

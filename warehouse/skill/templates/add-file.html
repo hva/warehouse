@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load url from future %}
+
 {% block content %}
 
     <div class="row">
@@ -24,13 +26,24 @@
             </div>
 
             <div class="row">
-                <div class="columns">
-                    <form action="" method="post" enctype="multipart/form-data">
+                <div class="small-8 columns">
+                    <form action="{% url 'skill.views.add_file' product.id %}" method="post"
+                          enctype="multipart/form-data">
+
+                        {{ form.file }}
+                        {% for error in form.file.errors %}
+                            <small class="error">{{ error }}</small>
+                        {% endfor %}
+
                         {% csrf_token %}
-                        <input type="file" name="file"/>
+                        <input type="hidden" name="item_id" value="{{ product.id }}">
+                        <input type="hidden" name="item_type" value="0">
+                        <input type="hidden" name="description" value="">
+
                         <ul class="button-group">
                             <li><input type="submit" value="Загрузить" class="small button"/></li>
-                            <li><a href="/warehouse/#/edit/{{ product.id }}" class="small secondary button">Отмена</a></li>
+                            <li><a href="/warehouse/#/edit/{{ product.id }}" class="small secondary button">Отмена</a>
+                            </li>
                         </ul>
                     </form>
                 </div>
