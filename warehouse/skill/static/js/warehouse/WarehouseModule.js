@@ -48,7 +48,15 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 controller: 'WarehouseEditController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy'),
-                    product: promiseProvider.get('Product')
+                    product: promiseProvider.get('Product'),
+                    files: function($q, $route, Attachment) {
+                        var d = $q.defer(),
+                            id = parseInt($route.current.params.id, 10);
+                        Attachment.query({item_id: id}, function(data) {
+                            d.resolve(data.objects)
+                        }, d.reject);
+                        return d.promise;
+                    }
                 }
             })
             .when('/card/:id/out', {

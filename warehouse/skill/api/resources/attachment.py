@@ -8,3 +8,6 @@ class AttachmentResource(ModelResource):
     class Meta(MetaBase):
         queryset = Attachment.objects.all()
         resource_name = 'attachment'
+        filtering = {
+            'item_id': ['exact']
+        }

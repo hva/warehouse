@@ -4,12 +4,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="columns">
-        <a href="/warehouse/product/{{ product.id }}/add_file" type="button" class="small secondary button" >Добавить файл</a>
-    </div>
-</div>
-
 <form name="form" novalidate ng-submit="submit()">
     <div class="row">
         <div class="large-6 columns">
@@ -101,6 +95,15 @@
                     {{ product | whProductMarginVatK | number:0 }}
                 </div>
 
+            </fieldset>
+            <fieldset>
+                <legend>Файлы</legend>
+                <a href="/warehouse/product/{{ product.id }}/add_file" type="button" class="small secondary button">
+                    Добавить файл
+                </a>
+                <ul class="side-nav">
+                    <li ng-repeat="x in files"><a href="{{ x.file }}" target="_blank">Файл {{ $index + 1 }}</a></li>
+                </ul>
             </fieldset>
         </div>
     </div>

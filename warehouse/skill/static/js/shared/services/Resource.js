@@ -28,4 +28,10 @@ angular.module('wh.shared.resource', ['ngResource'])
         });
     }])
 
+    .factory('Attachment', ['$resource', function ($resource) {
+        return $resource('/api/v1/attachment/:id/', { id: '@id' }, {
+            'query': {method: 'GET', params: {limit: 0}, isArray: false}
+        });
+    }])
+
 ;
