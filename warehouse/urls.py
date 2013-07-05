@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 from skill.api.urls import v1_api
 
@@ -28,4 +30,5 @@ urlpatterns = patterns(
 
     # upload
     url(r'^warehouse/product/(?P<productId>\d{1,4})/add_file$', 'skill.views.add_file'),
-)
+
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
