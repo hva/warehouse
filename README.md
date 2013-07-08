@@ -14,7 +14,11 @@ Installation
 Production setup
 ----------------
 
+required libs
+
     sudo apt-get install mysql-server python-dev libmysqlclient-dev
+
+init SQL
 
     CREATE DATABASE skill DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
