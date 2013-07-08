@@ -4,48 +4,80 @@ Warehouse
 About
 -----
 
-Django web site to manage warehouse.
+Web site written with Django and AngularJS to manage simple warehouse.
 
 Installation
 ------------
 
     pip install -U https://github.com/hva/warehouse/tarball/master
 
-Requirements
-------------
+Production setup
+----------------
 
-    http://ftp.byfly.by/pub/apache.org//httpd/binaries/win32/httpd-2.2.22-win32-x86-no_ssl.msi
-
-    https://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so
-
-    LoadModule wsgi_module modules/mod_wsgi.so
-
-    https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe
-
-    http://cdn.mysql.com/Downloads/MySQL-5.5/mysql-5.5.30-win32.msi
+    sudo apt-get install mysql-server python-dev libmysqlclient-dev
 
     CREATE DATABASE skill DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-    WSGIPythonPath "c:/Python27/Lib/site-packages/warehouse"
-    <VirtualHost *:80>
-        ServerAdmin webmaster@localhost
-        ServerName skill
+nginx.conf
 
-        Alias /static "c:/Python27/Lib/site-packages/warehouse/static"
-        <Directory "c:/Python27/Lib/site-packages/warehouse/static">
-        Order deny,allow
-        Allow from all
-        </Directory>
+    # the upstream component nginx needs to connect to
+    upstream django {
+        server unix:///home/hva/wh/skill.sock;
+        }
 
-        WSGIScriptAlias / "c:/Python27/Lib/site-packages/warehouse/wsgi.py"
-        <Directory "c:/Python27/Lib/site-packages/warehouse">
-        <Files wsgi.py>
-        Order deny,allow
-        Allow from all
-        </Files>
-        </Directory>
+    # configuration of the server
+    server {
+        listen      80;
+        server_name .skill;
 
-        LogLevel info
-        ErrorLog  "c:/Program Files (x86)/Apache Software Foundation/Apache2.2/logs/warehouse_error.log"
-        CustomLog "c:/Program Files (x86)/Apache Software Foundation/Apache2.2/logs/warehouse_access.log" combined
-    </VirtualHost>
+        charset     utf-8;
+
+        access_log    /home/hva/wh/logs/nginx_access.log;
+        error_log     /home/hva/wh/logs/nginx_error.log;
+
+        # max upload size
+        client_max_body_size 75M;
+
+        location /media  {
+            alias /home/hva/wh/media;
+        }
+
+        location /static {
+            alias /home/hva/wh/warehouse/static;
+        }
+
+        location / {
+            uwsgi_pass  django;
+            include     /home/hva/wh/uwsgi_params;
+            }
+        }
+
+uwsgi.ini
+
+    [uwsgi]
+
+    # python path
+    home        = /home/hva/wh/env
+    chdir       = /home/hva/wh/warehouse
+    pythonpath  = /home/hva/wh
+    module      = wsgi
+    env = DJANGO_SETTINGS_MODULE=settings_local
+
+    # log
+    daemonize = /home/hva/wh/logs/uwsgi.log
+
+    # django relaod
+    touch-reload = /home/hva/wh/warehouse/wsgi.py
+
+    # pid
+    pidfile = /home/hva/wh/uwsgi.pid
+
+    # other
+    master       = true
+    max-requests = 5000
+    processes    = 10
+    socket       = /home/hva/wh/skill.sock
+    chmod-socket = 666
+    vacuum       = true
+    harakiri     = 30
+    limit-as     = 128
