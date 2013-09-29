@@ -1,9 +1,9 @@
 from tastypie import fields
 from tastypie.resources import ModelResource
 
-from skill.api.meta import MetaBase
+from warehouse.skill.api.meta import MetaBase
 from warehouse.skill.models import Operation
-from context_processors import get_user_name
+from warehouse.context_processors import get_user_name
 
 
 class OperationResource(ModelResource):

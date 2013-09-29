@@ -1,5 +1,5 @@
 from tastypie.api import Api
-from skill.api.resources import (
+from warehouse.skill.api.resources import (
     TaxonomyResource,
     ProductResource,
     OperationResource,

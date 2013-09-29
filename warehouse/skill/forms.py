@@ -2,7 +2,7 @@
 
 from django import forms
 
-from skill.models import Attachment
+from warehouse.skill.models import Attachment
 
 
 error_messages = {

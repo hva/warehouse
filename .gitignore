@@ -2,6 +2,6 @@
 *.pot
 *.pyc
 /warehouse/settings_local.py
-/virtualenv/env/*
+/deploy/env/*
 /.idea/*
 *.scssc

@@ -1,21 +1,21 @@
 #!/usr/bin/env python
 
-import os
-import sys
+#import os
+#import sys
 from setuptools import setup, find_packages
-from setuptools.command.install import install as _install
+#from setuptools.command.install import install as _install
 
 
-class install(_install):
-    def run(self):
-        self._collectstatic()
-        _install.run(self)
-
-    def _collectstatic(self):
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
-        sys.path.insert(0, os.path.join(os.getcwd(), 'warehouse'))
-        from django.core.management import call_command
-        call_command('collectstatic', interactive=False)
+#class install(_install):
+#    def run(self):
+#        self._collectstatic()
+#        _install.run(self)
+#
+#    def _collectstatic(self):
+#        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "warehouse.settings")
+#        sys.path.insert(0, os.path.join(os.getcwd(), 'warehouse'))
+#        from django.core.management import call_command
+#        call_command('collectstatic', interactive=False)
 
 
 version = __import__('warehouse').__version__
@@ -39,9 +39,9 @@ setup(
         'Programming Language :: Python :: 2',
     ],
     install_requires=[
-        'Django == 1.5.1',
-        'South==0.8.1',
+        #'Django == 1.5.1',
+        #'South==0.8.1',
     ],
     zip_safe=False,
-    cmdclass={'install': install},
+    #cmdclass={'install': install},
 )

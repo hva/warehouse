@@ -1,6 +1,6 @@
 from tastypie.resources import ModelResource
 
-from skill.api.meta import MetaBase
+from warehouse.skill.api.meta import MetaBase
 from warehouse.skill.models import Contragent
 
 

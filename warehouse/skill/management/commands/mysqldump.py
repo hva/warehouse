@@ -5,7 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import skill.models
+import warehouse.skill.models
 
 
 class Command(BaseCommand):
@@ -31,7 +31,7 @@ class Command(BaseCommand):
             os.makedirs(self.dir)
 
     def _get_tables(self):
-        for model in models.get_models(skill.models):
+        for model in models.get_models(warehouse.skill.models):
             name = model.__name__.lower()
             table = model._meta.db_table
             yield name, table

@@ -16,7 +16,7 @@
 <nav class="top-bar">
     <ul class="title-area">
         <li class="name">
-            <h1><a href="{% url 'skill.views.home' %}">
+            <h1><a href="{% url 'warehouse.skill.views.home' %}">
                 <div class="logo"></div>
                 <small>v. {{ globals.version }}</small>
             </a></h1>
@@ -26,14 +26,14 @@
         {% if user.is_authenticated %}
             <ul class="right">
                 <li class="divider"></li>
-                <li><a href="{% url 'skill.views.warehouse' %}">Склад</a></li>
+                <li><a href="{% url 'warehouse.skill.views.warehouse' %}">Склад</a></li>
                 <li class="divider"></li>
-                <li><a href="{% url 'skill.views.taxonomy' %}">Номенклатура</a></li>
+                <li><a href="{% url 'warehouse.skill.views.taxonomy' %}">Номенклатура</a></li>
                 <li class="divider"></li>
-                <li class="has-dropdown"><a href="{% url 'backup.views.home' %}">Резервное копирование</a>
+                <li class="has-dropdown"><a href="{% url 'warehouse.backup.views.home' %}">Резервное копирование</a>
                     <ul class="dropdown">
-                        <li><a href="{% url 'backup.views.export_gz' %}">Сохранить в файл</a></li>
-                        <li><a href="{% url 'backup.views.import_gz' %}">Восстановить из файла</a></li>
+                        <li><a href="{% url 'warehouse.backup.views.export_gz' %}">Сохранить в файл</a></li>
+                        <li><a href="{% url 'warehouse.backup.views.import_gz' %}">Восстановить из файла</a></li>
                     </ul>
                 </li>
                 <li class="divider"></li>

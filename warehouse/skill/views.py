@@ -5,27 +5,27 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
-from skill.models import Product
-from skill.forms import AttachmentForm
+from warehouse.skill.models import Product
+from warehouse.skill.forms import AttachmentForm
 
 
 @login_required
 def home(request):
     info = [
         {
-            'view': 'skill.views.warehouse',
+            'view': 'warehouse.skill.views.warehouse',
             'title': 'Склад',
             'text': 'Управление товарами на складе: постановка на приход, списание, просмотр остатков.',
             'cls': 'large-4',
         },
         {
-            'view': 'skill.views.taxonomy',
+            'view': 'warehouse.skill.views.taxonomy',
             'title': 'Номенклатура',
             'text': 'Редактор товарных позиций, сгруппированных по категриям.',
             'cls': 'large-4',
         },
         {
-            'view': 'backup.views.home',
+            'view': 'warehouse.backup.views.home',
             'title': 'Резервное копирование',
             'text': 'Предоставляет возможность экспорта данных системы в файл для последующего восстановления.',
             'cls': 'large-4',

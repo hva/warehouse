@@ -17,19 +17,19 @@ from .forms import BackupImportForm
 from .uploadhandler import TemporaryGzipFileUploadHandler
 
 breadcrumbs = [
-    ['skill.views.home', 'главная'],
-    ['backup.views.home', 'резервное копирование'],
+    ['warehouse.skill.views.home', 'главная'],
+    ['warehouse.backup.views.home', 'резервное копирование'],
 ]
 
 info = [
     {
-        'view': 'backup.views.export_gz',
+        'view': 'warehouse.backup.views.export_gz',
         'title': 'Экспорт',
         'text': 'Позволяет сохранить данные из системы в файл для последующего восстановления.',
         'cls': 'large-4',
     },
     {
-        'view': 'backup.views.import_gz',
+        'view': 'warehouse.backup.views.import_gz',
         'title': 'Импорт',
         'text': 'Позволяет восстановить данные из файла. Внимание! Все существующие записи будут безвозвратно утеряны!',
         'cls': 'large-4',
@@ -75,11 +75,11 @@ def _import_gz(request):
         if form.is_valid():
             message = _process_file(request.FILES['file'])
             messages.success(request, message)
-            return redirect('backup.views.home')
+            return redirect('warehouse.backup.views.home')
     else:
         form = BackupImportForm()
 
-    cur = ['backup.views.import_gz', 'импорт']
+    cur = ['warehouse.backup.views.import_gz', 'импорт']
     return render_to_response(
         'backup/import.html',
         {'form': form, 'breadcrumbs': breadcrumbs + [cur]},
