@@ -1,15 +1,9 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
 
 from skill.api.urls import v1_api
 
-admin.autodiscover()
-
 urlpatterns = patterns(
     '',
-    #url(r'^admin/', include(admin.site.urls)),
 
     # accounts
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'accounts/login.html'}),
