@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Taxonomy(models.Model):
@@ -34,7 +35,7 @@ class Operation(models.Model):
     weight = models.FloatField()
     len = models.FloatField()
     margin = models.IntegerField(null=True)
-    user = models.CharField(max_length=60)  #  disallow null later
+    user = models.ForeignKey(User)
     type = models.IntegerField(choices=OPERATION_TYPE, default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 

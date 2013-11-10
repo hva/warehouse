@@ -43,3 +43,5 @@ settings.py
         'warehouse.accounts',
         'warehouse.backup',
     )
+
+    TASTYPIE_ALLOW_MISSING_SLASH = True

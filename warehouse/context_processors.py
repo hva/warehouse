@@ -14,9 +14,12 @@ def globals(request):
 def get_user_name(request):
     user = request.user
     if user.is_authenticated():
-        username = user.username
-        if user.first_name or user.last_name:
-            username = '%s %s' % (user.last_name, user.first_name)
-        return username.strip()
+        return extract_user_name(user)
     else:
         return None
+
+def extract_user_name(user):
+    username = user.username
+    if user.first_name or user.last_name:
+        username = '%s %s' % (user.last_name, user.first_name)
+    return username.strip()

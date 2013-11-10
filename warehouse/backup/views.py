@@ -53,7 +53,7 @@ def export_gz(request):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     with GzipFile(fileobj=response, mode='w', filename='skill.json') as gz_stream:
-        call_command('dumpdata', 'skill', stdout=gz_stream, natural=True, indent=2)
+        call_command('dumpdata', 'auth', 'skill', stdout=gz_stream, natural=True, indent=2)
 
     return response
 
