@@ -22,10 +22,10 @@ setup(
         'Programming Language :: Python :: 2',
     ],
     install_requires=[
-        'Django==1.5.4',
+        # 'Django==1.5.4',
         'django-tastypie==0.10.0',
         'mimeparse==0.1.3',
-        'pil==1.1.7',
+        # 'pil==1.1.7',
         'python-dateutil==2.1',
         'six==1.4.1',
     ],
