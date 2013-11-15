@@ -1,2 +1,2 @@
 include README.md HISTORY.rst LICENSE
-recursive-include warehouse *.py *.html *.js *.css *.sql *.gif *.png
+recursive-include warehouse *.py *.html *.js *.css *.png
