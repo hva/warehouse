@@ -1,4 +1,8 @@
-angular.module('warehouse.services', ['wh.shared.resource', 'wh.shared.sortorder']);
+angular.module('warehouse.services', [
+    'wh.shared.resource',
+    'wh.shared.sortorder'
+]);
+
 angular.module('warehouse.directives', [
     'wh.shared.breadcrumbs',
     'wh.shared.busyIndicator',
@@ -11,42 +15,50 @@ angular.module('warehouse.providers', ['wh.shared.promise']);
 
 angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'warehouse.filters', 'warehouse.providers'])
 
-    .constant('viewsPrefix', '/static/js/app/warehouse/views/')
+    .constant('templatesDir', '/static/js/app/warehouse/views/')
+
+    .constant('routes', {
+        main:       '/warehouse/main',
+        group:      '/warehouse/main/:gid',
+        _add:       '/warehouse/add',
+        edit:       '/warehouse/edit/:id',
+        card:       '/warehouse/card/:id',
+        card_in:    '/warehouse/card/:id/in',
+        card_out:   '/warehouse/card/:id/out'
+    })
 
     .constant('OPERATION_TYPE', {
         IN: 0,
         OUT: 1
     })
 
-    .config(function ($routeProvider, $locationProvider, viewsPrefix, promiseProvider) {
-
-        $locationProvider.hashPrefix('!');
+    .config(function ($routeProvider, promiseProvider, templatesDir, routes) {
 
         $routeProvider
-            .when('/main/:gid', {
-                templateUrl: viewsPrefix + 'main.html',
+            .when(routes.group, {
+                templateUrl: templatesDir + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
                     resolve: promiseProvider.warehouseMainFiltered
                 }
             })
-            .when('/main', {
-                templateUrl: viewsPrefix + 'main.html',
+            .when(routes.main, {
+                templateUrl: templatesDir + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
                     resolve: promiseProvider.warehouseMain
                 }
             })
-            .when('/add', {
-                templateUrl: viewsPrefix + 'add.html',
+            .when(routes._add, {
+                templateUrl: templatesDir + 'add.html',
                 controller: 'WarehouseAddController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy'),
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when('/edit/:id', {
-                templateUrl: viewsPrefix + 'edit.html',
+            .when(routes.edit, {
+                templateUrl: templatesDir + 'edit.html',
                 controller: 'WarehouseEditController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy'),
@@ -61,24 +73,24 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     }
                 }
             })
-            .when('/card/:id/out', {
-                templateUrl: viewsPrefix + 'card-out.html',
+            .when(routes.card_out, {
+                templateUrl: templatesDir + 'card-out.html',
                 controller: 'WarehouseCardOutController',
                 resolve: {
                     product: promiseProvider.get('Product'),
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when('/card/:id/in', {
-                templateUrl: viewsPrefix + 'card-in.html',
+            .when(routes.card_in, {
+                templateUrl: templatesDir + 'card-in.html',
                 controller: 'WarehouseCardInController',
                 resolve: {
                     product: promiseProvider.get('Product'),
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when('/card/:id', {
-                templateUrl: viewsPrefix + 'card.html',
+            .when(routes.card, {
+                templateUrl: templatesDir + 'card.html',
                 controller: 'WarehouseCardController',
                 resolve: {
                     product: promiseProvider.get('Product'),
@@ -86,7 +98,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .otherwise({redirectTo: '/main'});
+            .otherwise({redirectTo: routes.main});
     })
 
 ;
