@@ -12,7 +12,6 @@ urlpatterns = patterns(
     # skill
     url(r'^$', 'warehouse.skill.views.home'),
     url(r'^taxonomy/$', 'warehouse.skill.views.taxonomy'),
-    url(r'^warehouse/$', 'warehouse.skill.views.warehouse'),
 
     # backup
     url(r'^backup/$', 'warehouse.backup.views.home'),

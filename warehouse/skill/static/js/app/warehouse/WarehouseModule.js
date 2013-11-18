@@ -11,14 +11,16 @@ angular.module('warehouse.providers', ['wh.shared.promise']);
 
 angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'warehouse.filters', 'warehouse.providers'])
 
-    .constant('viewsPrefix', '/static/js/warehouse/views/')
+    .constant('viewsPrefix', '/static/js/app/warehouse/views/')
 
     .constant('OPERATION_TYPE', {
         IN: 0,
         OUT: 1
     })
 
-    .config(function ($routeProvider, viewsPrefix, promiseProvider) {
+    .config(function ($routeProvider, $locationProvider, viewsPrefix, promiseProvider) {
+
+        $locationProvider.hashPrefix('!');
 
         $routeProvider
             .when('/main/:gid', {
@@ -85,15 +87,6 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                 }
             })
             .otherwise({redirectTo: '/main'});
-    })
-
-    .config(function ($httpProvider, csrf_token) {
-        $httpProvider.defaults.headers.common['X-CSRFToken'] = csrf_token;
-
-        // bug in angular 1.0.6
-        // PATCH requests use 'application/xml' content type
-        // maybe will be fixed later
-        $httpProvider.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
     })
 
 ;

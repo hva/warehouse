@@ -1,11 +1,51 @@
 {% extends "base.html" %}
 
-{% load url from future %}
-
 {% block content %}
-    <div class="row">
-        {% for i in info %}
-            {% include 'partials/info.html' with info=i %}
-        {% endfor %}
+
+    <div ng-app="app">
+        <div class="busy-indicator">
+            <div>Загрузка...</div>
+        </div>
+        <div ng-view></div>
     </div>
+
+{% endblock %}
+
+{% block script %}
+
+    {# vendor #}
+
+    <script src="{{ STATIC_URL }}js/vendor/underscore-min.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/angular.min.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/angular-resource.min.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/angular-locale_ru.js"></script>
+
+    {# taxonomy #}
+
+    <script src="{{ STATIC_URL }}js/app/warehouse/WarehouseModule.js"></script>
+
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/Main.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/Add.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/Edit.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/Card.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/CardOut.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/controllers/CardIn.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/filters/Taxonomy.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/filters/Product.js"></script>
+    <script src="{{ STATIC_URL }}js/app/warehouse/filters/Operation.js"></script>
+
+    <script src="{{ STATIC_URL }}js/shared/services/Resource.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/directives/Breadcrumbs.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/directives/BusyIndicator.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/directives/Form.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/directives/Validate.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/services/Sortorder.js"></script>
+    <script src="{{ STATIC_URL }}js/shared/providers/Promise.js"></script>
+
+
+
+    <script src="{{ STATIC_URL }}js/app/AppModule.js"></script>
+
+    <script>angular.module('app').constant('csrf_token', '{{ csrf_token }}')</script>
+
 {% endblock %}
