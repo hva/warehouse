@@ -6,7 +6,7 @@ angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonom
 
     .constant('templatesDir', '/static/js/taxonomy/views/')
 
-    .constant('urls', {
+    .constant('taxonomyUrls', {
         _prefix: '/taxonomy',
         main: function () {
             return this._prefix;
@@ -22,7 +22,9 @@ angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonom
         }
     })
 
-    .config(function ($routeProvider, templatesDir, promiseProvider, urls) {
+    .config(function ($routeProvider, templatesDir, promiseProvider, taxonomyUrls, urlsProvider) {
+        var urls = taxonomyUrls;
+        urlsProvider._routes.taxonomy = urls;
         $routeProvider
             .when(urls.main(), {
                 templateUrl: templatesDir + 'list.html',

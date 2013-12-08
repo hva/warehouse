@@ -5,7 +5,7 @@ angular.module('taxonomy').controller('TaxonomyAddController', function ($scope,
     }
 
     function back() {
-        $location.path(urls.main());
+        $location.path(urls.taxonomy.main());
     }
 
     // trying to fix <option selected disabled /> issue
@@ -25,8 +25,8 @@ angular.module('taxonomy').controller('TaxonomyAddController', function ($scope,
     $scope.item = initItem();
 
     $scope.breadcrumbs = [
-        {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '#!' + urls.main()},
+        {title: 'главная', url: '#!' + urls.warehouse.main()},
+        {title: 'номенклатура', url: '#!' + urls.taxonomy.main()},
         {title: 'создание группы'}
     ];
 
@@ -37,7 +37,7 @@ angular.module('taxonomy').controller('TaxonomyAddController', function ($scope,
             taxonomy = $scope.taxonomy;
         item.sortorder = Sortorder.getNextSortorder(item, taxonomy);
         item.$save(function () {
-            $location.path(urls.main());
+            $location.path(urls.taxonomy.main());
         });
     };
 

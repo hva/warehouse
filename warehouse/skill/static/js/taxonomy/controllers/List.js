@@ -13,8 +13,8 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     $scope.selected = null;
 
     $scope.breadcrumbs = [
-        {title: 'главная', url: '/'},
-        {title: 'номенклатура'}
+        {title: 'главная', url: '#!' + urls.warehouse.main()},
+        {title: 'номенклатура'},
     ];
 
     $scope.select = function (x) {
@@ -26,7 +26,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     };
 
     $scope.add = function () {
-        var loc = $location.path(urls.add());
+        var loc = $location.path(urls.taxonomy.add());
         if ($scope.selected !== null) {
             loc.search({pid: $scope.selected.id});
         }
@@ -37,7 +37,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     };
 
     $scope.edit = function () {
-        $location.path(urls.edit($scope.selected.id));
+        $location.path(urls.taxonomy.edit($scope.selected.id));
     };
 
     $scope.remove = function () {

@@ -1,7 +1,7 @@
 angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, urls, Taxonomy, Sortorder, item, taxonomy) {
 
     function back() {
-        $location.path(urls.main());
+        $location.path(urls.taxonomy.main());
     }
 
     var original = angular.copy(item);
@@ -12,8 +12,8 @@ angular.module('taxonomy').controller('TaxonomyEditController', function ($scope
     $scope.taxonomy = taxonomy;
 
     $scope.breadcrumbs = [
-        {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '#!' + urls.main()},
+        {title: 'главная', url: '#!' + urls.warehouse.main()},
+        {title: 'номенклатура', url: '#!' + urls.taxonomy.main()},
         {title: 'редактирование группы'}
     ];
 
