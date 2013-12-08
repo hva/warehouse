@@ -1,10 +1,10 @@
-angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, Sortorder, Product, resolve) {
+angular.module('warehouse').controller('WarehouseMainController', function ($scope, $location, Sortorder, Product, resolve, urls) {
 
     angular.extend($scope, {
 
         sortorder: Sortorder,
         breadcrumbs: [
-            {title: 'главная', url: '/'},
+            {title: 'главная', url: '#!' + urls.main() },
             {title: 'склад'}
         ],
 
@@ -14,7 +14,7 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
         selectedTaxonomy: resolve[2] || null,
 
         selectTaxonomy: function (x) {
-            $location.path('/main/' + x.id);
+            $location.path(urls.mainFiltered(x.id));
         },
 
         isTaxonomyActive: function (x) {
@@ -37,7 +37,8 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
         },
 
         editProduct: function () {
-            $location.path('/edit/' + $scope.selectedProduct.id);
+            var url = urls.edit($scope.selectedProduct.id);
+            $location.path(url);
         },
 
         canEditProduct: function () {
@@ -45,7 +46,7 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
         },
 
         addProduct: function () {
-            var loc = $location.path('/add');
+            var loc = $location.path(urls.add());
             if ($scope.selectedTaxonomy !== null) {
                 loc.search({gid: $scope.selectedTaxonomy.id});
             }
@@ -63,7 +64,7 @@ angular.module('warehouse').controller('WarehouseMainController', function ($sco
         },
 
         showProductCard: function (p) {
-            $location.path('/card/' + p.id);
+            $location.path(urls.card(p.id));
         }
 
     });

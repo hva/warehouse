@@ -1,9 +1,9 @@
-angular.module('warehouse').controller('WarehouseCardController', function ($scope, $location, product, operations, contragents) {
+angular.module('warehouse').controller('WarehouseCardController', function ($scope, $location, urls, product, operations, contragents) {
     angular.extend($scope, {
 
         breadcrumbs: [
-            {title: 'главная', url: '/'},
-            {title: 'склад', url: '#/main'},
+            {title: 'главная', url: '#!' + urls.main()},
+            {title: 'склад', url: '#!' + urls.main()},
             {title: 'карточки товара', disabled: true},
             {title: product.title}
         ],
@@ -12,12 +12,12 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
         operations: operations,
         contragents: contragents,
 
-        out: function() {
-            $location.path('/card/' + product.id + '/out');
+        out: function () {
+            $location.path(urls.cardOut(product.id));
         },
 
-        in: function() {
-            $location.path('/card/' + product.id + '/in');
+        in: function () {
+            $location.path(urls.cardIn(product.id));
         }
 
     });

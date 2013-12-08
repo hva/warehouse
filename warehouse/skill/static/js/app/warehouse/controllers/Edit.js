@@ -1,7 +1,7 @@
-angular.module('warehouse').controller('WarehouseEditController', function ($scope, $location, Sortorder, taxonomy, product, files) {
+angular.module('warehouse').controller('WarehouseEditController', function ($scope, $location, urls, Sortorder, taxonomy, product, files) {
 
     function back() {
-        $location.path('/main/' + $scope.product.taxonomy_id);
+        $location.path(urls.mainFiltered($scope.product.taxonomy_id));
     }
 
     angular.extend($scope, {
@@ -12,8 +12,8 @@ angular.module('warehouse').controller('WarehouseEditController', function ($sco
         files: files,
 
         breadcrumbs: [
-            {title: 'главная', url: '/'},
-            {title: 'склад', url: '#/main'},
+            {title: 'главная', url: '#!' + urls.main()},
+            {title: 'склад', url: '#!' + urls.main()},
             {title: product.title}
         ],
 

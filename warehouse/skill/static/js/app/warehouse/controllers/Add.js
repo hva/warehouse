@@ -1,4 +1,4 @@
-angular.module('warehouse').controller('WarehouseAddController', function ($scope, $location, $routeParams, Sortorder, taxonomy, contragents, Product, Operation) {
+angular.module('warehouse').controller('WarehouseAddController', function ($scope, $location, $routeParams, urls, Sortorder, taxonomy, contragents, Product, Operation) {
 
     var groupId = parseInt($routeParams.gid, 10) || null;
 
@@ -7,8 +7,8 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         utils: Sortorder,
 
         breadcrumbs: [
-            {title: 'главная', url: '/'},
-            {title: 'склад', url: '#/main'},
+            {title: 'главная', url: '#!' + urls.main()},
+            {title: 'склад', url: '#!' + urls.main()},
             {title: 'добавление товара'}
         ],
 
@@ -42,15 +42,17 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
             p.$save(function (p2) {
                 o.product_id = p2.id;
                 o.$save(function () {
-                    $location.path('/main');
+                    $location.path(urls.main());
                 })
             });
         },
 
         cancel: function () {
-            var path = '/main';
             if (groupId !== null) {
-                path += '/' + groupId;
+                path = urls.mainFiltered(groupId);
+            }
+            else {
+                path = urls.main();
             }
             $location.path(path).search({});
         }
