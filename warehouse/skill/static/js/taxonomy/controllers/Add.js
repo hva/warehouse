@@ -1,7 +1,11 @@
-angular.module('taxonomy').controller('TaxonomyAddController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, taxonomy) {
+angular.module('taxonomy').controller('TaxonomyAddController', function ($scope, $location, $routeParams, urls, Taxonomy, Sortorder, taxonomy) {
 
     function isDisabledItem(x) {
         return Sortorder.getLevel(x) >= Sortorder.MAX_LEVEL;
+    }
+
+    function back() {
+        $location.path(urls.main());
     }
 
     // trying to fix <option selected disabled /> issue
@@ -22,7 +26,7 @@ angular.module('taxonomy').controller('TaxonomyAddController', function ($scope,
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '#/list'},
+        {title: 'номенклатура', url: '#!' + urls.main()},
         {title: 'создание группы'}
     ];
 
@@ -33,9 +37,10 @@ angular.module('taxonomy').controller('TaxonomyAddController', function ($scope,
             taxonomy = $scope.taxonomy;
         item.sortorder = Sortorder.getNextSortorder(item, taxonomy);
         item.$save(function () {
-            $location.path('/list');
+            $location.path(urls.main());
         });
     };
 
+    $scope.cancel = back;
 
 });

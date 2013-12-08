@@ -26,9 +26,9 @@
         {% if user.is_authenticated %}
             <ul class="right">
                 <li class="divider"></li>
-                <li><a href="{% url 'warehouse.skill.views.home' %}">Склад</a></li>
+                <li><a href="/#!/warehouse">Склад</a></li>
                 <li class="divider"></li>
-                <li><a href="{% url 'warehouse.skill.views.taxonomy' %}">Номенклатура</a></li>
+                <li><a href="/#!/taxonomy">Номенклатура</a></li>
                 <li class="divider"></li>
                 <li class="has-dropdown"><a href="{% url 'warehouse.backup.views.home' %}">Резервное копирование</a>
                     <ul class="dropdown">

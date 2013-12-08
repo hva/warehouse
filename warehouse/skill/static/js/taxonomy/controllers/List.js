@@ -1,4 +1,4 @@
-angular.module('taxonomy').controller('TaxonomyListController', function ($scope, $location, Taxonomy, Sortorder, taxonomy) {
+angular.module('taxonomy').controller('TaxonomyListController', function ($scope, $location, urls, Taxonomy, Sortorder, taxonomy) {
 
     $scope.sortorder = Sortorder;
 
@@ -26,7 +26,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     };
 
     $scope.add = function () {
-        var loc = $location.path('/add');
+        var loc = $location.path(urls.add());
         if ($scope.selected !== null) {
             loc.search({pid: $scope.selected.id});
         }
@@ -37,7 +37,7 @@ angular.module('taxonomy').controller('TaxonomyListController', function ($scope
     };
 
     $scope.edit = function () {
-        $location.path('/edit/' + $scope.selected.id);
+        $location.path(urls.edit($scope.selected.id));
     };
 
     $scope.remove = function () {

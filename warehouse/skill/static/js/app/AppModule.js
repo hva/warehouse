@@ -1,4 +1,4 @@
-angular.module('app', ['warehouse'])
+angular.module('app', ['warehouse', 'taxonomy'])
 
     .config(function ($httpProvider, csrf_token) {
         $httpProvider.defaults.headers.common['X-CSRFToken'] = csrf_token;

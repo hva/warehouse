@@ -1,48 +1,50 @@
 angular.module('taxonomy.services', ['wh.shared.resource', 'wh.shared.sortorder']);
 angular.module('taxonomy.directives', ['wh.shared.breadcrumbs', 'wh.shared.optionsDisabled', 'wh.shared.busyIndicator', 'wh.shared.form']);
-angular.module('taxonomy.providers', ['wh.shared.promise']);
+angular.module('taxonomy.providers', ['wh.shared.promise', 'wh.shared.urls']);
 
 angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonomy.providers'])
 
-    .constant('viewsPrefix', '/static/js/taxonomy/views/')
+    .constant('templatesDir', '/static/js/taxonomy/views/')
 
-    .config(function ($routeProvider, viewsPrefix, promiseProvider) {
+    .constant('urls', {
+        _prefix: '/taxonomy',
+        main: function () {
+            return this._prefix;
+        },
+        add: function () {
+            return this._prefix + '/add';
+        },
+        edit: function (id) {
+            if (angular.isDefined(id)) {
+                return this._prefix + '/edit/' + id;
+            }
+            return this._prefix + '/edit/:id'
+        }
+    })
+
+    .config(function ($routeProvider, templatesDir, promiseProvider, urls) {
         $routeProvider
-            .when('/list', {
-                templateUrl: viewsPrefix + 'list.html',
+            .when(urls.main(), {
+                templateUrl: templatesDir + 'list.html',
                 controller: 'TaxonomyListController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy')
                 }
             })
-            .when('/add', {
-                templateUrl: viewsPrefix + 'edit.html',
+            .when(urls.add(), {
+                templateUrl: templatesDir + 'edit.html',
                 controller: 'TaxonomyAddController',
                 resolve: {
                     taxonomy: promiseProvider.query('Taxonomy')
                 }
             })
-            .when('/edit/:id', {
-                templateUrl: viewsPrefix + 'edit.html',
+            .when(urls.edit(), {
+                templateUrl: templatesDir + 'edit.html',
                 controller: 'TaxonomyEditController',
                 resolve: {
                     item: promiseProvider.get('Taxonomy'),
                     taxonomy: promiseProvider.query('Taxonomy')
                 }
             })
-            .otherwise({redirectTo: '/list'});
     })
-
-    .config(function ($httpProvider) {
-        var input = document.getElementsByName('csrfmiddlewaretoken')[0];
-        if (input) {
-            $httpProvider.defaults.headers.common['X-CSRFToken'] = input.value;
-
-            // bug in angular 1.0.6
-            // PATCH requests use 'application/xml' content type
-            // maybe will be fixed later
-            $httpProvider.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
-        }
-    })
-
 ;

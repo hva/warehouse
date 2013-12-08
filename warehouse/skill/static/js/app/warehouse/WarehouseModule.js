@@ -25,45 +25,44 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
     .constant('urls', {
                   _prefix: '/warehouse',
                   main: function () {
-                      return this._prefix + '/main'
+                      return this._prefix;
                   },
                   mainFiltered: function (gid) {
                       if (angular.isDefined(gid)) {
                           return this._prefix + '/main/' + gid;
                       }
-                      return this._prefix + '/main/:gid'
+                      return this._prefix + '/main/:gid';
                   },
                   add: function () {
-                      return this._prefix + '/add'
+                      return this._prefix + '/add';
                   },
                   edit: function (id) {
                       if (angular.isDefined(id)) {
                           return this._prefix + '/edit/' + id;
                       }
-                      return this._prefix + '/edit/:id'
+                      return this._prefix + '/edit/:id';
                   },
                   card: function (id) {
                       if (angular.isDefined(id)) {
                           return this._prefix + '/card/' + id;
                       }
-                      return this._prefix + '/card/:id'
+                      return this._prefix + '/card/:id';
                   },
                   cardOut: function (id) {
                       if (angular.isDefined(id)) {
                           return this._prefix + '/card/' + id + '/out';
                       }
-                      return this._prefix + '/card/:id/out'
+                      return this._prefix + '/card/:id/out';
                   },
                   cardIn: function (id) {
                       if (angular.isDefined(id)) {
                           return this._prefix + '/card/' + id + '/in';
                       }
-                      return this._prefix + '/card/:id/in'
+                      return this._prefix + '/card/:id/in';
                   }
               })
 
     .config(function ($routeProvider, promiseProvider, templatesDir, urls) {
-
                 $routeProvider
                     .when(urls.mainFiltered(), {
                               templateUrl: templatesDir + 'main.html',

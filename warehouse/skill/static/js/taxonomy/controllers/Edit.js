@@ -1,4 +1,8 @@
-angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, Taxonomy, Sortorder, item, taxonomy) {
+angular.module('taxonomy').controller('TaxonomyEditController', function ($scope, $location, $routeParams, urls, Taxonomy, Sortorder, item, taxonomy) {
+
+    function back() {
+        $location.path(urls.main());
+    }
 
     var original = angular.copy(item);
 
@@ -9,7 +13,7 @@ angular.module('taxonomy').controller('TaxonomyEditController', function ($scope
 
     $scope.breadcrumbs = [
         {title: 'главная', url: '/'},
-        {title: 'номенклатура', url: '#/list'},
+        {title: 'номенклатура', url: '#!' + urls.main()},
         {title: 'редактирование группы'}
     ];
 
@@ -20,16 +24,15 @@ angular.module('taxonomy').controller('TaxonomyEditController', function ($scope
 
     $scope.submit = function () {
         var item = $scope.item,
-            taxonomy = $scope.taxonomy,
-            afterSave = function () {
-                $location.path('/list');
-            };
+            taxonomy = $scope.taxonomy;
         if (original.parent_id !== item.parent_id) {
             var modified = Sortorder.moveToBranch(item, taxonomy);
-            Taxonomy.update({objects: modified}, afterSave);
+            Taxonomy.update({objects: modified}, back);
         } else {
-            item.$update(afterSave);
+            item.$update(back);
         }
     };
+
+    $scope.cancel = back;
 
 });
