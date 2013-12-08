@@ -17,39 +17,31 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
 
     .constant('templatesDir', '/static/js/app/warehouse/views/')
 
-    .constant('routes', {
-        main:       '/warehouse/main',
-        group:      '/warehouse/main/:gid',
-        _add:       '/warehouse/add',
-        edit:       '/warehouse/edit/:id',
-        card:       '/warehouse/card/:id',
-        card_in:    '/warehouse/card/:id/in',
-        card_out:   '/warehouse/card/:id/out'
-    })
-
     .constant('OPERATION_TYPE', {
         IN: 0,
         OUT: 1
     })
 
-    .config(function ($routeProvider, promiseProvider, templatesDir, routes) {
+    .config(function ($routeProvider, promiseProvider, templatesDir) {
+
+        var prefix = '/warehouse';
 
         $routeProvider
-            .when(routes.group, {
+            .when(prefix + '/main/:gid', {
                 templateUrl: templatesDir + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
                     resolve: promiseProvider.warehouseMainFiltered
                 }
             })
-            .when(routes.main, {
+            .when(prefix + '/main', {
                 templateUrl: templatesDir + 'main.html',
                 controller: 'WarehouseMainController',
                 resolve: {
                     resolve: promiseProvider.warehouseMain
                 }
             })
-            .when(routes._add, {
+            .when(prefix + '/add', {
                 templateUrl: templatesDir + 'add.html',
                 controller: 'WarehouseAddController',
                 resolve: {
@@ -57,7 +49,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when(routes.edit, {
+            .when(prefix + '/edit/:id', {
                 templateUrl: templatesDir + 'edit.html',
                 controller: 'WarehouseEditController',
                 resolve: {
@@ -73,7 +65,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     }
                 }
             })
-            .when(routes.card_out, {
+            .when(prefix + '/card/:id/out', {
                 templateUrl: templatesDir + 'card-out.html',
                 controller: 'WarehouseCardOutController',
                 resolve: {
@@ -81,7 +73,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when(routes.card_in, {
+            .when(prefix + '/card/:id/in', {
                 templateUrl: templatesDir + 'card-in.html',
                 controller: 'WarehouseCardInController',
                 resolve: {
@@ -89,7 +81,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .when(routes.card, {
+            .when(prefix + '/card/:id', {
                 templateUrl: templatesDir + 'card.html',
                 controller: 'WarehouseCardController',
                 resolve: {
@@ -98,7 +90,7 @@ angular.module('warehouse', ['warehouse.services', 'warehouse.directives', 'ware
                     contragents: promiseProvider.query('Contragent')
                 }
             })
-            .otherwise({redirectTo: routes.main});
+            .otherwise({redirectTo: prefix + '/main'});
     })
 
 ;
