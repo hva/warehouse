@@ -7,8 +7,8 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
         utils: Sortorder,
 
         breadcrumbs: [
-            {title: 'главная', url: '#!' + urls.main()},
-            {title: 'склад', url: '#!' + urls.main()},
+            {title: 'главная', url: '#!' + urls.warehouse.main()},
+            {title: 'склад', url: '#!' + urls.warehouse.main()},
             {title: 'добавление товара'}
         ],
 
@@ -42,17 +42,17 @@ angular.module('warehouse').controller('WarehouseAddController', function ($scop
             p.$save(function (p2) {
                 o.product_id = p2.id;
                 o.$save(function () {
-                    $location.path(urls.main());
+                    $location.path(urls.warehouse.main());
                 })
             });
         },
 
         cancel: function () {
             if (groupId !== null) {
-                path = urls.mainFiltered(groupId);
+                path = urls.warehouse.mainFiltered(groupId);
             }
             else {
-                path = urls.main();
+                path = urls.warehouse.main();
             }
             $location.path(path).search({});
         }

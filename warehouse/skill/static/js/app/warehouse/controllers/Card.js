@@ -2,8 +2,8 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
     angular.extend($scope, {
 
         breadcrumbs: [
-            {title: 'главная', url: '#!' + urls.main()},
-            {title: 'склад', url: '#!' + urls.main()},
+            {title: 'главная', url: '#!' + urls.warehouse.main()},
+            {title: 'склад', url: '#!' + urls.warehouse.main()},
             {title: 'карточки товара', disabled: true},
             {title: product.title}
         ],
@@ -13,11 +13,11 @@ angular.module('warehouse').controller('WarehouseCardController', function ($sco
         contragents: contragents,
 
         out: function () {
-            $location.path(urls.cardOut(product.id));
+            $location.path(urls.warehouse.cardOut(product.id));
         },
 
         in: function () {
-            $location.path(urls.cardIn(product.id));
+            $location.path(urls.warehouse.cardIn(product.id));
         }
 
     });

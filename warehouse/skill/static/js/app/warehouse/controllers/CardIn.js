@@ -3,10 +3,10 @@ angular.module('warehouse').controller('WarehouseCardInController', function ($s
     angular.extend($scope, {
 
         breadcrumbs: [
-            {title: 'главная', url: '#!' + urls.main()},
-            {title: 'склад', url: '#!' + urls.main()},
+            {title: 'главная', url: '#!' + urls.warehouse.main()},
+            {title: 'склад', url: '#!' + urls.warehouse.main()},
             {title: 'карточки товара', disabled: true},
-            {title: product.title, url: '#!' + urls.card(product.id)},
+            {title: product.title, url: '#!' + urls.warehouse.card(product.id)},
             {title: 'добавление'}
         ],
 
@@ -28,7 +28,7 @@ angular.module('warehouse').controller('WarehouseCardInController', function ($s
         },
 
         cancel: function () {
-            $location.path(urls.card(product.id));
+            $location.path(urls.warehouse.card(product.id));
         }
 
     });
