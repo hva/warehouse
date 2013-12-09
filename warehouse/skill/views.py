@@ -36,11 +36,6 @@ def home(request):
 
 
 @login_required
-def taxonomy(request):
-    return render_to_response('taxonomy.html', {}, RequestContext(request))
-
-
-@login_required
 def add_file(request, productId):
     product = Product.objects.get(pk=productId)
 

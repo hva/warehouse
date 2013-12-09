@@ -4,7 +4,7 @@ angular.module('taxonomy.providers', ['wh.shared.promise', 'wh.shared.urls']);
 
 angular.module('taxonomy', ['taxonomy.services', 'taxonomy.directives', 'taxonomy.providers'])
 
-    .constant('templatesDir', '/static/js/taxonomy/views/')
+    .constant('templatesDir', '/static/js/app/taxonomy/views/')
 
     .constant('taxonomyUrls', {
         _prefix: '/taxonomy',
