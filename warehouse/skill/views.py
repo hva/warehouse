@@ -43,7 +43,7 @@ def add_file(request, productId):
         form = AttachmentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/warehouse/#/edit/%s' % productId)
+            return HttpResponseRedirect('/#!/warehouse/edit/%s' % productId)
     else:
         form = AttachmentForm()
 

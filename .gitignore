@@ -1,7 +1,7 @@
 *.log
 *.pot
 *.pyc
-/warehouse/settings_local.py
-/deploy/env/*
-/.idea/*
 *.scssc
+/warehouse/settings_local.py
+/scripts/.idea
+/warehouse/skill/static/js/.idea

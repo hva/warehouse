@@ -47,6 +47,6 @@ class Attachment(models.Model):
     )
     item_id = models.IntegerField()
     item_type = models.IntegerField(choices=ATTACHMENT_TYPE)
-    file = models.ImageField(upload_to='files/%Y/%m/%d')
+    file = models.ImageField(upload_to='attachments/%Y/%m')
     description = models.CharField(max_length=256, null=True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
